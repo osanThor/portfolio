@@ -23,7 +23,8 @@ export default function HeaderContainer() {
     }
 
     const menuIdx = MENUS.findIndex((menu) => menu.href === pathname);
-    if (menuIdx < 0) {
+    console.log(menuIdx);
+    if (menuIdx < 0 && menuIdx !== 0) {
       setHoverId(0);
       setPathId(0);
     } else {

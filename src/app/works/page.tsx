@@ -1,3 +1,10 @@
+import PageAnimationContainer from "@/containers/loading/PageAnimationContainer";
+
 export default function WorksPage() {
-  return <div>WorksPage</div>;
+  return (
+    <>
+      <PageAnimationContainer />
+      WorksPage
+    </>
+  );
 }

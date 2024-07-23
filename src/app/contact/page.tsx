@@ -1,3 +1,10 @@
+import PageAnimationContainer from "@/containers/loading/PageAnimationContainer";
+
 export default function ContactPage() {
-  return <div>ContactPage</div>;
+  return (
+    <>
+      <PageAnimationContainer />
+      ContactPage
+    </>
+  );
 }

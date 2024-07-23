@@ -25,6 +25,9 @@ const config: Config = {
       colors: {
         gray: "#758694",
         darkIndigo: "#2F3645",
+        blue: "#2192FF",
+        red: "#F86D6D",
+        cyan: "#A3E4DB",
       },
       backdropBlur: {
         xs: "2px",
