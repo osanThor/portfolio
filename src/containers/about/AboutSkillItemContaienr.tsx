@@ -1,6 +1,6 @@
 "use client";
 import { Skill } from "@/data/about/skills/skillImages";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import ParticleImage, {
   ParticleOptions,
   Vector,
@@ -51,20 +51,20 @@ export default function AboutSkillItemContaienr({ skill }: Props) {
   }, [skillTitleRef, skill]);
 
   const skillColors = {
-    FE: "blue",
-    STYLE: "red",
-    BE: "cyan",
+    FE: "text-blue",
+    STYLE: "text-red",
+    BE: "text-cyan",
   };
 
-  const cateColor = skill ? skillColors[skill.skillCategory] : "blue";
+  const cateColor = skillColors[skill.skillCategory];
 
   return (
     <div className="flex flex-col">
       <div className="flex flex-col items-center" ref={targetRef}>
         <ParticleImage
           src={Skill[skill.logoNum]}
-          width={310}
-          height={310}
+          width={360}
+          height={360}
           scale={0.5}
           entropy={10}
           maxParticles={4000}
@@ -74,9 +74,7 @@ export default function AboutSkillItemContaienr({ skill }: Props) {
           backgroundColor="white"
         />
         <div className="text-center">
-          <h2 className={`text-xs mb-1 text-${cateColor}`}>
-            {skill.skillCategory}
-          </h2>
+          <h2 className={`text-xs mb-1 ${cateColor}`}>{skill.skillCategory}</h2>
           <h1 className="text-xl font-[600]" ref={skillTitleRef} />
         </div>
       </div>

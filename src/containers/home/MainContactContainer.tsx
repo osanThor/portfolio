@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function MainContactContainer() {
   return (
-    <section className="w-full min-h-screen bg-darkIndigo py-[120px] flex flex-col items-center justify-center">
+    <section className="w-full min-h-[calc(100vh-40px)] bg-darkIndigo py-[120px] flex flex-col items-center justify-center">
       <div className="w-[calc(100%-32px)] max-w-[1600px] flex items-center">
         <div className="flex flex-col items-start gap-20">
           <div className="flex flex-col gap-10">

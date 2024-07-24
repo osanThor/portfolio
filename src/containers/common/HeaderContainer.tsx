@@ -23,7 +23,6 @@ export default function HeaderContainer() {
     }
 
     const menuIdx = MENUS.findIndex((menu) => menu.href === pathname);
-    console.log(menuIdx);
     if (menuIdx < 0 && menuIdx !== 0) {
       setHoverId(0);
       setPathId(0);
@@ -137,7 +136,12 @@ export default function HeaderContainer() {
             <div className="px-10 md:px-20 text-xs lg:text-sm text-gray pb-4 border-b border-gray w-full">
               MENUS
             </div>
-            <ul className="w-full text-4xl transition-all md:text-6xl py-10 px-10 md:px-20 flex flex-col items-start justify-center gap-10 text-white ">
+            <ul
+              onMouseOut={() => {
+                if (pathId) setHoverId(pathId);
+              }}
+              className="w-full text-4xl transition-all md:text-6xl py-10 px-10 md:px-20 flex flex-col items-start justify-center gap-10 text-white "
+            >
               <li>
                 <Link
                   href={"/"}
