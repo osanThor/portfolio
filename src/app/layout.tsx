@@ -5,6 +5,7 @@ import HeaderContainer from "@/containers/common/HeaderContainer";
 import FooterContainer from "@/containers/common/FooterContainer";
 import RecoilRootProvider from "@/contexts/Recoil.context";
 import MainLoadingContainer from "@/containers/loading/MainLoadingContainer";
+import { Toaster } from "@/components/ui/toaster";
 
 const BASE_URL = new URL(
   process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"
@@ -140,6 +141,7 @@ export default function RootLayout({
             {children}
           </main>
           <FooterContainer />
+          <Toaster />
         </RecoilRootProvider>
       </body>
     </html>
