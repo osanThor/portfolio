@@ -10,8 +10,8 @@ import Link from "next/link";
 export default function MainContactContainer() {
   return (
     <section className="w-full min-h-[calc(100vh-40px)] bg-darkIndigo py-[120px] flex flex-col items-center justify-center">
-      <div className="w-[calc(100%-32px)] max-w-[1600px] flex gap-10 justify-between items-center">
-        <div className="flex flex-col items-start gap-20">
+      <div className="w-[calc(100%-32px)] max-w-[1600px] flex gap-10 justify-between items-center flex-col md:flex-row">
+        <div className="flex w-full flex-1 flex-col items-start gap-20">
           <div className="flex flex-col gap-10">
             <div className="flex gap-5 md:gap-10 items-center">
               <div className="w-20 h-20 md:w-[120px] md:h-[120px] relative rounded-full bg-white">
@@ -33,7 +33,7 @@ export default function MainContactContainer() {
           </div>
           <LinkButton text="Contact Me" href="/contact" />
         </div>
-        <div className="py-10 min-w-[240px] flex flex-col gap-20">
+        <div className="py-10 w-full md:w-auto min-w-[240px] flex flex-col gap-20">
           <ul className="relative w-full flex flex-col gap-4 before:content-['Contact_Detail'] before:absolute before:bottom-[120%] before:text-gray before:text-xs">
             <li>
               <Link
@@ -54,7 +54,7 @@ export default function MainContactContainer() {
               </Link>
             </li>
           </ul>
-          <ul className="relative w-full flex flex-col gap-4 before:content-['Social'] before:absolute before:bottom-[120%] before:text-gray before:text-xs">
+          <ul className="relative w-full hidden md:flex flex-col gap-4 before:content-['Social'] before:absolute before:bottom-[120%] before:text-gray before:text-xs">
             <li>
               <Link
                 className="text-white hover:text-gray transition-all flex items-center gap-2"
