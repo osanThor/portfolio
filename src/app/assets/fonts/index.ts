@@ -28,4 +28,5 @@ export const nanumSquareNEO = localFont({
       style: "normal",
     },
   ],
+  variable: "--font-nanumSquareNEO",
 });

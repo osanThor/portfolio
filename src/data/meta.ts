@@ -2,7 +2,7 @@ export const META = {
   title: "GIVEN's PORTFOLIO: 개발자 준영의 포트폴리오",
   siteName: "GIVEN's PORTFOLIO",
   description:
-    "개발자 준영의 포트폴리오 - Front End Developer Given's PORTFOLIO",
+    "개발자 준영의 포트폴리오 | Front End Developer Given's PORTFOLIO",
   keyword: [
     "포트폴리오",
     "블로그",
@@ -18,5 +18,5 @@ export const META = {
   ],
   url: process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000",
   naverVerification: process.env.NAVER_SITE_VERIFICATION || "",
-  ogImage: `/assets/images/op_image.png`,
+  ogImage: `/assets/images/meta/op_image.png`,
 } as const;

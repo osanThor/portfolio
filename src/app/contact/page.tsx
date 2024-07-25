@@ -3,9 +3,14 @@ import GithubIcon from "@/components/common/ui/icons/GithubIcon";
 import InstagramIcon from "@/components/common/ui/icons/InstagramIcon";
 import ContactFormContainer from "@/containers/contact/ContactFormContainer";
 import PageAnimationContainer from "@/containers/loading/PageAnimationContainer";
+import { getMetadata } from "@/utils/getMetadata";
 import Image from "next/image";
 import Link from "next/link";
-
+export async function generateMetadata() {
+  return getMetadata({
+    title: "Contact",
+  });
+}
 export default function ContactPage() {
   return (
     <div className="bg-darkIndigo w-full h-full min-h-screen flex flex-col items-center">
