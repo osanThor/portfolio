@@ -1,12 +1,16 @@
 "use client";
 
 import LinkButton from "@/components/common/LinkButton";
+import BlogIcon from "@/components/common/ui/icons/BlogIcon";
+import GithubIcon from "@/components/common/ui/icons/GithubIcon";
+import InstagramIcon from "@/components/common/ui/icons/InstagramIcon";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function MainContactContainer() {
   return (
     <section className="w-full min-h-[calc(100vh-40px)] bg-darkIndigo py-[120px] flex flex-col items-center justify-center">
-      <div className="w-[calc(100%-32px)] max-w-[1600px] flex items-center">
+      <div className="w-[calc(100%-32px)] max-w-[1600px] flex gap-10 justify-between items-center">
         <div className="flex flex-col items-start gap-20">
           <div className="flex flex-col gap-10">
             <div className="flex gap-5 md:gap-10 items-center">
@@ -28,6 +32,60 @@ export default function MainContactContainer() {
             </div>
           </div>
           <LinkButton text="Contact Me" href="/contact" />
+        </div>
+        <div className="py-10 min-w-[240px] flex flex-col gap-20">
+          <ul className="relative w-full flex flex-col gap-4 before:content-['Contact_Detail'] before:absolute before:bottom-[120%] before:text-gray before:text-xs">
+            <li>
+              <Link
+                href={"mailto:jadw15@naver.com"}
+                scroll={false}
+                className="text-white hover:text-gray transition-all"
+              >
+                jadw15@naver.com
+              </Link>
+            </li>
+            <li>
+              <Link
+                href={"tel:+821076303515"}
+                scroll={false}
+                className="text-white hover:text-gray transition-all"
+              >
+                +82 10 7630 3515
+              </Link>
+            </li>
+          </ul>
+          <ul className="relative w-full flex flex-col gap-4 before:content-['Social'] before:absolute before:bottom-[120%] before:text-gray before:text-xs">
+            <li>
+              <Link
+                className="text-white hover:text-gray transition-all flex items-center gap-2"
+                href={"https://github.com/osanThor"}
+                target="_blank"
+              >
+                <GithubIcon />
+                Github
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="text-white hover:text-gray transition-all flex items-center gap-2"
+                href={"https://blog.given-log.com/"}
+                target="_blank"
+              >
+                <BlogIcon />
+                Blog
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="text-white hover:text-gray transition-all flex items-center gap-2"
+                href={"https://www.instagram.com/given_015/"}
+                target="_blank"
+              >
+                <InstagramIcon />
+                Instagram
+              </Link>
+            </li>
+          </ul>
         </div>
       </div>
     </section>
