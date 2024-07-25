@@ -11,7 +11,7 @@ export default function MainContactContainer() {
   return (
     <section className="w-full min-h-[calc(100vh-40px)] bg-darkIndigo py-[120px] flex flex-col items-center justify-center">
       <div className="w-[calc(100%-32px)] max-w-[1600px] flex gap-10 justify-between items-center flex-col md:flex-row">
-        <div className="flex w-full flex-1 flex-col items-start gap-20">
+        <div className="flex w-full flex-1 flex-col items-start gap-20 border-b md:border-b-0 pb-5 md:border-r border-gray">
           <div className="flex flex-col gap-10">
             <div className="flex gap-5 md:gap-10 items-center">
               <div className="w-20 h-20 md:w-[120px] md:h-[120px] relative rounded-full bg-white">

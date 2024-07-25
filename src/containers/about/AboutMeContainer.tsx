@@ -77,10 +77,12 @@ export default function AboutMeContainer() {
           />
         </div>
       </div>
-      <div className="w-full">
-        <CommonTitle text={"Skills"} />
+      <div className="w-full  flex flex-col items-center">
+        <div className="w-full">
+          <CommonTitle text={"Skills"} />
+        </div>
+        {show && <AboutSkillsContainer />}
       </div>
-      {show && <AboutSkillsContainer />}
     </>
   );
 }
