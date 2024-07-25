@@ -26,7 +26,8 @@ export default function WorksAnimationContainer() {
     const container = containerRef.current;
     const containerTop = container.offsetTop;
     const containerHeight = container.clientHeight;
-    const roundHeigt = 200 - (scrollY - (containerTop + containerHeight / 2));
+    const roundHeigt = -(scrollY - (containerTop + containerHeight / 2));
+    console.log(roundHeigt);
     gsap.to(".box1", {
       x: -(containerTop - 400 - scrollY),
     });
@@ -34,7 +35,7 @@ export default function WorksAnimationContainer() {
       x: containerTop - 400 - scrollY,
     });
     gsap.to(".roundBox", {
-      height: roundHeigt > 200 ? 200 : roundHeigt < 0 ? 0 : roundHeigt,
+      height: roundHeigt > 250 ? 250 : roundHeigt < 0 ? 0 : roundHeigt,
       borderBottomRightRadius: "50% 100%",
       borderBottomLeftRadius: "50% 100%",
     });
@@ -44,7 +45,7 @@ export default function WorksAnimationContainer() {
     <>
       <div
         ref={containerRef}
-        className="relative min-w-full pt-20 lg:pt-[100px] "
+        className="relative min-w-full pt-10 lg:pt-[100px] "
       >
         <div className="hidden lg:flex flex-col">
           <ul className="box1 flex -left-[500px] relative ">

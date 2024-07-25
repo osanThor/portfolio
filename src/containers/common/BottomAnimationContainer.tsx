@@ -25,7 +25,7 @@ export default function BottomAnimationContainer() {
     if (!containerRef.current) return;
     const container = containerRef.current;
     const containerTop = container.offsetTop;
-    const roundHeigt = 150 - (scrollY - (containerTop - 100));
+    const roundHeigt = -(scrollY - (containerTop - 100));
 
     gsap.to(".roundBox", {
       height: roundHeigt > 150 ? 150 : roundHeigt < 0 ? 0 : roundHeigt,

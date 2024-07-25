@@ -105,7 +105,7 @@ export default function ContactFormContainer() {
               value={target || ""}
               required={form.required}
               placeholder={form.placeholder}
-              className="w-full h-20 border-b text-white text-3xl transition-all placeholder:text-gray placeholder:text-xl border-gray focus:outline-none focus:border-blue bg-darkIndigo"
+              className="w-full h-20 border-b text-white text-3xl transition-all placeholder:text-gray truncate placeholder:truncate placeholder:text-xl border-gray focus:outline-none focus:border-blue bg-darkIndigo"
               autoFocus={idx === 0}
               disabled={loading}
             />
@@ -124,13 +124,13 @@ export default function ContactFormContainer() {
           placeholder="ex)안녕하세요. 활빈당입니다.*"
           onChange={handlechangeFields}
           maxRows={7}
-          className="w-full min-h-[80px] py-5 h-20 border-b resize-none text-white text-3xl placeholder:text-gray placeholder:text-xl border-gray focus:outline-none focus:border-blue bg-darkIndigo"
+          className="w-full min-h-[80px] py-5 h-20 border-b resize-none text-white text-3xl truncate placeholder:text-gray placeholder:truncate placeholder:text-xl border-gray focus:outline-none focus:border-blue bg-darkIndigo"
           value={body.message ? body.message : ""}
           name="message"
           disabled={loading}
         />
       </label>
-      <div className="w-full flex items-center justify-center">
+      <div className="w-full flex items-center justify-end">
         <button
           type="submit"
           disabled={loading}
