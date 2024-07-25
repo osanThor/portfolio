@@ -1,4 +1,3 @@
-import ContactFormContainer from "@/containers/contact/ContactFormContainer";
 import PageAnimationContainer from "@/containers/loading/PageAnimationContainer";
 import Image from "next/image";
 
@@ -16,7 +15,7 @@ export default function ContactPage() {
           <div className=" flex-[8]">
             <ContactFormContainer />
           </div>
-          <div className=" flex-[2] py-10">
+          <div className=" flex-[2]">
             <div className="w-20 h-20 md:w-[120px] md:h-[120px] relative rounded-full bg-white">
               <Image
                 src={"/assets/images/profile.png"}

@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 export default function HeaderContainer() {
   const pathname = usePathname();
   const [theme, setTheme] = useState<"dark" | "light">("dark");
-  const themeDarkPathname = ["/"];
+  const themeDarkPathname = ["/", "/contact"];
   const [pathId, setPathId] = useState<number>(0);
   const [hoverId, setHoverId] = useState<number>(0);
 
