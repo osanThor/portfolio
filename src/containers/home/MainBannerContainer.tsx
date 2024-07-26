@@ -35,10 +35,10 @@ export default function MainBannerContainer() {
   return (
     <section
       ref={containerRef}
-      className="w-full h-screen bg-[#8DA2B2] relative bg-gradient-animation max-w-[100vw]"
+      className="w-full h-[110vh] bg-[#8DA2B2] relative bg-gradient-animation max-w-[100vw]"
     >
       <Image
-        className="absolute object-contain bottom-0 transition-all left-0 sm:left-[4%] lg:left-[8.72%] max-w-full max-h-[70vh] min-[400px]:max-h-[90%]"
+        className="absolute object-contain bottom-0 transition-all left-0 sm:left-[4%] lg:left-[8.72%] max-w-full max-h-[80vh] min-[435px]:max-h-[90%]"
         src={"/assets/images/home/me.png"}
         alt="it's me"
         width={600}
@@ -48,7 +48,7 @@ export default function MainBannerContainer() {
       />
       <div
         id="intro"
-        className="text-lg min-[400px]:text-2xl md:text-[30px] leading-8 min-[400px]:leading-[50px] text-white absolute top-[12%] min-[400px]:top-auto bottom-auto min-[400px]:bottom-1/2 left-[5%] sm:left-1/2 break-keep transition-all"
+        className="text-lg min-[435px]:text-2xl md:text-[30px] leading-8 min-[435px]:leading-[50px] text-white absolute top-[12%] min-[435px]:top-auto bottom-auto min-[435px]:bottom-1/2 left-[5%] sm:left-1/2 break-keep transition-all"
       >
         <span className="copy">안녕하세요.</span>
         <br />
