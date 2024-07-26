@@ -40,16 +40,16 @@ export default function MainAnimationText() {
   }, [scrollDirection]);
 
   return (
-    <div className="overflow-hidden whitespace-nowrap absolute bottom-10 flex">
+    <div className="overflow-hidden whitespace-nowrap absolute bottom-[10vh] flex">
       <span
         style={{ transform: `translateX(-${currentX}%)` }}
-        className="text-[22.5vw] md:text-bn font-[900] text-white "
+        className="text-[28.5vh] md:text-bn font-[900] text-white "
       >
         LEE JUN YOUNG
       </span>
       <span
         style={{ transform: `translateX(-${currentX}%)` }}
-        className="text-[22.5vw] md:text-bn font-[900] text-white pl-[5.7vw]"
+        className="text-[28.5vh] md:text-bn font-[900] text-white pl-[5.7vw]"
       >
         LEE JUN YOUNG
       </span>

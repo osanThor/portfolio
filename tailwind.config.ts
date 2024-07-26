@@ -25,9 +25,9 @@ const config = {
       },
       fontSize: {
         bn: [
-          "12.5vw",
+          "30.5vh",
           {
-            lineHeight: "13.8vw",
+            lineHeight: "35.8vh",
           },
         ],
       },
