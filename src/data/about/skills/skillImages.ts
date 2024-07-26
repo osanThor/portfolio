@@ -5,4 +5,11 @@ const Sass = "/assets/images/about/skills/sass.png";
 const Styled = "/assets/images/about/skills/styled.png";
 const Firebase = "/assets/images/about/skills/firebase.png";
 
-export const Skill = [Javascript, Typescript, React, Sass, Styled, Firebase];
+export const SkillSlides = [
+  Javascript,
+  Typescript,
+  React,
+  Sass,
+  Styled,
+  Firebase,
+];

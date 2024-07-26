@@ -16,6 +16,11 @@ body {
   height: auto;
   overflow-x: hidden;
 }
+input,
+textarea {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+}
 
 @layer base {
   :root {

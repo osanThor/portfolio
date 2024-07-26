@@ -1,5 +1,5 @@
 "use client";
-import { Skill } from "@/data/about/skills/skillImages";
+import { SkillSlides } from "@/data/about/skills/skillImages";
 import { useEffect, useRef } from "react";
 import ParticleImage, {
   ParticleOptions,
@@ -62,7 +62,7 @@ export default function AboutSkillItemContaienr({ skill }: Props) {
     <div className="flex flex-col">
       <div className="flex flex-col items-center" ref={targetRef}>
         <ParticleImage
-          src={Skill[skill.logoNum]}
+          src={SkillSlides[skill.logoNum]}
           width={360}
           height={360}
           scale={0.5}
@@ -71,7 +71,7 @@ export default function AboutSkillItemContaienr({ skill }: Props) {
           particleOptions={particleOptions}
           mouseMoveForce={motionForce}
           touchMoveForce={motionForce}
-          backgroundColor="white"
+          backgroundColor="none"
         />
         <div className="text-center">
           <h2 className={`text-xs mb-1 ${cateColor}`}>{skill.skillCategory}</h2>

@@ -20,7 +20,7 @@ export default function AboutPage() {
           </h2>
         </div>
       </div>
-      <div className="w-[calc(100%-32px)] max-w-[1600px] flex flex-col items-center gap-10 pb-10 pt-5 md:py-20 md:pt-10">
+      <div className="w-full flex flex-col items-center gap-20 pb-10 pt-5 md:py-20 md:pt-10">
         <AboutMeContainer />
       </div>
       <BottomAnimationContainer />

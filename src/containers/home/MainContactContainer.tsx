@@ -13,8 +13,8 @@ export default function MainContactContainer() {
       <div className="w-[calc(100%-32px)] max-w-[1600px] flex gap-10 justify-between items-center flex-col md:flex-row">
         <div className="flex w-full flex-1 flex-col items-start gap-20 border-b md:border-b-0 pb-5 md:border-r border-gray">
           <div className="flex flex-col gap-10">
-            <div className="flex gap-5 md:gap-10 items-center">
-              <div className="w-20 h-20 md:w-[120px] md:h-[120px] relative rounded-full bg-white">
+            <div className="flex flex-col md:flex-row gap-5 md:gap-10 md:items-center">
+              <div className="w-20 h-20 md:w-[120px] md:h-[120px] min-w-20 min-h-20 md:min-w-[120px] md:min-h-[120px] relative rounded-full bg-white">
                 <Image
                   src={"/assets/images/profile.png"}
                   alt="my emozi"
@@ -23,12 +23,14 @@ export default function MainContactContainer() {
                   sizes={"100"}
                 />
               </div>
-              <div className=" transition-all text-4xl md:text-5xl lg:text-6xl font-[700] text-white">
-                안녕하세요.
+              <div className="w-full flex flex-col gap-5 md:gap-10">
+                <div className=" transition-all break-keep text-3xl md:text-4xl lg:text-5xl font-[700] text-white">
+                  저에게 관심이 생기셨나요?
+                </div>
+                <div className="transition-all break-keep text-3xl md:text-4xl lg:text-5xl font-[700] text-white">
+                  연락주시면 감사하겠습니다!
+                </div>
               </div>
-            </div>
-            <div className="transition-all text-3xl md:text-4xl lg:text-5xl font-[700] text-white">
-              같이 일하고 싶습니다~!
             </div>
           </div>
           <LinkButton text="Contact Me" href="/contact" />

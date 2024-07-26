@@ -72,6 +72,7 @@ const config = {
         red: "#F86D6D",
         cyan: "#A3E4DB",
         bagie: "#F7E7DC",
+        lightBagieGray: "#dcd7d4",
       },
       backdropBlur: {
         xs: "2px",
