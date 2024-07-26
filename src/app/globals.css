@@ -16,6 +16,11 @@ body {
   height: auto;
   overflow-x: hidden;
 }
+input,
+textarea {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+}
 
 @layer base {
   :root {
@@ -105,7 +110,7 @@ body {
   );
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
-  height: 110vh;
+  height: 100vh;
 }
 
 @keyframes loadingMove {

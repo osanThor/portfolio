@@ -17,6 +17,12 @@ export default function WorksPage() {
             항상 발전하자는 자세로 프로젝트에 임하겠습니다.
           </h2>
         </div>
+        <div className="w-full max-w-[1400px] border-b border-lightGray px-4 min-[1600px]:px-0 py-5 md:py-10 mb-5">
+          <div className="w-full flex items-center gap-5">
+            <button>ALL</button>
+            <button></button>
+          </div>
+        </div>
       </div>
       <BottomAnimationContainer />
       <MainContactContainer />
