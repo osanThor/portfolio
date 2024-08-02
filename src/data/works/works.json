@@ -27,6 +27,15 @@
     "featured": false
   },
   {
+    "title": "Bijjya",
+    "year": "2023",
+    "path": "bijjya-2023",
+    "type": "Business",
+    "category": ["Design", "Publising"],
+    "link": "https://bijjya.com/m/",
+    "featured": true
+  },
+  {
     "title": "Eduad All-tip",
     "year": "2023",
     "path": "all-tip-2023",
@@ -49,18 +58,18 @@
     "year": "2023",
     "path": "givens-log-2023",
     "type": "Personal",
-    "category": ["Development"],
+    "category": ["Design", "Development"],
     "link": "https://blog.given-log.com/",
-    "featured": false
+    "featured": true
   },
   {
     "title": "PORTFOLIO Ver.1",
     "year": "2023",
-    "path": "study-next-toturial-2023",
+    "path": "my-works-app-2023",
     "type": "Personal",
-    "category": ["Development"],
+    "category": ["Design", "Development"],
     "link": "https://my-works-app.vercel.app/",
-    "featured": false
+    "featured": true
   },
   {
     "title": "Sentinel Korea KYC",
@@ -114,15 +123,6 @@
     "type": "Business",
     "category": ["Design", "Development"],
     "link": "http://mcalendar.rctown.co.kr/",
-    "featured": false
-  },
-  {
-    "title": "Sangin Pedia",
-    "year": "2022",
-    "path": "sangin-pedia-2022",
-    "type": "Business",
-    "category": ["Design", "Development", "Publising"],
-    "link": "https://sanginpedia.co.kr/",
     "featured": false
   },
   {
@@ -207,7 +207,7 @@
     "featured": false
   },
   {
-    "title": "KIA Clone Project",
+    "title": "KIA Clone",
     "year": "2021",
     "path": "kia-clone-2021",
     "type": "Personal",
@@ -225,7 +225,7 @@
     "featured": false
   },
   {
-    "title": "TESLA Clone Project",
+    "title": "TESLA Clone",
     "year": "2021",
     "path": "tesla-clone-2021",
     "type": "Personal",
