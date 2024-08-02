@@ -5,6 +5,7 @@ import GridWorkItem from "@/components/works/GridWorkItem";
 import ListWorkItem from "@/components/works/ListWorkItem";
 import { Work } from "@/services/works.service";
 import { useEffect, useState } from "react";
+import GridCursorContainer from "./GridCursorContainer";
 
 type Props = {
   works: Work[];
@@ -26,6 +27,8 @@ export default function WorksListContainer({ works }: Props) {
       setWorkList(filterArr);
     }
   }, [type, works]);
+
+  const [isHovered, setIsHovered] = useState<boolean>(false);
 
   return (
     <>
@@ -87,15 +90,20 @@ export default function WorksListContainer({ works }: Props) {
           </div>
         </div>
       </div>
-      <div className="w-full max-w-[1600px] px-4 min-[1600px]:px-0 py-5 md:py-10 mb-5">
+      <div className="w-full max-w-[1600px] relative px-4 min-[1600px]:px-0 py-5 md:py-10 mb-5">
+        <GridCursorContainer hover={isHovered} />
         <ul
-          className={`w-full grid grid-cols-1 md:grid-cols-2 ${
+          className={` -z-10 overlay w-full grid grid-cols-1 md:grid-cols-2 ${
             isGrid ? "" : "lg:grid-cols-1"
-          } gap-5 md:gap-10`}
+          } gap-5 md:gap-10 lg:gap-20`}
         >
           {workList.map((work) =>
             isGrid ? (
-              <GridWorkItem key={`grid-${work.path}`} work={work} />
+              <GridWorkItem
+                key={`grid-${work.path}`}
+                work={work}
+                setIsHovered={setIsHovered}
+              />
             ) : (
               <ListWorkItem key={`list-${work.path}`} work={work} />
             )

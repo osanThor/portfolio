@@ -3,10 +3,11 @@
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger, useGSAP);
 import Image from "next/image";
 import { useRef } from "react";
 import MainAnimationText from "@/components/home/MainAnimationText";
+
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 export default function MainBannerContainer() {
   const containerRef = useRef<HTMLElement>(null);
