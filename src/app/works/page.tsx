@@ -1,13 +1,17 @@
 import BottomAnimationContainer from "@/containers/common/BottomAnimationContainer";
 import MainContactContainer from "@/containers/home/MainContactContainer";
 import PageAnimationContainer from "@/containers/loading/PageAnimationContainer";
+import WorksListContainer from "@/containers/works/WorksListContainer";
+import { getAllWorks } from "@/services/works.service";
 import { getMetadata } from "@/utils/getMetadata";
+
 export async function generateMetadata() {
   return getMetadata({
     title: "나는 뭘했나",
   });
 }
-export default function WorksPage() {
+export default async function WorksPage() {
+  const works = await getAllWorks();
   return (
     <>
       <PageAnimationContainer />
@@ -17,13 +21,7 @@ export default function WorksPage() {
             항상 발전하자는 자세로 프로젝트에 임하겠습니다.
           </h2>
         </div>
-        <div className="w-full max-w-[1400px] px-4 min-[1600px]:px-0 py-5 md:py-10 mb-5">
-          <div className="w-full flex items-center gap-5">
-            <button>ALL</button>
-            <button>Front-End</button>
-            <button>Front-End</button>
-          </div>
-        </div>
+        <WorksListContainer works={works} />
       </div>
       <BottomAnimationContainer />
       <MainContactContainer />

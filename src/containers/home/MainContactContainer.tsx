@@ -28,7 +28,7 @@ export default function MainContactContainer() {
                   저에게 관심이 생기셨나요?
                 </div>
                 <div className="transition-all break-keep text-3xl md:text-4xl lg:text-5xl font-[700] text-white">
-                  연락주시면 감사하겠습니다!
+                  지금 바로 연락주세요!
                 </div>
               </div>
             </div>

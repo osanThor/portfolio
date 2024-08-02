@@ -27,7 +27,6 @@ export default function WorksAnimationContainer() {
     const containerTop = container.offsetTop;
     const containerHeight = container.clientHeight;
     const roundHeigt = -(scrollY - (containerTop + containerHeight / 2));
-    console.log(roundHeigt);
     gsap.to(".box1", {
       x: -(containerTop - 400 - scrollY),
     });

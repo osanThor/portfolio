@@ -1,0 +1,236 @@
+[
+  {
+    "title": "1Cho Mail",
+    "year": "2024",
+    "path": "1chomail-2024",
+    "type": "Business",
+    "category": ["Design", "Development"],
+    "link": "https://1chomail.kr/",
+    "featured": false
+  },
+  {
+    "title": "Placemanager",
+    "year": "2024",
+    "path": "placemager-2024",
+    "type": "Business",
+    "category": ["Design", "Development"],
+    "link": "https://placemanager.kr/",
+    "featured": true
+  },
+  {
+    "title": "E-book Builder",
+    "year": "2024",
+    "path": "e-book-builder-2024",
+    "type": "Business",
+    "category": ["Design", "Development"],
+    "link": "https://ebookmake.com/",
+    "featured": false
+  },
+  {
+    "title": "Eduad All-tip",
+    "year": "2023",
+    "path": "all-tip-2023",
+    "type": "Business",
+    "category": ["Design", "Development"],
+    "link": "https://all-tip.com/",
+    "featured": true
+  },
+  {
+    "title": "Ainex",
+    "year": "2023",
+    "path": "ainex-2023",
+    "type": "Business",
+    "category": ["Development"],
+    "link": "https://ainex.io/",
+    "featured": true
+  },
+  {
+    "title": "Given's log Ver.1",
+    "year": "2023",
+    "path": "givens-log-2023",
+    "type": "Personal",
+    "category": ["Development"],
+    "link": "https://blog.given-log.com/",
+    "featured": false
+  },
+  {
+    "title": "PORTFOLIO Ver.1",
+    "year": "2023",
+    "path": "study-next-toturial-2023",
+    "type": "Personal",
+    "category": ["Development"],
+    "link": "https://my-works-app.vercel.app/",
+    "featured": false
+  },
+  {
+    "title": "Sentinel Korea KYC",
+    "year": "2022",
+    "path": "sentinelkoreakyc-2022",
+    "type": "Business",
+    "category": ["Design", "Development"],
+    "link": "https://www.sentinelkoreakyc.com/",
+    "featured": true
+  },
+  {
+    "title": "Study Next Toturial",
+    "year": "2022",
+    "path": "study-next-toturial-2022",
+    "type": "Personal",
+    "category": ["Development"],
+    "link": "https://nexttoturial.vercel.app/",
+    "featured": false
+  },
+  {
+    "title": "RESCUE",
+    "year": "2022",
+    "path": "resque-2022",
+    "type": "Business",
+    "category": ["Publising"],
+    "link": "https://help.rescue.or.kr/ircmember/",
+    "featured": true
+  },
+  {
+    "title": "Ecofreshone",
+    "year": "2022",
+    "path": "ecofreshone-2022",
+    "type": "Business",
+    "category": ["Interaction", "Publising"],
+    "link": "https://ecofreshone.cafe24.com/index.html",
+    "featured": false
+  },
+  {
+    "title": "Text Annotation",
+    "year": "2022",
+    "path": "text-annotation-2022",
+    "type": "Business",
+    "category": ["Design", "Development"],
+    "link": "http://116.124.133.159:3010/",
+    "featured": false
+  },
+  {
+    "title": "Mobile Calendar Maker",
+    "year": "2022",
+    "path": "mo-calendar-maker-2022",
+    "type": "Business",
+    "category": ["Design", "Development"],
+    "link": "http://mcalendar.rctown.co.kr/",
+    "featured": false
+  },
+  {
+    "title": "Sangin Pedia",
+    "year": "2022",
+    "path": "sangin-pedia-2022",
+    "type": "Business",
+    "category": ["Design", "Development", "Publising"],
+    "link": "https://sanginpedia.co.kr/",
+    "featured": false
+  },
+  {
+    "title": "Indudoctor",
+    "year": "2022",
+    "path": "indudoctor-2022",
+    "type": "Business",
+    "category": ["Development", "Publising"],
+    "link": "https://indudoctor.com/",
+    "featured": false
+  },
+  {
+    "title": "Metabuild",
+    "year": "2022",
+    "path": "metabuild-2022",
+    "type": "Business",
+    "category": ["Design", "Publising"],
+    "link": "http://www.metabuild.co.kr/Index.do?lang=kr",
+    "featured": false
+  },
+  {
+    "title": "Taobaro",
+    "year": "2022",
+    "path": "taobaro-2022",
+    "type": "Business",
+    "category": ["Design", "Publising"],
+    "link": "https://taobaro.me/",
+    "featured": false
+  },
+  {
+    "title": "Study Card Maker",
+    "year": "2022",
+    "path": "study-card-maker-2022",
+    "type": "Personal",
+    "category": ["Development"],
+    "link": "https://card-maker-omega.vercel.app/",
+    "featured": false
+  },
+  {
+    "title": "Study Youtube - JUNTUBE",
+    "year": "2022",
+    "path": "study-youtube-2022",
+    "type": "Personal",
+    "category": ["Development"],
+    "link": "https://juntube.vercel.app/",
+    "featured": false
+  },
+  {
+    "title": "Study Blog",
+    "year": "2022",
+    "path": "study-blog-2022",
+    "type": "Personal",
+    "category": ["Development"],
+    "link": "https://study-blog-seven.vercel.app",
+    "featured": false
+  },
+  {
+    "title": "SEVEN MOOD",
+    "year": "2022",
+    "path": "seven-2022",
+    "type": "Business",
+    "category": ["Publising"],
+    "link": "https://cryptose7en.io/",
+    "featured": false
+  },
+  {
+    "title": "Solmap - 지식인",
+    "year": "2021",
+    "path": "solmap-2021",
+    "type": "Business",
+    "category": ["Design", "Publising"],
+    "link": "https://solmap.kr/",
+    "featured": false
+  },
+  {
+    "title": "Bulit",
+    "year": "2021",
+    "path": "bulit-2021",
+    "type": "Business",
+    "category": ["Publising"],
+    "link": "https://bulit.io/main",
+    "featured": false
+  },
+  {
+    "title": "KIA Clone Project",
+    "year": "2021",
+    "path": "kia-clone-2021",
+    "type": "Personal",
+    "category": ["Design", "Publising"],
+    "link": "https://osanthor.github.io/KIA/",
+    "featured": false
+  },
+  {
+    "title": "Shopping Mall",
+    "year": "2021",
+    "path": "shop-yuello-2021",
+    "type": "Personal",
+    "category": ["Design", "Publising"],
+    "link": "https://osanthor.github.io/YUELLO/",
+    "featured": false
+  },
+  {
+    "title": "TESLA Clone Project",
+    "year": "2021",
+    "path": "tesla-clone-2021",
+    "type": "Personal",
+    "category": ["Publising"],
+    "link": "https://osanthor.github.io/tesla/",
+    "featured": false
+  }
+]
