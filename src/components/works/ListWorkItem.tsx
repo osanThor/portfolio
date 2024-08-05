@@ -7,9 +7,15 @@ type Props = {
   isMain: boolean;
   work: Work;
   setIsHovered: React.Dispatch<SetStateAction<boolean>>;
+  onChangeIdx: () => void;
 };
 
-export default function ListWorkItem({ isMain, work, setIsHovered }: Props) {
+export default function ListWorkItem({
+  isMain,
+  work,
+  setIsHovered,
+  onChangeIdx,
+}: Props) {
   return (
     <li className="w-full group flex flex-col items-center justify-between">
       <Link
@@ -17,7 +23,10 @@ export default function ListWorkItem({ isMain, work, setIsHovered }: Props) {
           isMain ? "lg:py-32" : "lg:py-7"
         } w-full lg:border-b border-lightGray flex flex-col items-center justify-between relative`}
         href={`/works/detail/${work.path}`}
-        onMouseEnter={() => setIsHovered(true)}
+        onMouseEnter={() => {
+          setIsHovered(true);
+          onChangeIdx();
+        }}
         onMouseLeave={() => setIsHovered(false)}
       >
         <div className="w-full flex flex-col">

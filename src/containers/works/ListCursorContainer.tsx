@@ -2,24 +2,27 @@
 
 import { useEffect } from "react";
 import gsap from "gsap";
+import Image from "next/image";
 
 type Props = {
   hover: boolean;
+  hoverIdx: number;
+  imageUrls: string[];
 };
 
-export default function ListCursorContainer({ hover }: Props) {
+export default function ListCursorContainer({
+  hover,
+  hoverIdx,
+  imageUrls,
+}: Props) {
   useEffect(() => {
-    const FollowBox = ".gridWorkCursor";
+    const FollowBox = ".listWorkCursor";
     gsap.set(FollowBox, {
       xPercent: -50,
       yPercent: -50,
       scale: 0,
     });
     function handleFollow(e: MouseEvent) {
-      console.table({
-        x: e.clientX,
-        y: e.clientY,
-      });
       gsap.to(FollowBox, {
         duration: 0.2,
         overwrite: "auto",
@@ -49,10 +52,31 @@ export default function ListCursorContainer({ hover }: Props) {
 
     return () => window.removeEventListener("mousemove", handleFollow);
   }, [hover]);
+  console.log(hoverIdx);
 
   return (
-    <div className="gridWorkCursor z-20 pointer-events-none fixed top-0 left-0 hidden lg:flex items-center justify-center bg-black text-white w-[420px] h-[420px] max:w-[420px] max:h-[420px] overflow-hidden p-10">
-      Detail
+    <div className="listWorkCursor z-20 pointer-events-none fixed shadow-md top-0 left-0 hidden lg:flex items-center justify-center bg-gradient-to-t from-gray to-darkIndigo w-[420px] h-[420px] max:w-[420px] max:h-[420px] overflow-hidden">
+      <ul
+        className="w-full h-full min-w-full min-h-full absolute top-0 left-0 flex flex-col transition-all ease-in duration-500"
+        style={{ top: -hoverIdx * 420 }}
+      >
+        {imageUrls.map((url) => (
+          <li
+            key={`listCorsor-${url}`}
+            className="w-full h-full min-w-full min-h-full p-4"
+          >
+            <div className="relative w-full h-full flex items-center justify-center">
+              <Image
+                className="object-cover max-w-full block "
+                src={`/assets/images/works/${url}.png`}
+                alt={`listCorsor-${url}`}
+                width={1600}
+                height={720}
+              />
+            </div>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

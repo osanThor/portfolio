@@ -30,6 +30,10 @@ export default function WorksListContainer({ works }: Props) {
   }, [type, works]);
 
   const [isHovered, setIsHovered] = useState<boolean>(false);
+  const [hoverIdx, setHoverIdx] = useState<number>(0);
+  function handleChangeHoverIdx(idx: number) {
+    setHoverIdx(idx);
+  }
 
   return (
     <>
@@ -95,7 +99,11 @@ export default function WorksListContainer({ works }: Props) {
         {isGrid ? (
           <GridCursorContainer hover={isHovered} />
         ) : (
-          <ListCursorContainer hover={isHovered} />
+          <ListCursorContainer
+            hover={isHovered}
+            hoverIdx={hoverIdx}
+            imageUrls={workList.map((work) => work.path)}
+          />
         )}
         {!isGrid && (
           <div className="w-full hidden lg:flex border-b border-lightGray pb-9 text-lightGray gap-10">
@@ -111,7 +119,7 @@ export default function WorksListContainer({ works }: Props) {
               : "gap-5 md:gap-10 lg:gap-0 lg:grid-cols-1"
           } `}
         >
-          {workList.map((work) =>
+          {workList.map((work, idx) =>
             isGrid ? (
               <GridWorkItem
                 key={`grid-${work.path}`}
@@ -124,6 +132,7 @@ export default function WorksListContainer({ works }: Props) {
                 isMain={false}
                 work={work}
                 setIsHovered={setIsHovered}
+                onChangeIdx={() => handleChangeHoverIdx(idx)}
               />
             )
           )}

@@ -16,10 +16,6 @@ export default function GridCursorContainer({ hover }: Props) {
       scale: 0,
     });
     function handleFollow(e: MouseEvent) {
-      console.table({
-        x: e.clientX,
-        y: e.clientY,
-      });
       gsap.to(FollowBox, {
         duration: 0.2,
         overwrite: "auto",
