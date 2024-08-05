@@ -60,7 +60,7 @@ export default function AboutSkillItemContaienr({ skill }: Props) {
 
   return (
     <div className="flex flex-col">
-      <div className="flex flex-col items-center" ref={targetRef}>
+      <div className="flex flex-col items-center relative" ref={targetRef}>
         <ParticleImage
           src={SkillSlides[skill.logoNum]}
           width={360}
@@ -73,7 +73,7 @@ export default function AboutSkillItemContaienr({ skill }: Props) {
           touchMoveForce={motionForce}
           backgroundColor="none"
         />
-        <div className="text-center">
+        <div className="text-center absolute md:relative top-0 left-0 bottom-0 right-0 flex flex-col items-center justify-center bg-white/70 md:bg-none ">
           <h2 className={`text-xs mb-1 ${cateColor}`}>{skill.skillCategory}</h2>
           <h1 className="text-xl font-[600]" ref={skillTitleRef} />
         </div>

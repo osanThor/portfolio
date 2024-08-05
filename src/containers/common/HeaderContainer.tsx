@@ -9,6 +9,7 @@ export default function HeaderContainer() {
   const pathname = usePathname();
   const [theme, setTheme] = useState<"dark" | "light">("dark");
   const themeDarkPathname = ["/", "/contact"];
+  const hrefs = MENUS.map((menu) => menu.href);
   const [pathId, setPathId] = useState<number>(0);
   const [hoverId, setHoverId] = useState<number>(0);
 
@@ -16,13 +17,19 @@ export default function HeaderContainer() {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
 
   useEffect(() => {
-    if (themeDarkPathname.includes(pathname)) {
-      setTheme("dark");
+    if (!themeDarkPathname.includes(pathname)) {
+      if (hrefs.some((href) => pathname.startsWith(href))) {
+        setTheme("light");
+      } else {
+        setTheme("dark");
+      }
     } else {
-      setTheme("light");
+      setTheme("dark");
     }
 
-    const menuIdx = MENUS.findIndex((menu) => menu.href === pathname);
+    const menuIdx = MENUS.findIndex(
+      (menu) => menu.href === pathname || pathname.startsWith(menu.href)
+    );
     if (menuIdx < 0 && menuIdx !== 0) {
       setHoverId(0);
       setPathId(0);

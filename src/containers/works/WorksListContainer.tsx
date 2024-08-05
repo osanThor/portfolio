@@ -108,7 +108,7 @@ export default function WorksListContainer({ works }: Props) {
         {!isGrid && (
           <div className="w-full hidden lg:flex border-b border-lightGray pb-9 text-lightGray gap-10">
             <div className="flex-1">Project title</div>
-            <div className="">Categoy</div>
+            <div className="">Category</div>
             <div className="w-[55px] flex items-center justify-end">Year</div>
           </div>
         )}

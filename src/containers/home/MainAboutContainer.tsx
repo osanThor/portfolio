@@ -87,9 +87,8 @@ export default function MainAboutContainer() {
           <LinkButton href="/about" />
         </div>
         <Image
-          className="object-contain order-1 lg:order-2"
+          className="object-contain order-1 lg:order-2 w-full lg:w-[600px]"
           src={"/assets/images/home/me2.png"}
-          style={{ width: 600, height: "auto" }}
           alt="it's me"
           width={600}
           height={910}

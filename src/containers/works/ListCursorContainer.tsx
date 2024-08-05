@@ -52,7 +52,6 @@ export default function ListCursorContainer({
 
     return () => window.removeEventListener("mousemove", handleFollow);
   }, [hover]);
-  console.log(hoverIdx);
 
   return (
     <div className="listWorkCursor z-20 pointer-events-none fixed shadow-md top-0 left-0 hidden lg:flex items-center justify-center bg-gradient-to-t from-gray to-darkIndigo w-[420px] h-[420px] max:w-[420px] max:h-[420px] overflow-hidden">

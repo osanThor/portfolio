@@ -69,6 +69,7 @@ const config = {
         lightGray: "#B5C0D0",
         darkIndigo: "#2F3645",
         blue: "#2192FF",
+        deepBlue: "#0274c2",
         red: "#F86D6D",
         cyan: "#A3E4DB",
         bagie: "#F7E7DC",

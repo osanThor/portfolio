@@ -55,7 +55,9 @@ export default function MainBannerContainer() {
         <br />
         <span className="copy">프론트엔드 개발자 이준영입니다.</span>
         <br />
-        <span className="copy">UX/UI 최보경 최고</span>
+        <span className="copy">
+          이 사이트는 Next/tailwind 등으로 만들어졌습니다.
+        </span>
       </div>
       <MainAnimationText />
     </section>
