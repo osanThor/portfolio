@@ -30,7 +30,7 @@ export default async function WorkDetailPage({ params: { slug } }: Props) {
             {title}
           </h2>
           <div className="w-full flex flex-col md:flex-row gap-5 md:gap-10">
-            <div className="content-['제공'] relative before:absolute before:bottom-[120%] before:text-lightGray before:text-xs flex-1 text-gray mt-4 pt-2 md:mt-10 md:pt-5 border-t border-lightGray">
+            <div className="before:content-['제공'] relative before:absolute before:bottom-[120%] before:text-lightGray before:text-xs flex-1 text-gray mt-4 pt-2 md:mt-10 md:pt-5 border-t border-lightGray">
               {category.join(" & ")}
             </div>
             <div className="before:content-['타입'] relative before:absolute before:bottom-[120%] before:text-lightGray before:text-xs flex-1 text-gray mt-4 pt-2 md:mt-10 md:pt-5 border-t border-lightGray">
