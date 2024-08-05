@@ -68,7 +68,7 @@ export default function HeaderContainer() {
         <nav
           className="relative group"
           onMouseOut={() => {
-            if (pathId) setHoverId(pathId);
+            if (pathId) return setHoverId(pathId);
           }}
         >
           <ul
@@ -138,7 +138,8 @@ export default function HeaderContainer() {
             </div>
             <ul
               onMouseOut={() => {
-                if (pathId) setHoverId(pathId);
+                if (pathId) return setHoverId(pathId);
+                setHoverId(0);
               }}
               className="w-full text-4xl transition-all md:text-6xl py-10 px-10 md:px-20 flex flex-col items-start justify-center gap-10 text-white "
             >

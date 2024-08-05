@@ -5,7 +5,7 @@ import { SetStateAction } from "react";
 
 type Props = {
   work: Work;
-  setIsHovered?: React.Dispatch<SetStateAction<boolean>>;
+  setIsHovered: React.Dispatch<SetStateAction<boolean>>;
 };
 
 export default function GridWorkItem({ work, setIsHovered }: Props) {
@@ -13,9 +13,9 @@ export default function GridWorkItem({ work, setIsHovered }: Props) {
     <li className="w-full flex flex-col items-center justify-between ">
       <Link
         className="w-full flex group flex-col items-center justify-between relative"
-        href={"/"}
-        onMouseEnter={() => setIsHovered && setIsHovered(true)}
-        onMouseLeave={() => setIsHovered && setIsHovered(false)}
+        href={`/works/detail/${work.path}`}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
       >
         <div className="w-full flex flex-col">
           <div className="flex overflow-hidden justify-center items-center px-4 sm:px-10 lg:px-20 py-32 bg-gradient-to-t from-lightBagieGray">

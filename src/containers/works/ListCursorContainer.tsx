@@ -7,7 +7,7 @@ type Props = {
   hover: boolean;
 };
 
-export default function GridCursorContainer({ hover }: Props) {
+export default function ListCursorContainer({ hover }: Props) {
   useEffect(() => {
     const FollowBox = ".gridWorkCursor";
     gsap.set(FollowBox, {
@@ -51,7 +51,7 @@ export default function GridCursorContainer({ hover }: Props) {
   }, [hover]);
 
   return (
-    <div className="gridWorkCursor z-20 pointer-events-none fixed top-0 left-0 hidden lg:flex items-center justify-center bg-black text-white rounded-full w-36 h-36">
+    <div className="gridWorkCursor z-20 pointer-events-none fixed top-0 left-0 hidden lg:flex items-center justify-center bg-black text-white w-[420px] h-[420px] max:w-[420px] max:h-[420px] overflow-hidden p-10">
       Detail
     </div>
   );

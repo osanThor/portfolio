@@ -6,6 +6,7 @@ import ListWorkItem from "@/components/works/ListWorkItem";
 import { Work } from "@/services/works.service";
 import { useEffect, useState } from "react";
 import GridCursorContainer from "./GridCursorContainer";
+import ListCursorContainer from "./ListCursorContainer";
 
 type Props = {
   works: Work[];
@@ -91,11 +92,24 @@ export default function WorksListContainer({ works }: Props) {
         </div>
       </div>
       <div className="w-full max-w-[1600px] relative px-4 min-[1600px]:px-0 py-5 md:py-10 mb-5">
-        <GridCursorContainer hover={isHovered} />
+        {isGrid ? (
+          <GridCursorContainer hover={isHovered} />
+        ) : (
+          <ListCursorContainer hover={isHovered} />
+        )}
+        {!isGrid && (
+          <div className="w-full hidden lg:flex border-b border-lightGray pb-9 text-lightGray gap-10">
+            <div className="flex-1">Project title</div>
+            <div className="">Categoy</div>
+            <div className="w-[55px] flex items-center justify-end">Year</div>
+          </div>
+        )}
         <ul
-          className={` -z-10 overlay w-full grid grid-cols-1 md:grid-cols-2 ${
-            isGrid ? "" : "lg:grid-cols-1"
-          } gap-5 md:gap-10 lg:gap-20`}
+          className={`-z-10 overlay w-full grid grid-cols-1 md:grid-cols-2 ${
+            isGrid
+              ? "gap-5 md:gap-10 lg:gap-20"
+              : "gap-5 md:gap-10 lg:gap-0 lg:grid-cols-1"
+          } `}
         >
           {workList.map((work) =>
             isGrid ? (
@@ -105,7 +119,12 @@ export default function WorksListContainer({ works }: Props) {
                 setIsHovered={setIsHovered}
               />
             ) : (
-              <ListWorkItem key={`list-${work.path}`} work={work} />
+              <ListWorkItem
+                key={`list-${work.path}`}
+                isMain={false}
+                work={work}
+                setIsHovered={setIsHovered}
+              />
             )
           )}
         </ul>

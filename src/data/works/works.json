@@ -1,6 +1,6 @@
 [
   {
-    "title": "1Cho Mail",
+    "title": "1 Cho Mail",
     "year": "2024",
     "path": "1chomail-2024",
     "type": "Business",
@@ -16,6 +16,15 @@
     "category": ["Design", "Development"],
     "link": "https://placemanager.kr/",
     "featured": true
+  },
+  {
+    "title": "Dain AD",
+    "year": "2024",
+    "path": "dain-ad-2024",
+    "type": "Business",
+    "category": ["Design"],
+    "link": "http://dain-ad.kr/",
+    "featured": false
   },
   {
     "title": "E-book Builder",
