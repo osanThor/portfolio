@@ -91,20 +91,20 @@ export default function AboutMeContainer() {
             <h3 className="text-xl md:text-2xl font-[700] text-darkIndigo mb-4">
               문제 해결
             </h3>
-            <p className="text-base md:text-lg leading-7 break-keep text-darkIndigo">
+            <p className="text-base md:text-lg text-justify leading-7 break-keep text-darkIndigo">
               저는 복잡하고 도전적인 문제를 해결하는 데 있어 가장 중요한 것은
-              포기하지 않는 것임을 알고 있습니다.
-              <br /> 실제 프로젝트를 하면서 어려울지라도 끝까지 분석하고
-              도전해보면 어떻게든 문제에 맞는 최적의 해결책을 찾아낼 수
-              있습니다. 또한, 새로운 기술과 도구를 빠르게 습득하고 이를 문제
-              해결에 적용하는 유연한 사고를 가질 수 있습니다.
+              포기하지 않는 것임을 알고 있습니다. 실제 프로젝트를 하면서
+              어려울지라도 끝까지 분석하고 도전해보면 어떻게든 문제에 맞는
+              최적의 해결책을 찾아낼 수 있습니다. 또한, 새로운 기술과 도구를
+              빠르게 습득하고 이를 문제 해결에 적용하는 유연한 사고를 가질 수
+              있습니다.
             </p>
           </li>
           <li className="before:content-['02'] w-full border-t border-lightGray py-10 relative before:absolute before:top-0 before:-translate-y-7 before:text-gray before:text-xs">
             <h3 className="text-xl md:text-2xl font-[700] text-darkIndigo mb-4">
               지속적인 학습
             </h3>
-            <p className="text-base md:text-lg leading-7 break-keep text-darkIndigo">
+            <p className="text-base md:text-lg text-justify leading-7 break-keep text-darkIndigo">
               기술은 빠르게 발전하고 있기 때문에, 최신 트렌드와 기술을
               지속적으로 학습하는 것이 중요합니다. 저는 정기적으로 기술 서적을
               읽고, 온라인 강의를 수강하며, 개발 커뮤니티에 참여하여 새로운
@@ -116,7 +116,7 @@ export default function AboutMeContainer() {
             <h3 className="text-xl md:text-2xl font-[700] text-darkIndigo mb-4">
               협업 및 커뮤니케이션
             </h3>
-            <p className="text-base md:text-lg leading-7 break-keep text-darkIndigo">
+            <p className="text-base md:text-lg text-justify leading-7 break-keep text-darkIndigo">
               개발자, 디자이너, 기획자의 업무를 모두 경험해보면서 각 업무의
               이해도와 고충을 잘 알고 있습니다. 이러한 경험을 통해 협업의
               중요성을 깊이 인식하게 되었습니다. 팀의 일원으로서 다른 개발자,

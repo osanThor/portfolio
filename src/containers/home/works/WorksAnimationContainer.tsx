@@ -1,12 +1,18 @@
 "use client";
 
+import { Work } from "@/services/works.service";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function WorksAnimationContainer() {
+type Props = {
+  works: Work[];
+};
+
+export default function WorksAnimationContainer({ works }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const [scrollY, setScrollY] = useState<number>(0);
@@ -27,7 +33,6 @@ export default function WorksAnimationContainer() {
     const containerTop = container.offsetTop;
     const containerHeight = container.clientHeight;
     const roundHeigt = -(scrollY - (containerTop + containerHeight / 2));
-    console.log(roundHeigt);
     gsap.to(".box1", {
       x: -(containerTop - 400 - scrollY),
     });
@@ -41,6 +46,9 @@ export default function WorksAnimationContainer() {
     });
   }, [scrollY]);
 
+  const UPPER_WORKS = works.slice(0, 4);
+  const UNDER_WORKS = works.slice(4, 8);
+
   return (
     <>
       <div
@@ -49,32 +57,40 @@ export default function WorksAnimationContainer() {
       >
         <div className="hidden lg:flex flex-col">
           <ul className="box1 flex -left-[500px] relative ">
-            <li className="px-[30px] py-5 w-[576px] min-w-[26.875%] h-[400px]">
-              <div className="w-full h-full bg-[#F7E7DC]"></div>
-            </li>
-            <li className="px-[30px] py-5 w-[576px] min-w-[26.875%] h-[400px]">
-              <div className="w-full h-full bg-[#F7E7DC]"></div>
-            </li>
-            <li className="px-[30px] py-5 w-[576px] min-w-[26.875%] h-[400px]">
-              <div className="w-full h-full bg-[#F7E7DC]"></div>
-            </li>
-            <li className="px-[30px] py-5 w-[576px] min-w-[26.875%] h-[400px]">
-              <div className="w-full h-full bg-[#F7E7DC]"></div>
-            </li>
+            {UPPER_WORKS.map((work) => (
+              <li
+                key={`upper-${work.path}`}
+                className="px-[30px] py-5 w-[576px] min-w-[26.875%] h-[400px]"
+              >
+                <div className="w-full h-full bg-gradient-to-t from-lightBagieGray flex items-center justify-center px-10">
+                  <Image
+                    className="object-cover max-w-full block"
+                    src={`/assets/images/works/${work.path}.png`}
+                    alt={`${work.path}`}
+                    width={1600}
+                    height={720}
+                  />
+                </div>
+              </li>
+            ))}
           </ul>
           <ul className="box2 flex left-[500px] relative  pb-20 lg:pb-[100px] z-20">
-            <li className="px-[30px] py-5 w-[576px] min-w-[26.875%] h-[400px]">
-              <div className="w-full h-full bg-[#F7E7DC]"></div>
-            </li>
-            <li className="px-[30px] py-5 w-[576px] min-w-[26.875%] h-[400px]">
-              <div className="w-full h-full bg-[#F7E7DC]"></div>
-            </li>
-            <li className="px-[30px] py-5 w-[576px] min-w-[26.875%] h-[400px]">
-              <div className="w-full h-full bg-[#F7E7DC]"></div>
-            </li>
-            <li className="px-[30px] py-5 w-[576px] min-w-[26.875%] h-[400px]">
-              <div className="w-full h-full bg-[#F7E7DC]"></div>
-            </li>
+            {UNDER_WORKS.map((work) => (
+              <li
+                key={`under-${work.path}`}
+                className="px-[30px] py-5 w-[576px] min-w-[26.875%] h-[400px]"
+              >
+                <div className="w-full h-full bg-gradient-to-t from-lightBagieGray flex items-center justify-center px-10">
+                  <Image
+                    className="object-cover max-w-full block"
+                    src={`/assets/images/works/${work.path}.png`}
+                    alt={`${work.path}`}
+                    width={1600}
+                    height={720}
+                  />
+                </div>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
