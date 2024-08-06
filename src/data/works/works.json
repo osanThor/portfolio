@@ -82,8 +82,8 @@
   },
   {
     "title": "Sentinel Korea KYC",
-    "year": "2022",
-    "path": "sentinelkoreakyc-2022",
+    "year": "2023",
+    "path": "sentinelkoreakyc-2023",
     "type": "Business",
     "category": ["Design", "Development"],
     "link": "https://www.sentinelkoreakyc.com/",
@@ -91,8 +91,8 @@
   },
   {
     "title": "Study Next Toturial",
-    "year": "2022",
-    "path": "study-next-toturial-2022",
+    "year": "2023",
+    "path": "study-next-toturial-2023",
     "type": "Personal",
     "category": ["Development"],
     "link": "https://nexttoturial.vercel.app/",
@@ -100,8 +100,8 @@
   },
   {
     "title": "RESCUE",
-    "year": "2022",
-    "path": "resque-2022",
+    "year": "2023",
+    "path": "resque-2023",
     "type": "Business",
     "category": ["Publising"],
     "link": "https://help.rescue.or.kr/ircmember/",
