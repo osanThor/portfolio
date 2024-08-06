@@ -22,10 +22,6 @@ export default function SiteLinkButton({ link }: Props) {
       setTopPos(100);
     }, 200);
   }
-
-  useEffect(() => {
-    console.log(hover);
-  }, [hover]);
   return (
     <Link
       href={link}
