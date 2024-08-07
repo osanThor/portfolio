@@ -2,7 +2,7 @@
 
 ---
 
-🔥 필수 기능(우선 구현)
+### 🔥 필수 기능(우선 구현)
 
 - 메인페이지(homepage), Works, Contact 페이지 구성
 - 테마변경 기능 구현
@@ -10,9 +10,7 @@
 - Firebase 연동 API 구현
 - contact → email 보내기 구현, nodeMailer 사용
 
-## Considerations
-
----
+### 경험
 
 Styled-component가 Next 같은 SSR에서 오류가 발생.  
 Server style sheet 방법을 Stack-overflow에서 찾음.  
