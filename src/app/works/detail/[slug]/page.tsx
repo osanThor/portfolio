@@ -1,4 +1,5 @@
 import LinkButton from "@/components/common/LinkButton";
+import MarkdownViewer from "@/components/works/MarkdownViewer";
 import SiteLinkButton from "@/components/works/SiteLinkButton";
 import PageAnimationContainer from "@/containers/loading/PageAnimationContainer";
 import { getWorkDetail } from "@/services/works.service";
@@ -20,7 +21,9 @@ export async function generateMetadata({ params: { slug } }: Props) {
 }
 
 export default async function WorkDetailPage({ params: { slug } }: Props) {
-  const { title, link, type, year, category } = await getWorkDetail(slug);
+  const { title, link, type, year, category, content } = await getWorkDetail(
+    slug
+  );
   return (
     <>
       <PageAnimationContainer />
@@ -49,6 +52,9 @@ export default async function WorkDetailPage({ params: { slug } }: Props) {
           height={720}
         />
         <section className="w-[calc(100%-32px)] max-w-[1600px] mt-10 flex flex-col item-center">
+          <div className="w-full max-w-[1400px] mx-auto mb-10 ">
+            <MarkdownViewer content={content} />
+          </div>
           <div className="w-full flex justify-center mb-10">
             <SiteLinkButton link={link} />
           </div>
