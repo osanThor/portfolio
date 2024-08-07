@@ -1,1 +1,1 @@
-study-next-toturial-2023
+## 기술 스택: Next, Typescript, PostCSS, ChakraUI, firebase

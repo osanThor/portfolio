@@ -1,1 +1,1 @@
-study-card-maker-2022
+## 기술 스택: React, PostCSS, firebase
