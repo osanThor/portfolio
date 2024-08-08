@@ -70,7 +70,7 @@ export default function MainContactContainer() {
             <li>
               <Link
                 className="text-white hover:text-gray transition-all flex items-center gap-2"
-                href={"https://blog.given-log.com/"}
+                href={"https://velog.io/@given/"}
                 target="_blank"
               >
                 <BlogIcon />
