@@ -34,7 +34,7 @@ export default function FooterContainer() {
           <li>
             <Link
               className="hover:text-gray transition-all"
-              href={"https://blog.given-log.com/"}
+              href={"https://velog.io/@given/"}
               target="_blank"
             >
               Blog
