@@ -33,6 +33,7 @@ export const getMetadata = (metadataProps?: generateMetadataProps) => {
       url: PAGE_URL,
     },
     verification: {
+      google: META.googleVerification,
       other: {
         "naver-site-verification": META.naverVerification,
       },
