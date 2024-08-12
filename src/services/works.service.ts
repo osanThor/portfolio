@@ -10,6 +10,7 @@ export type Work = {
   category: string[];
   link: string;
   featured: boolean;
+  description: string;
 };
 
 export async function getFeaturedWorks(): Promise<Work[]> {
