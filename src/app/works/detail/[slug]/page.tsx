@@ -5,7 +5,6 @@ import PageAnimationContainer from "@/containers/loading/PageAnimationContainer"
 import { getWorkDetail } from "@/services/works.service";
 import { getMetadata } from "@/utils/getMetadata";
 import Image from "next/image";
-import Link from "next/link";
 
 type Props = {
   params: {
@@ -14,9 +13,10 @@ type Props = {
 };
 
 export async function generateMetadata({ params: { slug } }: Props) {
-  const { title } = await getWorkDetail(slug);
+  const { title, description } = await getWorkDetail(slug);
   return getMetadata({
     title: title,
+    description,
   });
 }
 
