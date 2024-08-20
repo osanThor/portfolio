@@ -6,7 +6,8 @@ import RecoilRootProvider from "@/contexts/Recoil.context";
 import MainLoadingContainer from "@/containers/loading/MainLoadingContainer";
 import { Toaster } from "@/components/ui/toaster";
 import { nanumSquareNEO } from "@/app/assets/fonts";
-import { getMetadata } from "@/utils/getMetadata";
+import { getMetadata } from "@/utils/lib/getMetadata";
+import PageAnimationContainer from "@/containers/loading/PageAnimationContainer";
 
 export const metadata: Metadata = getMetadata();
 
@@ -22,6 +23,7 @@ export default function RootLayout({
         suppressHydrationWarning={true}
       >
         <RecoilRootProvider>
+          <PageAnimationContainer />
           <MainLoadingContainer />
           <HeaderContainer />
           <main className="flex min-h-screen w-full flex-col items-center relative">

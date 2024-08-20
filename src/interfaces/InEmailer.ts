@@ -1,6 +1,6 @@
 export interface EmailData {
-  from: string; //email
-  subject: string; //name
-  message: string; //message
-  corp?: string; //회사명
+  from: string;
+  subject: string;
+  message: string;
+  corp?: string;
 }

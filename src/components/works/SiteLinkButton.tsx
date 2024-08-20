@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import ArrowTop from "../common/ui/icons/ArrowTop";
-import { useEffect, useState } from "react";
+import ArrowTop from "../ui/icons/ArrowTop";
+import { useState } from "react";
 
 type Props = {
   link: string;

@@ -11,7 +11,7 @@ export default function MainLoadingContainer() {
     setTimeout(() => {
       window.scrollTo(0, 0);
       setMounted(true);
-    }, 2000);
+    }, 1500);
   }, []);
 
   return (

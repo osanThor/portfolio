@@ -74,8 +74,8 @@ export default function AboutSkillItemContaienr({ skill }: Props) {
           backgroundColor="none"
         />
         <div className="text-center absolute md:relative top-0 left-0 bottom-0 right-0 flex flex-col items-center justify-center bg-white/70 md:bg-none ">
-          <h2 className={`text-xs mb-1 ${cateColor}`}>{skill.skillCategory}</h2>
-          <h1 className="text-xl font-[600]" ref={skillTitleRef} />
+          <h3 className={`text-xs mb-1 ${cateColor}`}>{skill.skillCategory}</h3>
+          <h2 className="text-xl font-[600]" ref={skillTitleRef} />
         </div>
       </div>
     </div>

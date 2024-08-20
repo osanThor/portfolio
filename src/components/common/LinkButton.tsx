@@ -1,5 +1,5 @@
 import Link from "next/link";
-import ArrowBottom from "./ui/icons/ArrowBottom";
+import ArrowBottom from "../ui/icons/ArrowBottom";
 
 type Props = {
   href?: string;
