@@ -1,7 +1,6 @@
 "use client";
 "use client";
-import ArrowBottom from "@/components/common/ui/icons/ArrowBottom";
-import SendIcon from "@/components/common/ui/icons/SendIcon";
+import SendIcon from "@/components/ui/icons/SendIcon";
 import { toast } from "@/components/ui/use-toast";
 import CONTACT_FORM from "@/data/contact/contactForm";
 import { EmailData } from "@/interfaces/InEmailer";

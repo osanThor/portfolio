@@ -1,6 +1,6 @@
 "use client";
-import GridIcon from "@/components/common/ui/icons/GridIcon";
-import ListIcon from "@/components/common/ui/icons/ListIcon";
+import GridIcon from "@/components/ui/icons/GridIcon";
+import ListIcon from "@/components/ui/icons/ListIcon";
 import GridWorkItem from "@/components/works/GridWorkItem";
 import ListWorkItem from "@/components/works/ListWorkItem";
 import { Work } from "@/services/works.service";

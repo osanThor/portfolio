@@ -35,6 +35,7 @@ export default function AboutMeContainer() {
       setShow(true);
     }, 400);
   }, [mounted]);
+
   const [currenYear, setCurrentYear] = useState<number>(0);
   const [currentMonth, setCurrenttMonth] = useState<number>(0);
 

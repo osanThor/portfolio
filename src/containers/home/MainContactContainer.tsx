@@ -1,9 +1,9 @@
 "use client";
 
 import LinkButton from "@/components/common/LinkButton";
-import BlogIcon from "@/components/common/ui/icons/BlogIcon";
-import GithubIcon from "@/components/common/ui/icons/GithubIcon";
-import InstagramIcon from "@/components/common/ui/icons/InstagramIcon";
+import BlogIcon from "@/components/ui/icons/BlogIcon";
+import GithubIcon from "@/components/ui/icons/GithubIcon";
+import InstagramIcon from "@/components/ui/icons/InstagramIcon";
 import Image from "next/image";
 import Link from "next/link";
 
