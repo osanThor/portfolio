@@ -1,49 +1,23 @@
 "use client";
 
+import { handleFollowBox, setFollowBox } from "@/utils/lib/gsap";
 import { useEffect } from "react";
-import gsap from "gsap";
 
 type Props = {
   hover: boolean;
 };
+const FollowBox = ".gridWorkCursor";
 
 export default function GridCursorContainer({ hover }: Props) {
   useEffect(() => {
-    const FollowBox = ".gridWorkCursor";
-    gsap.set(FollowBox, {
-      xPercent: -50,
-      yPercent: -50,
-      scale: 0,
-    });
-    function handleFollow(e: MouseEvent) {
-      gsap.to(FollowBox, {
-        duration: 0.2,
-        overwrite: "auto",
-        x: e.clientX,
-        y: e.clientY,
-        stagger: 0.15,
-        ease: "none",
-      });
+    setFollowBox(FollowBox);
 
-      let TL = gsap.timeline({
-        defaults: { duration: 0.5, ease: "none" },
-      });
-      hover
-        ? TL.to(FollowBox, {
-            scale: 1,
-            overwrite: "auto",
-            stagger: { amount: 0.15, from: "start", ease: "none" },
-          })
-        : TL.to(FollowBox, {
-            duration: 0.1,
-            scale: 0,
-            overwrite: "auto",
-            stagger: { amount: 0.15, from: "end", ease: "none" },
-          });
+    function handleMouseMove(e: MouseEvent) {
+      handleFollowBox(FollowBox, hover, e);
     }
-    window.addEventListener("mousemove", handleFollow);
+    window.addEventListener("mousemove", handleMouseMove);
 
-    return () => window.removeEventListener("mousemove", handleFollow);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [hover]);
 
   return (

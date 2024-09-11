@@ -2,11 +2,13 @@ import AboutMeContainer from "@/containers/about/AboutMeContainer";
 import BottomAnimationContainer from "@/containers/common/BottomAnimationContainer";
 import MainContactContainer from "@/containers/home/MainContactContainer";
 import { getMetadata } from "@/utils/lib/getMetadata";
+
 export async function generateMetadata() {
   return getMetadata({
     title: "나는 누구인가",
   });
 }
+
 export default function AboutPage() {
   return (
     <>

@@ -1,12 +1,9 @@
 "use client";
 
 import { Work } from "@/services/works.service";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { MainWordsListEffect, RoundBoxEffect } from "@/utils/lib/gsap";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-
-gsap.registerPlugin(ScrollTrigger);
 
 type Props = {
   works: Work[];
@@ -33,17 +30,10 @@ export default function WorksAnimationContainer({ works }: Props) {
     const containerTop = container.offsetTop;
     const containerHeight = container.clientHeight;
     const roundHeigt = -(scrollY - (containerTop + containerHeight / 2));
-    gsap.to(".box1", {
-      x: -(containerTop - 400 - scrollY),
-    });
-    gsap.to(".box2", {
-      x: containerTop - 400 - scrollY,
-    });
-    gsap.to(".roundBox", {
-      height: roundHeigt > 250 ? 250 : roundHeigt < 0 ? 0 : roundHeigt,
-      borderBottomRightRadius: "50% 100%",
-      borderBottomLeftRadius: "50% 100%",
-    });
+
+    MainWordsListEffect(".box1", containerTop, scrollY, true);
+    MainWordsListEffect(".box2", containerTop, scrollY, false);
+    RoundBoxEffect(roundHeigt);
   }, [scrollY]);
 
   const UPPER_WORKS = works.slice(0, 4);

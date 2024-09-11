@@ -1,43 +1,21 @@
 "use client";
 
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
-import { useRef } from "react";
+import { useEffect } from "react";
 import MainAnimationText from "@/components/home/MainAnimationText";
-
-gsap.registerPlugin(ScrollTrigger, useGSAP);
+import { mainBannerFromTo } from "@/utils/lib/gsap";
+import { mountedState } from "@/utils/lib/recoil/atom";
+import { useRecoilValue } from "recoil";
 
 export default function MainBannerContainer() {
-  const containerRef = useRef<HTMLElement>(null);
-  useGSAP(
-    () => {
-      gsap.fromTo(
-        "#intro .copy",
-        {
-          x: 50,
-          opacity: 0,
-        },
-        {
-          delay: 0,
-          duration: 2,
-          x: 0,
-          opacity: 1,
-          stagger: {
-            from: "start",
-            amount: 0.7,
-          },
-        }
-      );
-    },
-    { scope: containerRef }
-  );
+  const mounted = useRecoilValue(mountedState);
+
+  useEffect(() => {
+    mounted && mainBannerFromTo("#intro .copy");
+  }, [mounted]);
+
   return (
-    <section
-      ref={containerRef}
-      className="w-full h-[110vh] bg-[#8DA2B2] relative bg-gradient-animation max-w-[100vw]"
-    >
+    <section className="w-full h-[110vh] bg-[#8DA2B2] relative bg-gradient-animation max-w-[100vw]">
       <Image
         className="absolute object-contain bottom-0 transition-all left-0 sm:left-[4%] lg:left-[8.72%] max-w-full max-h-[80vh] min-[435px]:max-h-[90%]"
         src={"/assets/images/home/me.png"}

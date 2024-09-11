@@ -1,10 +1,7 @@
 "use client";
 
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { RoundBoxEffect } from "@/utils/lib/gsap";
 import { useEffect, useRef, useState } from "react";
-
-gsap.registerPlugin(ScrollTrigger);
 
 export default function BottomAnimationContainer() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -27,11 +24,7 @@ export default function BottomAnimationContainer() {
     const containerTop = container.offsetTop;
     const roundHeigt = -(scrollY - (containerTop - 100));
 
-    gsap.to(".roundBox", {
-      height: roundHeigt > 150 ? 150 : roundHeigt < 0 ? 0 : roundHeigt,
-      borderBottomRightRadius: "50% 100%",
-      borderBottomLeftRadius: "50% 100%",
-    });
+    RoundBoxEffect(roundHeigt);
   }, [scrollY]);
 
   return (

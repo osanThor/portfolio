@@ -1,15 +1,13 @@
 "use client";
+
 import CommonTitle from "@/components/common/CommonTitle";
 import LinkButton from "@/components/common/LinkButton";
 import Image from "next/image";
-import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { mountedState } from "@/utils/lib/recoil/atom";
-
-gsap.registerPlugin(ScrollTrigger, useGSAP);
+import { MainAboutTextTimeline } from "@/utils/lib/gsap";
 
 export default function MainAboutContainer() {
   const containerRef = useRef<HTMLElement>(null);
@@ -30,27 +28,12 @@ export default function MainAboutContainer() {
       const aboutText = aboutTextRef.current;
       const aboutTextCld = aboutText.childNodes;
       aboutTextCld.forEach((el, idx) => {
-        const target = el as gsap.DOMTarget | undefined;
-        if (!target) return;
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: target,
-            start: "0 bottom", // 애니메이션 시작시점
-            end: "500% bottom",
-            scrub: 5,
-          },
-        });
-
-        tl.from(target, {
-          x: 200,
-          opacity: 0,
-          duration: 2,
-          delay: `1.${idx + 1}`,
-        });
+        MainAboutTextTimeline(el, idx);
       });
     },
     { scope: aboutTextRef, dependencies: [localMounted] }
   );
+
   return (
     <section
       ref={containerRef}
