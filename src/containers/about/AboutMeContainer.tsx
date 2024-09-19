@@ -183,11 +183,11 @@ export default function AboutMeContainer() {
   );
 }
 
-type SkillProps = {
+type ItemProps = {
   skill: { name: string; url: string };
 };
 
-function SkillItem({ skill }: SkillProps) {
+function SkillItem({ skill }: ItemProps) {
   return (
     <li className="w-full h-20 flex justify-center relative items-center group">
       <div className="w-20 h-20 group-hover:shadow-md transition-all rounded-xl flex justify-center items-center">

@@ -3,9 +3,8 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import sliderSkills from "@/data/about/skills/sliderSkill.json";
-import AboutSkillItemContaienr, {
-  SkilType,
-} from "@/containers/about/AboutSkillItemContaienr";
+import AboutSkillItemContaienr from "@/containers/about/AboutSkillItemContaienr";
+import { SkilType } from "@/interfaces/InSkills";
 
 export default function AboutSkillsContainer() {
   return (

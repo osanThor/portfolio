@@ -1,5 +1,6 @@
 "use client";
 import { SkillSlides } from "@/data/about/skills/skillImages";
+import { SkilType } from "@/interfaces/InSkills";
 import { useEffect, useRef } from "react";
 import ParticleImage, {
   ParticleOptions,
@@ -7,14 +8,7 @@ import ParticleImage, {
   forces,
   ParticleForce,
 } from "react-particle-image";
-export type SkilType = {
-  id: number;
-  logoNum: number;
-  logoColor: string;
-  skillCategory: "FE" | "BE" | "STYLE";
-  skillTitle: string;
-  skillDes: string;
-};
+
 type Props = {
   skill: SkilType;
 };
