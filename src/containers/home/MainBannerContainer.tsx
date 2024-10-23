@@ -15,27 +15,23 @@ export default function MainBannerContainer() {
   }, [mounted]);
 
   return (
-    <section className="w-full h-[110vh] bg-[#8DA2B2] relative bg-gradient-animation max-w-[100vw]">
+    <section className="w-full h-[100vh] bg-[#8DA2B2] relative bg-gradient-animation max-w-[100vw]">
       <Image
-        className="absolute object-contain bottom-0 transition-all left-0 sm:left-[4%] lg:left-[8.72%] max-w-full max-h-[80vh] min-[435px]:max-h-[90%]"
+        className="absolute object-contain bottom-0 transition-all left-0 max-w-full md:h-screen max-h-[100vh] pointer-events-none"
         src={"/assets/images/home/me.png"}
         alt="it's me"
         width={600}
         height={910}
-        style={{ width: 600, height: "auto" }}
+        style={{ width: "100vw" }}
         priority={true}
       />
       <div
         id="intro"
-        className="text-lg min-[435px]:text-2xl md:text-[30px] leading-8 min-[435px]:leading-[50px] text-white absolute top-[12%] min-[435px]:top-auto bottom-auto min-[435px]:bottom-1/2 left-[5%] sm:left-1/2 break-keep transition-all"
+        className="text-lg min-[435px]:text-2xl md:text-[2.3vw] leading-8 md:leading-[3.2vw] lg:text-[1.5vw] lg:leading-[2.8vw] text-white absolute top-[12%] md:top-auto bottom-auto min-[435px]:bottom-1/2 left-[5%] sm:left-auto sm:right-[5%] break-keep transition-all"
       >
-        <span className="copy">안녕하세요.</span>
-        <br />
-        <span className="copy">프론트엔드 개발자 이준영입니다.</span>
-        <br />
-        <span className="copy">
-          이 사이트는 Next/tailwind 등으로 만들어졌습니다.
-        </span>
+        <p className="copy">안녕하세요.</p>
+        <p className="copy">프론트엔드 개발자 이준영입니다.</p>
+        <p className="copy">이 사이트는 Next/tailwind 등으로 만들어졌습니다.</p>
       </div>
       <MainAnimationText />
     </section>
