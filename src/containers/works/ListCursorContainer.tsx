@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import gsap from "gsap";
 import Image from "next/image";
 import { handleFollowBox, setFollowBox } from "@/utils/lib/gsap";
 
@@ -21,6 +20,7 @@ export default function ListCursorContainer({
     setFollowBox(FollowBox);
 
     function handleMouseMove(e: MouseEvent) {
+      console.log({ x: e.clientX, y: e.clientY });
       handleFollowBox(FollowBox, hover, e);
     }
     window.addEventListener("mousemove", handleMouseMove);
@@ -29,7 +29,7 @@ export default function ListCursorContainer({
   }, [hover]);
 
   return (
-    <div className="listWorkCursor z-20 pointer-events-none fixed shadow-md top-0 left-0 hidden lg:flex items-center justify-center bg-gradient-to-t from-gray to-darkIndigo w-[420px] h-[420px] max:w-[420px] max:h-[420px] overflow-hidden">
+    <div className="listWorkCursor z-20 pointer-events-none fixed shadow-md hidden lg:flex items-center justify-center bg-gradient-to-t from-gray to-darkIndigo w-[420px] h-[420px] max:w-[420px] max:h-[420px] overflow-hidden">
       <ul
         className="w-full h-full min-w-full min-h-full absolute top-0 left-0 flex flex-col transition-all ease-in duration-500"
         style={{ top: -hoverIdx * 420 }}

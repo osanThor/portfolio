@@ -40,7 +40,7 @@ export default function MainAnimationText() {
   }, [scrollDirection]);
 
   return (
-    <div className="overflow-hidden whitespace-nowrap absolute bottom-[10vh] flex">
+    <div className="overflow-hidden whitespace-nowrap absolute bottom-[15vh] sm:bottom-[10vh] flex">
       <span
         style={{ transform: `translateX(-${currentX}%)` }}
         className="text-[28.5vh] md:text-bn font-[900] text-white "

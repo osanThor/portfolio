@@ -1,7 +1,6 @@
-import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import { gsap, Power3 } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 export const mainBannerFromTo = (element: HTMLElement | string) => {

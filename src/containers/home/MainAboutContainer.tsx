@@ -22,17 +22,17 @@ export default function MainAboutContainer() {
     }, 1100);
   }, [mounted]);
 
-  useGSAP(
-    () => {
-      if (!aboutTextRef.current || !mounted) return;
-      const aboutText = aboutTextRef.current;
-      const aboutTextCld = aboutText.childNodes;
-      aboutTextCld.forEach((el, idx) => {
-        MainAboutTextTimeline(el, idx);
-      });
-    },
-    { scope: aboutTextRef, dependencies: [localMounted] }
-  );
+  // useGSAP(
+  //   () => {
+  //     if (!aboutTextRef.current || !mounted) return;
+  //     const aboutText = aboutTextRef.current;
+  //     const aboutTextCld = aboutText.childNodes;
+  //     aboutTextCld.forEach((el, idx) => {
+  //       MainAboutTextTimeline(el, idx);
+  //     });
+  //   },
+  //   { scope: aboutTextRef, dependencies: [localMounted] }
+  // );
 
   return (
     <section

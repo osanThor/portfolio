@@ -60,20 +60,16 @@ export default function AboutMeContainer() {
         <div className="w-[calc(100%-32px)] max-w-[1400px] flex flex-col lg:flex-row gap-5 md:gap-10">
           <div className="w-full flex flex-col gap-10">
             <p className="md:text-lg leading-7 md:leading-9 break-keep ">
-              안녕하세요, 저는 어려운 문제를 해결하는 데 가치를 느끼고,
-              <br /> 사용자가 웹을 통해 새로운 경험을 할 수 있도록 하는 데
-              열정을 가진 프론트엔드 개발자 이준영입니다.
+              <strong>데이터를 빠르고 효율적이게 노출</strong>할 수 있는지
+              고민하는 개발자 이준영입니다.
+              <br /> 솔루션 기업에서 재직기간동안 프론트엔드를 담당하였으며{" "}
               <br />
-              저는{" "}
-              <strong className="text-2xl text-blue font-[900]">
-                [{currenYear}년 {currentMonth}개월]<sup>+</sup>
-              </strong>
-              차 웹 개발 경력을 가지고 있으며, <br />그 동안 다양한 프로젝트에서
-              사용자 친화적인 UI를 설계하고 구현하는 데 주력해 왔습니다.
-              <br /> HTML, CSS, JavaScript를 마크업을 기본으로 하는 프론트엔드
-              개발 기술을 보유하고 있으며,
-              <br /> React.js, Next.js와 같은 최신 프레임워크를 활용하여
-              효율적이고 확장 가능한 웹 애플리케이션을 개발하는 데 익숙합니다.
+              주로 커뮤니티와 쇼핑몰 등 클라이언트에 맞는 기술을 찾고 적용하고
+              배포하는 업무를 해왔습니다.
+              <br /> 크고 작은 총 20여개의 프로젝트 클라이언트 구축을 해오며
+              기술적 도약과 혹은 실패를 경험했으며 <br />
+              이는 개발자로서 필요한 책임감이라는 역량을 기르게 된
+              경험이었습니다.
             </p>
             <div className="text-gray drop-shadow">무한~도전~</div>
           </div>

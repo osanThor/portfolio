@@ -2,8 +2,10 @@
 
 import { Work } from "@/services/works.service";
 import { MainWordsListEffect, RoundBoxEffect } from "@/utils/lib/gsap";
+import { scrollOffsetYState } from "@/utils/lib/recoil/atom";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { useRecoilValue } from "recoil";
 
 type Props = {
   works: Work[];
@@ -11,19 +13,8 @@ type Props = {
 
 export default function WorksAnimationContainer({ works }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const scrollY = useRecoilValue(scrollOffsetYState);
 
-  const [scrollY, setScrollY] = useState<number>(0);
-
-  const handleScroll = () => {
-    setScrollY(window.scrollY);
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
   useEffect(() => {
     if (!containerRef.current) return;
     const container = containerRef.current;

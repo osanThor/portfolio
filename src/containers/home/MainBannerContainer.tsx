@@ -15,9 +15,9 @@ export default function MainBannerContainer() {
   }, [mounted]);
 
   return (
-    <section className="w-full h-[100vh] bg-[#8DA2B2] relative bg-gradient-animation max-w-[100vw]">
+    <section className="w-full h-[120vh] sm:h-[110vh] bg-[#8DA2B2] relative bg-gradient-animation max-w-[100vw]">
       <Image
-        className="absolute object-contain bottom-0 transition-all left-0 max-w-full md:h-screen max-h-[100vh] pointer-events-none"
+        className="absolute object-cover sm:object-contain bottom-0 transition-all left-0 max-w-full h-[110vh] sm:h-screen sm:max-h-[100vh] pointer-events-none"
         src={"/assets/images/home/me.png"}
         alt="it's me"
         width={600}
@@ -27,7 +27,7 @@ export default function MainBannerContainer() {
       />
       <div
         id="intro"
-        className="text-lg min-[435px]:text-2xl md:text-[2.3vw] leading-8 md:leading-[3.2vw] lg:text-[1.5vw] lg:leading-[2.8vw] text-white absolute top-[12%] md:top-auto bottom-auto min-[435px]:bottom-1/2 left-[5%] sm:left-auto sm:right-[5%] break-keep transition-all"
+        className="text-lg min-[435px]:text-2xl md:text-[2.3vw] leading-8 md:leading-[3.2vw] lg:text-[1.5vw] lg:leading-[2.8vw] text-white absolute bottom-4 sm:bottom-1/2 left-[5%] sm:left-auto sm:right-[5%] break-keep transition-all"
       >
         <p className="copy">안녕하세요.</p>
         <p className="copy">프론트엔드 개발자 이준영입니다.</p>
