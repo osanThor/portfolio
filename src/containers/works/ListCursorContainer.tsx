@@ -3,24 +3,23 @@
 import { useEffect } from "react";
 import Image from "next/image";
 import { handleFollowBox, setFollowBox } from "@/utils/lib/gsap";
+import { useRecoilValue } from "recoil";
+import {
+  itemHoverIdState,
+  itemHoverState,
+  scrollOffsetYState,
+  worksImageListState,
+} from "@/utils/lib/recoil/atom";
 
-type Props = {
-  hover: boolean;
-  hoverIdx: number;
-  imageUrls: string[];
-};
 const FollowBox = ".listWorkCursor";
 
-export default function ListCursorContainer({
-  hover,
-  hoverIdx,
-  imageUrls,
-}: Props) {
+export default function ListCursorContainer() {
+  const imageUrls = useRecoilValue(worksImageListState);
+  const hover = useRecoilValue(itemHoverState);
+  const hoverIdx = useRecoilValue(itemHoverIdState);
   useEffect(() => {
     setFollowBox(FollowBox);
-
     function handleMouseMove(e: MouseEvent) {
-      console.log({ x: e.clientX, y: e.clientY });
       handleFollowBox(FollowBox, hover, e);
     }
     window.addEventListener("mousemove", handleMouseMove);

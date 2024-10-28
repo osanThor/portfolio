@@ -78,12 +78,11 @@ export const handleFollowBox = (
   gsap.to(selector, {
     duration: 0.2,
     overwrite: "auto",
-    x: e.clientX,
-    y: e.clientY,
+    x: e.x,
+    y: e.y,
     stagger: 0.15,
     ease: "none",
   });
-
   let TL = gsap.timeline({
     defaults: { duration: 0.5, ease: "none" },
   });

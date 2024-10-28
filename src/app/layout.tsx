@@ -9,6 +9,7 @@ import { nanumSquareNEO } from "@/app/assets/fonts";
 import { getMetadata } from "@/utils/lib/getMetadata";
 import PageAnimationContainer from "@/containers/loading/PageAnimationContainer";
 import ScrollSmootherContainer from "@/containers/common/ScrollSmootherContainer";
+import FollowCursorContainer from "@/containers/common/FollowCursorContainer";
 
 export const metadata: Metadata = getMetadata();
 
@@ -19,23 +20,27 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={nanumSquareNEO.className}
-        suppressHydrationWarning={true}
-      >
-        <RecoilRootProvider>
+      <RecoilRootProvider>
+        <body
+          className={nanumSquareNEO.className}
+          suppressHydrationWarning={true}
+        >
           <PageAnimationContainer />
           <MainLoadingContainer />
+          <FollowCursorContainer />
           <HeaderContainer />
           <ScrollSmootherContainer>
-            <main className="flex min-h-screen w-full flex-col items-center relative">
+            <main
+              id="container"
+              className="flex min-h-screen w-full flex-col items-center relative"
+            >
               {children}
             </main>
             <FooterContainer />
           </ScrollSmootherContainer>
           <Toaster />
-        </RecoilRootProvider>
-      </body>
+        </body>
+      </RecoilRootProvider>
     </html>
   );
 }

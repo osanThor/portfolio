@@ -37,7 +37,7 @@ export default function MainAboutContainer() {
   return (
     <section
       ref={containerRef}
-      className="w-[calc(100%-32px)] max-w-[1600px] flex flex-col items-center bg-white"
+      className="w-[calc(100%-32px)] mx-auto max-w-[1600px] flex flex-col items-center bg-white"
     >
       <div className="w-full flex flex-col lg:flex-row gap-[60px] py-20 lg:py-[150px] ">
         <div className="flex-1 flex flex-col order-2 lg:order-1 items-center lg:items-start justify-between gap-10">
