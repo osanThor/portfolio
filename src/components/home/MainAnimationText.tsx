@@ -1,27 +1,22 @@
+import { scrollOffsetYState } from "@/utils/lib/recoil/atom";
+import { useGSAP } from "@gsap/react";
 import { useState, useEffect } from "react";
+import { useRecoilValue } from "recoil";
+import { Observer } from "gsap/Observer";
 
 export default function MainAnimationText() {
+  const offsetY = useRecoilValue(scrollOffsetYState);
   const [scrollDirection, setScrollDirection] = useState<"upper" | "down">(
     "upper"
   );
 
-  useEffect(() => {
-    let lastScrollY = window.pageYOffset;
-
-    const updateScrollDirection = () => {
-      const scrollY = window.pageYOffset;
-      if (scrollY > lastScrollY) {
-        setScrollDirection("down");
-      } else {
-        setScrollDirection("upper");
-      }
-      lastScrollY = scrollY > 0 ? scrollY : 0;
-    };
-
-    window.addEventListener("scroll", updateScrollDirection);
-    return () => {
-      window.removeEventListener("scroll", updateScrollDirection);
-    };
+  useGSAP(() => {
+    Observer.create({
+      target: "#wrap", // can be any element (selector text is fine)
+      type: "wheel,touch, scroll", // comma-delimited list of what to listen for
+      onUp: () => setScrollDirection("upper"),
+      onDown: () => setScrollDirection("down"),
+    });
   }, []);
 
   const [currentX, setCurrentX] = useState<number>(100);
@@ -38,6 +33,9 @@ export default function MainAnimationText() {
 
     return () => clearInterval(interval);
   }, [scrollDirection]);
+  useEffect(() => {
+    console.log("Y", offsetY);
+  }, [offsetY]);
 
   return (
     <div className="overflow-hidden whitespace-nowrap absolute bottom-[15vh] sm:bottom-[10vh] flex">

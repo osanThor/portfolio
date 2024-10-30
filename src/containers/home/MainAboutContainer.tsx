@@ -21,18 +21,24 @@ export default function MainAboutContainer() {
       setLocalMounted(true);
     }, 1100);
   }, [mounted]);
+  const [visible, setVisible] = useState<boolean>(false);
 
-  // useGSAP(
-  //   () => {
-  //     if (!aboutTextRef.current || !mounted) return;
-  //     const aboutText = aboutTextRef.current;
-  //     const aboutTextCld = aboutText.childNodes;
-  //     aboutTextCld.forEach((el, idx) => {
-  //       MainAboutTextTimeline(el, idx);
-  //     });
-  //   },
-  //   { scope: aboutTextRef, dependencies: [localMounted] }
-  // );
+  useEffect(() => {
+    console.log("visible", visible);
+  }, [visible]);
+
+  useGSAP(
+    () => {
+      if (!aboutTextRef.current || !mounted) return;
+      const aboutText = aboutTextRef.current;
+      console.log("y", aboutText.clientTop);
+      const aboutTextCld = aboutText.childNodes;
+      aboutTextCld.forEach((el, idx) => {
+        MainAboutTextTimeline(el, idx);
+      });
+    },
+    { scope: aboutTextRef, dependencies: [localMounted] }
+  );
 
   return (
     <section
@@ -45,22 +51,25 @@ export default function MainAboutContainer() {
             <CommonTitle text="About me" />
             {localMounted && (
               <p
+                id="mainAbout"
                 ref={aboutTextRef}
                 className="lg:text-lg lg:leading-9 break-keep relative"
               >
-                <span className="">저는 프론트엔드 개발자 이준영입니다.</span>
+                <span className="intro">
+                  저는 프론트엔드 개발자 이준영입니다.
+                </span>
                 <br />
-                <span className="">
+                <span className="intro">
                   편안한 UI와 흥미로운 UX에 대한 관심과 열정을 가지고 있으며,
                   끊임없이 고민하고 경험하며 발전하고 있습니다.
                 </span>
                 <br />
-                <span className="">
+                <span className="intro">
                   Javascript를 이용한 클라이언트 구축을 주로 하며, 필요에 따라
                   기획과 디자인도 가능합니다.
                 </span>
                 <br />
-                <span className="">
+                <span className="intro">
                   도전을 두려워하지 않으며, 트렌드와 클린 코드에 관심을 기울여
                   매일 성장하는 개발자가 되겠습니다.
                 </span>

@@ -21,7 +21,7 @@ export const worksImageListState = atom<string[]>({
   key: "worksImageListState",
   default: [],
 });
-export const isGridState = atom<boolean>({
+export const isGridState = atom<boolean | null>({
   key: "isGridState",
   default: false,
 });
