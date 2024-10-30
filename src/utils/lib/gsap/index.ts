@@ -1,8 +1,10 @@
-import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { TextPlugin } from "gsap/TextPlugin";
+import { Observer } from "gsap/Observer";
 
-gsap.registerPlugin(ScrollTrigger, useGSAP);
+gsap.registerPlugin(ScrollTrigger, TextPlugin, Observer, useGSAP);
 
 export const mainBannerFromTo = (element: HTMLElement | string) => {
   gsap.fromTo(
@@ -27,20 +29,19 @@ export const mainBannerFromTo = (element: HTMLElement | string) => {
 export const MainAboutTextTimeline = (el: ChildNode, idx: number) => {
   const target = el as gsap.DOMTarget | undefined;
   if (!target) return;
-  const tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: target,
-      start: "0 bottom", // 애니메이션 시작시점
-      end: "500% bottom",
-      scrub: 5,
-    },
-  });
 
-  tl.from(target, {
-    x: 200,
+  gsap.from(target, {
+    y: "100%",
     opacity: 0,
-    duration: 2,
-    delay: `1.${idx + 1}`,
+    duration: 5,
+    ease: "power1.out",
+    stagger: 0.1,
+
+    // scrollTrigger: {
+    //   trigger: "#mainAbout",
+    //   start: "top center",
+    //   markers: true,
+    // },
   });
 };
 
@@ -79,12 +80,11 @@ export const handleFollowBox = (
   gsap.to(selector, {
     duration: 0.2,
     overwrite: "auto",
-    x: e.clientX,
-    y: e.clientY,
+    x: e.x,
+    y: e.y,
     stagger: 0.15,
     ease: "none",
   });
-
   let TL = gsap.timeline({
     defaults: { duration: 0.5, ease: "none" },
   });

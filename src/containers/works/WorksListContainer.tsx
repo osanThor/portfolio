@@ -4,9 +4,14 @@ import ListIcon from "@/components/ui/icons/ListIcon";
 import GridWorkItem from "@/components/works/GridWorkItem";
 import ListWorkItem from "@/components/works/ListWorkItem";
 import { Work } from "@/services/works.service";
-import { useEffect, useState } from "react";
-import GridCursorContainer from "./GridCursorContainer";
-import ListCursorContainer from "./ListCursorContainer";
+import { useEffect, useLayoutEffect, useState } from "react";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import {
+  itemHoverState,
+  itemHoverIdState,
+  worksImageListState,
+  isGridState,
+} from "@/utils/lib/recoil/atom";
 
 type Props = {
   works: Work[];
@@ -15,7 +20,7 @@ type Props = {
 export default function WorksListContainer({ works }: Props) {
   const [workList, setWorkList] = useState<Work[]>(works);
   const [type, setType] = useState<"ALL" | "BS" | "PS">("ALL");
-  const [isGrid, setIsGrid] = useState<boolean>(true);
+  const [isGrid, setIsGrid] = useRecoilState(isGridState);
 
   useEffect(() => {
     if (type === "ALL") {
@@ -29,11 +34,17 @@ export default function WorksListContainer({ works }: Props) {
     }
   }, [type, works]);
 
-  const [isHovered, setIsHovered] = useState<boolean>(false);
-  const [hoverIdx, setHoverIdx] = useState<number>(0);
+  const setIsHovered = useSetRecoilState(itemHoverState);
+  const setHoverIdx = useSetRecoilState(itemHoverIdState);
   function handleChangeHoverIdx(idx: number) {
     setHoverIdx(idx);
   }
+
+  const setWorksImages = useSetRecoilState(worksImageListState);
+
+  useLayoutEffect(() => {
+    setWorksImages(works.map((work) => work.path));
+  }, []);
 
   return (
     <>
@@ -96,15 +107,6 @@ export default function WorksListContainer({ works }: Props) {
         </div>
       </div>
       <div className="w-full max-w-[1600px] relative px-4 min-[1600px]:px-0 py-5 md:py-10 mb-5">
-        {isGrid ? (
-          <GridCursorContainer hover={isHovered} />
-        ) : (
-          <ListCursorContainer
-            hover={isHovered}
-            hoverIdx={hoverIdx}
-            imageUrls={workList.map((work) => work.path)}
-          />
-        )}
         {!isGrid && (
           <div className="w-full hidden lg:flex border-b border-lightGray pb-9 text-lightGray gap-10">
             <div className="flex-1">Project title</div>

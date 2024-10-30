@@ -17,6 +17,7 @@ export default function MainLoadingContainer() {
   return (
     <>
       <div
+        id="loader"
         className={`${
           mounted ? "bottom-full duration-1000" : "bottom-0 duration-0"
         } bg-darkIndigo transition-all text-white fixed top-0 left-0 right-0  flex items-center justify-center z-[9999999] overflow-hidden cursor-wait ease-in-out`}

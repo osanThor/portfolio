@@ -1,25 +1,24 @@
 "use client";
 
 import { useEffect } from "react";
-import gsap from "gsap";
 import Image from "next/image";
 import { handleFollowBox, setFollowBox } from "@/utils/lib/gsap";
+import { useRecoilValue } from "recoil";
+import {
+  itemHoverIdState,
+  itemHoverState,
+  scrollOffsetYState,
+  worksImageListState,
+} from "@/utils/lib/recoil/atom";
 
-type Props = {
-  hover: boolean;
-  hoverIdx: number;
-  imageUrls: string[];
-};
 const FollowBox = ".listWorkCursor";
 
-export default function ListCursorContainer({
-  hover,
-  hoverIdx,
-  imageUrls,
-}: Props) {
+export default function ListCursorContainer() {
+  const imageUrls = useRecoilValue(worksImageListState);
+  const hover = useRecoilValue(itemHoverState);
+  const hoverIdx = useRecoilValue(itemHoverIdState);
   useEffect(() => {
     setFollowBox(FollowBox);
-
     function handleMouseMove(e: MouseEvent) {
       handleFollowBox(FollowBox, hover, e);
     }
@@ -29,7 +28,7 @@ export default function ListCursorContainer({
   }, [hover]);
 
   return (
-    <div className="listWorkCursor z-20 pointer-events-none fixed shadow-md top-0 left-0 hidden lg:flex items-center justify-center bg-gradient-to-t from-gray to-darkIndigo w-[420px] h-[420px] max:w-[420px] max:h-[420px] overflow-hidden">
+    <div className="listWorkCursor z-20 pointer-events-none fixed shadow-md hidden lg:flex items-center justify-center bg-gradient-to-t from-gray to-darkIndigo w-[420px] h-[420px] max:w-[420px] max:h-[420px] overflow-hidden">
       <ul
         className="w-full h-full min-w-full min-h-full absolute top-0 left-0 flex flex-col transition-all ease-in duration-500"
         style={{ top: -hoverIdx * 420 }}

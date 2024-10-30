@@ -1,12 +1,15 @@
 "use client";
 import Logo from "@/components/common/Logo";
 import MENUS from "@/data/menu";
+import { scrollOffsetYState } from "@/utils/lib/recoil/atom";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useRecoilValue } from "recoil";
 
 export default function HeaderContainer() {
   const pathname = usePathname();
+  const scrollY = useRecoilValue(scrollOffsetYState);
   const [theme, setTheme] = useState<"dark" | "light">("dark");
   const themeDarkPathname = ["/", "/contact"];
   const hrefs = MENUS.map((menu) => menu.href);
@@ -42,19 +45,12 @@ export default function HeaderContainer() {
   }, [pathname]);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY < 100) {
-        setIsTop(true);
-      } else {
-        setIsTop(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+    if (scrollY < 100) {
+      setIsTop(true);
+    } else {
+      setIsTop(false);
+    }
+  }, [scrollY]);
 
   useEffect(() => {
     if (pathId) setHoverId(pathId);
@@ -62,16 +58,24 @@ export default function HeaderContainer() {
 
   return (
     <>
-      <header className=" absolute top-0 left-0 right-0 flex items-center justify-between px-4 py-5 md:p-10 z-[999]">
-        <Link
-          href={"/"}
-          className={`${
-            theme === "dark" ? "fill-white text-white" : "fill-black text-black"
-          }`}
-          scroll={false}
-        >
-          <Logo />
-        </Link>
+      <header
+        className={`absolute top-0 left-0 right-0 flex items-center justify-between px-4 py-5 md:p-10 z-[999] transition-all ${
+          isTop ? "" : "-translate-y-full"
+        }`}
+      >
+        <h1 id="logo">
+          <Link
+            href={"/"}
+            className={`${
+              theme === "dark"
+                ? "fill-white text-white"
+                : "fill-black text-black"
+            }`}
+            scroll={false}
+          >
+            <Logo />
+          </Link>
+        </h1>
         <nav
           className="relative group"
           onMouseOut={() => {
