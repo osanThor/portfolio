@@ -34,7 +34,7 @@ export const MainAboutTextTimeline = (el: ChildNode, idx: number) => {
     scrollTrigger: {
       trigger: target, // 스크롤이 트리거되는 요소
       start: "top 90%", // 트리거가 시작되는 위치 (뷰포트의 80% 지점에서 시작)
-      end: "top 50%", // 트리거가 끝나는 위치 (뷰포트의 50% 지점에서 끝)
+      end: "top 80%", // 트리거가 끝나는 위치 (뷰포트의 50% 지점에서 끝)
       scrub: true, // 스크롤에 따라 애니메이션이 조정되도록 설정
     },
     y: 0, // 텍스트가 위로 올라오면서 원래 위치에 위치하게 함
@@ -54,7 +54,7 @@ export const MainWorksListEffect = (
   toLeft: boolean
 ) => {
   gsap.to(target, {
-    x: toLeft ? -(containerTop - 400 - scrollY) : containerTop - 400 - scrollY,
+    x: toLeft ? -(containerTop - 500 - scrollY) : containerTop - 500 - scrollY,
   });
 };
 
