@@ -22,6 +22,7 @@ export default function SiteLinkButton({ link }: Props) {
       setTopPos(100);
     }, 200);
   }
+
   return (
     <Link
       href={link}

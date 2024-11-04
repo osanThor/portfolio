@@ -8,7 +8,6 @@ import { Toaster } from "@/components/ui/toaster";
 import { nanumSquareNEO } from "@/app/assets/fonts";
 import { getMetadata } from "@/utils/lib/getMetadata";
 import PageAnimationContainer from "@/containers/loading/PageAnimationContainer";
-import ScrollSmootherContainer from "@/containers/common/ScrollSmootherContainer";
 import FollowCursorContainer from "@/containers/common/FollowCursorContainer";
 
 export const metadata: Metadata = getMetadata();
@@ -29,15 +28,13 @@ export default function RootLayout({
           <MainLoadingContainer />
           <FollowCursorContainer />
           <HeaderContainer />
-          <ScrollSmootherContainer>
-            <main
-              id="container"
-              className="flex min-h-screen w-full flex-col items-center relative"
-            >
-              {children}
-            </main>
-            <FooterContainer />
-          </ScrollSmootherContainer>
+          <main
+            id="container"
+            className="flex min-h-screen w-full flex-col items-center relative"
+          >
+            {children}
+          </main>
+          <FooterContainer />
           <Toaster />
         </body>
       </RecoilRootProvider>

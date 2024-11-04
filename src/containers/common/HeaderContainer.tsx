@@ -5,11 +5,11 @@ import { scrollOffsetYState } from "@/utils/lib/recoil/atom";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 
 export default function HeaderContainer() {
   const pathname = usePathname();
-  const scrollY = useRecoilValue(scrollOffsetYState);
+  const [scrollY, setScrollY] = useRecoilState(scrollOffsetYState);
   const [theme, setTheme] = useState<"dark" | "light">("dark");
   const themeDarkPathname = ["/", "/contact"];
   const hrefs = MENUS.map((menu) => menu.href);
@@ -18,6 +18,17 @@ export default function HeaderContainer() {
 
   const [isTop, setIsTop] = useState<boolean>(true);
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
+
+  const handleScroll = () => {
+    setScrollY(window.scrollY);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   useEffect(() => {
     if (!themeDarkPathname.includes(pathname)) {
@@ -40,7 +51,7 @@ export default function HeaderContainer() {
       setHoverId(menuIdx + 1);
       setPathId(menuIdx + 1);
     }
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0 });
     setMenuOpen(false);
   }, [pathname]);
 

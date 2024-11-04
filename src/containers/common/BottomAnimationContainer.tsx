@@ -1,23 +1,15 @@
 "use client";
 
 import { RoundBoxEffect } from "@/utils/lib/gsap";
+import { scrollOffsetYState } from "@/utils/lib/recoil/atom";
 import { useEffect, useRef, useState } from "react";
+import { useRecoilValue } from "recoil";
 
 export default function BottomAnimationContainer() {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const [scrollY, setScrollY] = useState<number>(0);
+  const scrollY = useRecoilValue(scrollOffsetYState);
 
-  const handleScroll = () => {
-    setScrollY(window.scrollY);
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
   useEffect(() => {
     if (!containerRef.current) return;
     const container = containerRef.current;

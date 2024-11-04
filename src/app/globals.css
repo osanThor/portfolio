@@ -403,3 +403,8 @@ textarea {
   animation: sideMenuOpen 700ms cubic-bezier(0.95, -0.01, 0, 1.11);
   box-shadow: 0 0 300px rgba(0, 0, 0, 0.6);
 }
+#mainAbout .intro {
+  opacity: 0; /* 처음엔 투명하게 설정 */
+  transform: translateY(100px); /* 아래로 100px 이동 */
+  transition: all 0.5s ease-out;
+}
