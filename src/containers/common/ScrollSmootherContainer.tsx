@@ -13,6 +13,7 @@ export default function ScrollSmootherContainer({ children }: Props) {
     const target = document.querySelector("#wrap") as HTMLElement;
     const scrollbar = Scrollbar.init(target, {
       damping: 0.07,
+      renderByPixels: !("ontouchstart" in document),
     });
     scrollbar.addListener(({ offset }) => {
       setScrollOffsetY(offset.y);

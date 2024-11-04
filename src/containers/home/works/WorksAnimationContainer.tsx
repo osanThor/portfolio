@@ -1,7 +1,7 @@
 "use client";
 
 import { Work } from "@/services/works.service";
-import { MainWordsListEffect, RoundBoxEffect } from "@/utils/lib/gsap";
+import { MainWorksListEffect, RoundBoxEffect } from "@/utils/lib/gsap";
 import { scrollOffsetYState } from "@/utils/lib/recoil/atom";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
@@ -22,8 +22,8 @@ export default function WorksAnimationContainer({ works }: Props) {
     const containerHeight = container.clientHeight;
     const roundHeigt = -(scrollY - (containerTop + containerHeight / 2));
 
-    MainWordsListEffect(".box1", containerTop, scrollY, true);
-    MainWordsListEffect(".box2", containerTop, scrollY, false);
+    MainWorksListEffect(".box1", containerTop, scrollY, true);
+    MainWorksListEffect(".box2", containerTop, scrollY, false);
     RoundBoxEffect(roundHeigt);
   }, [scrollY]);
 
