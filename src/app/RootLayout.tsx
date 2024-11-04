@@ -1,4 +1,4 @@
-import HeaderContainer from "@/containers/common/HeaderContainer";
+import HeaderContainer from "@/containers/common/HeaderContainer.1";
 import FooterContainer from "@/containers/common/FooterContainer";
 import RecoilRootProvider from "@/contexts/Recoil.context";
 import MainLoadingContainer from "@/containers/loading/MainLoadingContainer";

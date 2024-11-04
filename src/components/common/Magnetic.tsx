@@ -27,7 +27,6 @@ export default function Magnetic({ children }: Props) {
       if (ref.current) {
         const rect = ref.current.getBoundingClientRect();
         const { width, height, left, top } = rect;
-        console.log({ width, height, left, top });
         const x = clientX - (left + width / 2);
         const y = clientY - (top + height / 2);
         xTo(x);
