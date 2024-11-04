@@ -12,77 +12,61 @@ import {
   worksImageListState,
   isGridState,
 } from "@/utils/lib/recoil/atom";
+import WorkTypeButton from "@/components/works/WorkTypeButton";
 
 type Props = {
   works: Work[];
 };
 
+type ButtonType = "ALL" | "BS" | "PS";
+
 export default function WorksListContainer({ works }: Props) {
   const [workList, setWorkList] = useState<Work[]>(works);
-  const [type, setType] = useState<"ALL" | "BS" | "PS">("ALL");
+  const [type, setType] = useState<ButtonType>("ALL");
   const [isGrid, setIsGrid] = useRecoilState(isGridState);
-
-  useEffect(() => {
-    if (type === "ALL") {
-      setWorkList(works);
-    } else if (type === "BS") {
-      const filterArr = works.filter((work) => work.type === "Business");
-      setWorkList(filterArr);
-    } else if (type === "PS") {
-      const filterArr = works.filter((work) => work.type === "Personal");
-      setWorkList(filterArr);
-    }
-  }, [type, works]);
 
   const setIsHovered = useSetRecoilState(itemHoverState);
   const setHoverIdx = useSetRecoilState(itemHoverIdState);
-  function handleChangeHoverIdx(idx: number) {
-    setHoverIdx(idx);
-  }
-
   const setWorksImages = useSetRecoilState(worksImageListState);
+
+  useEffect(() => {
+    setWorkList(
+      type === "ALL"
+        ? works
+        : works.filter((work) =>
+            type === "BS" ? work.type === "Business" : work.type === "Personal"
+          )
+    );
+  }, [type, works]);
 
   useLayoutEffect(() => {
     setWorksImages(works.map((work) => work.path));
-  }, []);
+  }, [works, setWorksImages]);
+
+  const handleTypeChange = (selectedType: ButtonType) => setType(selectedType);
 
   return (
     <>
       <div className="w-full max-w-[1400px] px-4 min-[1600px]:px-0 py-5 md:py-10 md:mb-5">
         <div className="w-full flex items-center gap-5 justify-between lg:py-10">
           <div className="w-full flex items-center gap-2 md:gap-5">
-            <button
-              onClick={() => setType("ALL")}
-              className={`h-10 md:h-[60px] lg:h-20 flex items-center justify-center px-4 md:px-7 text-sm sm:text-lg md:text-xl font-[700] border transition-all rounded-md lg:rounded-xl ${
-                type === "ALL"
-                  ? "border-black bg-black text-white hover:opacity-80"
-                  : "border-lightGray"
-              }`}
-            >
-              ALL
-            </button>
-            <button
-              onClick={() => setType("BS")}
-              className={`h-10 md:h-[60px] lg:h-20 flex items-center justify-center px-4 md:px-7 text-sm sm:text-lg md:text-xl font-[700] border transition-all rounded-md lg:rounded-xl ${
-                type === "BS"
-                  ? "border-black bg-black text-white hover:opacity-80"
-                  : "border-lightGray"
-              }`}
-            >
-              Business
-            </button>
-            <button
-              onClick={() => setType("PS")}
-              className={`h-10 md:h-[60px] lg:h-20 flex items-center justify-center px-4 md:px-7 text-sm sm:text-lg md:text-xl font-[700] border transition-all rounded-md lg:rounded-xl ${
-                type === "PS"
-                  ? "border-black bg-black text-white hover:opacity-80"
-                  : "border-lightGray"
-              }`}
-            >
-              Personal
-            </button>
+            <WorkTypeButton
+              onClick={() => handleTypeChange("ALL")}
+              currentType={"ALL"}
+              type={type}
+            />
+            <WorkTypeButton
+              onClick={() => handleTypeChange("BS")}
+              currentType={"BS"}
+              type={type}
+            />
+            <WorkTypeButton
+              onClick={() => handleTypeChange("PS")}
+              currentType={"PS"}
+              type={type}
+            />
           </div>
-          <div className=" hidden lg:flex items-center gap-5">
+          <div className="hidden lg:flex items-center gap-5">
             <button
               onClick={() => setIsGrid(true)}
               className={`w-20 h-20 text-2xl flex items-center justify-center rounded-full border transition-all ${
@@ -96,9 +80,9 @@ export default function WorksListContainer({ works }: Props) {
             <button
               onClick={() => setIsGrid(false)}
               className={`w-20 h-20 text-2xl flex items-center justify-center rounded-full border transition-all ${
-                isGrid
-                  ? "border-gray"
-                  : "bg-black border-black text-white hover:opacity-70"
+                !isGrid
+                  ? "bg-black border-black text-white hover:opacity-70"
+                  : "border-lightGray"
               }`}
             >
               <ListIcon />
@@ -110,16 +94,16 @@ export default function WorksListContainer({ works }: Props) {
         {!isGrid && (
           <div className="w-full hidden lg:flex border-b border-lightGray pb-9 text-lightGray gap-10">
             <div className="flex-1">Project title</div>
-            <div className="">Category</div>
+            <div>Category</div>
             <div className="w-[55px] flex items-center justify-end">Year</div>
           </div>
         )}
         <ul
-          className={`-z-10 overlay w-full grid grid-cols-1 md:grid-cols-2 ${
+          className={`-z-10 overlay w-full grid ${
             isGrid
-              ? "gap-5 md:gap-10 lg:gap-20"
+              ? "grid-cols-1 md:grid-cols-2 gap-5 md:gap-10 lg:gap-20"
               : "gap-5 md:gap-10 lg:gap-0 lg:grid-cols-1"
-          } `}
+          }`}
         >
           {workList.map((work, idx) =>
             isGrid ? (
@@ -134,7 +118,7 @@ export default function WorksListContainer({ works }: Props) {
                 isMain={false}
                 work={work}
                 setIsHovered={setIsHovered}
-                onChangeIdx={() => handleChangeHoverIdx(idx)}
+                onChangeIdx={() => setHoverIdx(idx)}
               />
             )
           )}

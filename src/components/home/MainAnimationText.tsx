@@ -13,7 +13,7 @@ export default function MainAnimationText() {
 
   useGSAP(() => {
     Observer.create({
-      target: "#wrap",
+      target: "#container",
       type: "wheel,touch,scroll",
       onUp,
       onDown,
