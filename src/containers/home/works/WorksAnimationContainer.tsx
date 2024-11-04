@@ -4,7 +4,7 @@ import { Work } from "@/services/works.service";
 import { MainWorksListEffect, RoundBoxEffect } from "@/utils/lib/gsap";
 import { scrollOffsetYState } from "@/utils/lib/recoil/atom";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useRecoilValue } from "recoil";
 
 type Props = {

@@ -26,7 +26,6 @@ export default function MainAboutContainer() {
     () => {
       if (!aboutTextRef.current || !mounted) return;
       const aboutText = aboutTextRef.current;
-      console.log("y", aboutText.clientTop);
       const aboutTextCld = aboutText.childNodes;
       aboutTextCld.forEach((el, idx) => {
         MainAboutTextTimeline(el, idx);

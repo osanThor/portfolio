@@ -16,12 +16,6 @@ body {
   overflow-x: hidden;
 }
 
-#wrap {
-  position: fixed !important;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
 .scrollbar-track {
   display: none !important;
 }

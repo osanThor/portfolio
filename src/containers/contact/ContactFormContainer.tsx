@@ -1,5 +1,6 @@
 "use client";
 "use client";
+import Magnetic from "@/components/common/Magnetic";
 import SendIcon from "@/components/ui/icons/SendIcon";
 import { toast } from "@/components/ui/use-toast";
 import CONTACT_FORM from "@/data/contact/contactForm";
@@ -130,20 +131,22 @@ export default function ContactFormContainer() {
         />
       </label>
       <div className="w-full flex items-center justify-end">
-        <button
-          type="submit"
-          disabled={loading}
-          className="relative border group border-gray lg:text-2xl px-5 py-4 flex items-center gap-4 text-gray before:top-0 before:left-0 fill-gray before:w-0 before:absolute before:h-full before:transition-all hover:before:w-full before:bg-gray hover:text-white hover:fill-white"
-        >
-          <span className="relative ">보내기</span>
-          <span className="relative ">
-            {loading ? (
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-            ) : (
-              <SendIcon />
-            )}
-          </span>
-        </button>
+        <Magnetic>
+          <button
+            type="submit"
+            disabled={loading}
+            className="relative border group border-gray lg:text-2xl px-5 py-4 flex items-center gap-4 text-gray before:top-0 before:left-0 fill-gray before:w-0 before:absolute before:h-full before:transition-all hover:before:w-full before:bg-gray hover:text-white hover:fill-white"
+          >
+            <span className="relative ">보내기</span>
+            <span className="relative ">
+              {loading ? (
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              ) : (
+                <SendIcon />
+              )}
+            </span>
+          </button>
+        </Magnetic>
       </div>
     </form>
   );
