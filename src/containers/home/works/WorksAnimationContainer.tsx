@@ -1,7 +1,7 @@
 "use client";
 
 import { Work } from "@/services/works.service";
-import { MainWorksListEffect, RoundBoxEffect } from "@/utils/lib/gsap";
+import { MainWorksListEffect } from "@/utils/lib/gsap";
 import { scrollOffsetYState } from "@/utils/lib/recoil/atom";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
@@ -19,12 +19,9 @@ export default function WorksAnimationContainer({ works }: Props) {
     if (!containerRef.current) return;
     const container = containerRef.current;
     const containerTop = container.offsetTop;
-    const containerHeight = container.clientHeight;
-    const roundHeigt = -(scrollY - (containerTop + containerHeight / 2));
 
     MainWorksListEffect(".box1", containerTop, scrollY, true);
     MainWorksListEffect(".box2", containerTop, scrollY, false);
-    RoundBoxEffect(roundHeigt);
   }, [scrollY]);
 
   const UPPER_WORKS = works.slice(0, 4);
@@ -74,9 +71,6 @@ export default function WorksAnimationContainer({ works }: Props) {
             ))}
           </ul>
         </div>
-      </div>
-      <div className="w-full relative">
-        <div className="roundBox w-[200%] left-1/2 -translate-x-1/2 z-10 bg-white absolute top-[calc(100%)] h-[150px] shadow-[0_20px_30px_-15px] shadow-gray"></div>
       </div>
     </>
   );

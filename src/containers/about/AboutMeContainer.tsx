@@ -192,6 +192,7 @@ function SkillItem({ skill }: ItemProps) {
             src={skill.url}
             alt={`${skill.name} image`}
             className="object-contain w-full"
+            sizes="68"
             fill
           />
         </div>

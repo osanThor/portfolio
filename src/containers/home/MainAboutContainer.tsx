@@ -4,23 +4,17 @@ import CommonTitle from "@/components/common/CommonTitle";
 import LinkButton from "@/components/common/LinkButton";
 import Image from "next/image";
 import { useGSAP } from "@gsap/react";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { useRecoilValue } from "recoil";
-import { mountedState } from "@/utils/lib/recoil/atom";
+import { localMountedState, mountedState } from "@/utils/lib/recoil/atom";
 import { MainAboutTextTimeline } from "@/utils/lib/gsap";
 
 export default function MainAboutContainer() {
   const containerRef = useRef<HTMLElement>(null);
   const aboutTextRef = useRef<HTMLParagraphElement>(null);
-  const [localMounted, setLocalMounted] = useState<boolean>(false);
-  const mounted = useRecoilValue(mountedState);
 
-  useEffect(() => {
-    if (!mounted) return setLocalMounted(false);
-    setTimeout(() => {
-      setLocalMounted(true);
-    }, 1100);
-  }, [mounted]);
+  const mounted = useRecoilValue(mountedState);
+  const localMounted = useRecoilValue(localMountedState);
 
   useGSAP(
     () => {
@@ -75,6 +69,8 @@ export default function MainAboutContainer() {
           alt="it's me"
           width={600}
           height={910}
+          style={{ width: "auto", height: "auto" }}
+          priority
         />
       </div>
     </section>

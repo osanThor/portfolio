@@ -5,6 +5,11 @@ export const mountedState = atom<boolean>({
   default: false,
 });
 
+export const localMountedState = atom<boolean>({
+  key: "localMountedState",
+  default: false,
+});
+
 export const scrollOffsetYState = atom<any>({
   key: "scrollOffsetYState",
   default: null,

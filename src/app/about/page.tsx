@@ -1,5 +1,5 @@
 import AboutMeContainer from "@/containers/about/AboutMeContainer";
-import BottomAnimationContainer from "@/containers/common/BottomAnimationContainer";
+import RoundBoxContainer from "@/containers/common/RoundBoxContainer";
 import MainContactContainer from "@/containers/home/MainContactContainer";
 import { getMetadata } from "@/utils/lib/getMetadata";
 
@@ -23,7 +23,7 @@ export default function AboutPage() {
       <div className="w-full flex flex-col items-center gap-20 pb-10 pt-5 md:py-20 md:pt-10">
         <AboutMeContainer />
       </div>
-      <BottomAnimationContainer />
+      <RoundBoxContainer />
       <MainContactContainer />
     </>
   );

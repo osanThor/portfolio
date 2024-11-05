@@ -1,4 +1,4 @@
-import BottomAnimationContainer from "@/containers/common/BottomAnimationContainer";
+import RoundBoxContainer from "@/containers/common/RoundBoxContainer";
 import MainContactContainer from "@/containers/home/MainContactContainer";
 import WorksListContainer from "@/containers/works/WorksListContainer";
 import { getAllWorks } from "@/services/works.service";
@@ -21,7 +21,7 @@ export default async function WorksPage() {
         </div>
         <WorksListContainer works={works} />
       </div>
-      <BottomAnimationContainer />
+      <RoundBoxContainer />
       <MainContactContainer />
     </>
   );
