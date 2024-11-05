@@ -6,24 +6,26 @@ import Image from "next/image";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 import { useRecoilValue } from "recoil";
-import { localMountedState, mountedState } from "@/utils/lib/recoil/atom";
+import { localMountedState } from "@/utils/lib/recoil/atom";
 import { MainAboutTextTimeline } from "@/utils/lib/gsap";
 
 export default function MainAboutContainer() {
   const containerRef = useRef<HTMLElement>(null);
   const aboutTextRef = useRef<HTMLParagraphElement>(null);
 
-  const mounted = useRecoilValue(mountedState);
   const localMounted = useRecoilValue(localMountedState);
 
   useGSAP(
-    () => {
-      if (!aboutTextRef.current || !mounted) return;
+    (context) => {
+      if (!aboutTextRef.current) return;
       const aboutText = aboutTextRef.current;
       const aboutTextCld = aboutText.childNodes;
       aboutTextCld.forEach((el, idx) => {
         MainAboutTextTimeline(el, idx);
       });
+      return () => {
+        context.data.forEach((el: any) => el.kill());
+      };
     },
     { scope: aboutTextRef, dependencies: [localMounted] }
   );

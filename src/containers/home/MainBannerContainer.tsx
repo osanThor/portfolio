@@ -1,18 +1,27 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect } from "react";
 import MainAnimationText from "@/components/home/MainAnimationText";
 import { mainBannerFromTo } from "@/utils/lib/gsap";
 import { mountedState } from "@/utils/lib/recoil/atom";
 import { useRecoilValue } from "recoil";
+import { useGSAP } from "@gsap/react";
+import { useRef } from "react";
 
 export default function MainBannerContainer() {
   const mounted = useRecoilValue(mountedState);
 
-  useEffect(() => {
-    mounted && mainBannerFromTo("#intro .copy");
-  }, [mounted]);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    (context) => {
+      mounted && mainBannerFromTo("#intro .copy");
+      return () => {
+        context.data.forEach((el: any) => el.kill());
+      };
+    },
+    { scope: ref, dependencies: [mounted] }
+  );
 
   return (
     <section className="w-full h-[120vh] sm:h-[110vh] bg-[#8DA2B2] relative bg-gradient-animation max-w-[100vw]">
@@ -26,6 +35,7 @@ export default function MainBannerContainer() {
         priority={true}
       />
       <div
+        ref={ref}
         id="intro"
         className=" md:text-[2.3vw] leading-8 md:leading-[3.2vw] lg:text-[1.5vw] lg:leading-[2.8vw] text-white absolute bottom-8 sm:bottom-1/2 left-[5%] sm:left-auto sm:right-[5%] break-keep transition-all"
       >

@@ -44,10 +44,6 @@ export const MainAboutTextTimeline = (el: ChildNode, idx: number) => {
   });
 };
 
-// textSpliter
-// var textWrapper = document.querySelector('#heroTextAnim');
-// textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
-
 export const MainWorksListEffect = (
   target: string,
   containerTop: number,
@@ -59,18 +55,20 @@ export const MainWorksListEffect = (
   });
 };
 
-export const RoundBoxEffect = (target: gsap.TweenTarget) => {
-  gsap.to(target, {
+export const RoundBoxEffect = (target: gsap.TweenTarget): gsap.core.Tween => {
+  return gsap.to(target, {
     scrollTrigger: {
       trigger: target as gsap.DOMTarget | undefined,
       scrub: 2,
-      start: "top 70%",
+      start: "top 90%",
       end: "top 10%",
+      // markers: true,
     },
+    width: "100%",
     height: 0,
     duration: 3,
-    borderBottomRightRadius: "100%",
-    borderBottomLeftRadius: "100%",
+    borderBottomRightRadius: "50%",
+    borderBottomLeftRadius: "50%",
   });
 };
 

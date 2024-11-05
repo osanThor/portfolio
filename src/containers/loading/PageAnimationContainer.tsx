@@ -2,11 +2,11 @@
 
 import { localMountedState, mountedState } from "@/utils/lib/recoil/atom";
 import { useEffect } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 
 export default function PageAnimationContainer() {
-  const [mounted] = useRecoilState(mountedState);
-  const [localMounted, setLocalMounted] = useRecoilState(localMountedState);
+  const mounted = useRecoilValue(mountedState);
+  const setLocalMounted = useSetRecoilState(localMountedState);
 
   useEffect(() => {
     if (!mounted) return setLocalMounted(false);

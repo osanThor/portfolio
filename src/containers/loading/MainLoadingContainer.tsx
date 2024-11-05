@@ -1,10 +1,12 @@
 "use client";
 
 import { mountedState } from "@/utils/lib/recoil/atom";
+import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 
 export default function MainLoadingContainer() {
+  const pathname = usePathname();
   const [mounted, setMounted] = useRecoilState(mountedState);
   useEffect(() => {
     if (mounted) return;
@@ -12,7 +14,11 @@ export default function MainLoadingContainer() {
       window.scrollTo(0, 0);
       setMounted(true);
     }, 1500);
-  }, []);
+  }, [mounted]);
+
+  // useEffect(() => {
+  //   if (mounted) setMounted(false);
+  // }, [pathname]);
 
   return (
     <>
