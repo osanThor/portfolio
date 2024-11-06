@@ -1,6 +1,5 @@
 "use client";
 
-import RoundBox from "@/components/common/RoundBox";
 import { scrollOffsetYState } from "@/utils/lib/recoil/atom";
 import { useEffect, useRef } from "react";
 import { useRecoilValue } from "recoil";
