@@ -3,22 +3,17 @@
 import Image from "next/image";
 import MainAnimationText from "@/components/home/MainAnimationText";
 import { mainBannerFromTo } from "@/utils/lib/gsap";
-import { mountedState } from "@/utils/lib/recoil/atom";
-import { useRecoilValue } from "recoil";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 
 export default function MainBannerContainer() {
-  const mounted = useRecoilValue(mountedState);
-
   const ref = useRef<HTMLDivElement>(null);
 
   useGSAP(
-    (context) => {
-      context.data.forEach((el: any) => el.kill());
-      mounted && mainBannerFromTo("#intro .copy");
+    () => {
+      mainBannerFromTo("#intro .copy");
     },
-    { scope: ref, dependencies: [mounted] }
+    { scope: ref }
   );
 
   return (

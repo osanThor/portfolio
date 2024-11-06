@@ -1,11 +1,9 @@
 "use client";
 
 import Animate from "@/utils/animation";
-import { mountedState } from "@/utils/lib/recoil/atom";
 import { useGSAP } from "@gsap/react";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef } from "react";
-import { useRecoilState } from "recoil";
+import { useRef } from "react";
 
 type Props = { children: React.ReactNode };
 

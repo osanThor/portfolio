@@ -14,7 +14,7 @@ export default function FooterContainer() {
               <li key={`footer-${menu.name}`}>
                 <MagneticLink
                   scroll={false}
-                  className="hover:text-gray transition-all"
+                  className="hover:text-gray transition-all relative flex items-center justify-center"
                   href={menu.href}
                 >
                   {menu.name}

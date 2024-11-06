@@ -1,22 +1,18 @@
 "use client";
 
 import { RoundBoxEffect } from "@/utils/lib/gsap";
-import { mountedState } from "@/utils/lib/recoil/atom";
 import { useGSAP } from "@gsap/react";
-import { useRecoilValue } from "recoil";
 import { useEffect, useRef, useState } from "react";
 
 export default function RoundBoxContainer() {
   const roundBoxRef = useRef<HTMLDivElement>(null);
-  const mounted = useRecoilValue(mountedState);
   const [localMounted, setLocalMounted] = useState<boolean>(false);
 
   useEffect(() => {
-    if (!mounted) return setLocalMounted(false);
     setTimeout(() => {
       setLocalMounted(true);
     }, 1700);
-  }, [mounted]);
+  }, []);
 
   useGSAP(
     () => {
@@ -38,12 +34,3 @@ export default function RoundBoxContainer() {
     )
   );
 }
-// const mounted = useRecoilValue(mountedState);
-// const [localMounted, setLocalMounted] = useState<boolean>(false);
-
-// useEffect(() => {
-//   if (!mounted) return setLocalMounted(false);
-//   setTimeout(() => {
-//     setLocalMounted(true);
-//   }, 1100);
-// }, [mounted]);

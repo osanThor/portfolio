@@ -88,19 +88,17 @@ export default function HeaderContainer() {
           isTop ? "" : "-translate-y-full"
         }`}
       >
-        <h1 id="logo">
-          <MagneticLink
-            href={"/"}
-            className={`relative ${
-              theme === "dark"
-                ? "fill-white text-white"
-                : "fill-black text-black"
-            }`}
-            scroll={false}
-          >
+        <MagneticLink
+          href={"/"}
+          className={`relative ${
+            theme === "dark" ? "fill-white text-white" : "fill-black text-black"
+          }`}
+          scroll={false}
+        >
+          <h1 id="logo">
             <Logo />
-          </MagneticLink>
-        </h1>
+          </h1>
+        </MagneticLink>
         <nav
           className="gnb relative group"
           onMouseOut={() => {

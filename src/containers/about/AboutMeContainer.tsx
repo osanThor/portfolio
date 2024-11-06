@@ -1,7 +1,6 @@
 "use client";
 
 import CommonTitle from "@/components/common/CommonTitle";
-import { mountedState } from "@/utils/lib/recoil/atom";
 import Image from "next/image";
 import AboutSkillsContainer from "./AboutSkillsContainer";
 import {

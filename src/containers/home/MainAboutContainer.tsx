@@ -5,19 +5,14 @@ import LinkButton from "@/components/common/LinkButton";
 import Image from "next/image";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
-import { useRecoilValue } from "recoil";
-import { localMountedState } from "@/utils/lib/recoil/atom";
 import { MainAboutTextTimeline } from "@/utils/lib/gsap";
 
 export default function MainAboutContainer() {
   const containerRef = useRef<HTMLElement>(null);
   const aboutTextRef = useRef<HTMLParagraphElement>(null);
 
-  const localMounted = useRecoilValue(localMountedState);
-
   useGSAP(
-    (context) => {
-      // context.data.forEach((el: any) => el.kill());
+    () => {
       if (!aboutTextRef.current) return;
       const aboutText = aboutTextRef.current;
       const aboutTextCld = aboutText.childNodes;
@@ -25,7 +20,7 @@ export default function MainAboutContainer() {
         MainAboutTextTimeline(el, idx);
       });
     },
-    { scope: aboutTextRef, dependencies: [localMounted] }
+    { scope: aboutTextRef }
   );
 
   return (
@@ -37,7 +32,6 @@ export default function MainAboutContainer() {
         <div className="flex-1 flex flex-col order-2 lg:order-1 items-center lg:items-start justify-between gap-10">
           <div className="flex-1 w-full flex flex-col items-start">
             <CommonTitle text="About me" />
-            {/* {localMounted && ( */}
             <p
               id="mainAbout"
               ref={aboutTextRef}
@@ -59,7 +53,6 @@ export default function MainAboutContainer() {
                 매일 성장하는 개발자가 되겠습니다.
               </span>
             </p>
-            {/* )} */}
           </div>
           <LinkButton href="/about" />
         </div>

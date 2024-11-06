@@ -14,7 +14,7 @@ export const mainBannerFromTo = (element: HTMLElement | string) => {
       opacity: 0,
     },
     {
-      delay: 0,
+      delay: 1,
       duration: 2,
       x: 0,
       opacity: 1,
@@ -63,7 +63,6 @@ export const RoundBoxEffect = (target: gsap.TweenTarget): gsap.core.Tween => {
       scrub: 2,
       start: "top 90%",
       end: "top 10%",
-      // markers: true,
     },
     width: "100%",
     height: 0,
