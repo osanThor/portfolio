@@ -31,7 +31,7 @@ export default function MenuButton({ onClick, isTop, menuOpen }: Props) {
         className={`fixed overflow-hidden rounded-full bg-black/70 text-white backdrop-blur-sm transition-all ease-linear ${
           !isTop || menuOpen
             ? "w-10 h-10 md:w-20 md:h-20 right-4 lg:right-10 top-4 lg:top-10 "
-            : "w-0 h-0 md:top-[80px] md:right-[80px] scale-0 opacity-0"
+            : "w-0 h-0 right-4 top-4 md:top-[80px] md:right-[80px] scale-0 opacity-0"
         }`}
         onMouseOver={handleOver}
         onMouseOut={handleOut}

@@ -14,7 +14,7 @@ export const mainBannerFromTo = (element: HTMLElement | string) => {
       opacity: 0,
     },
     {
-      delay: 0,
+      delay: 1,
       duration: 2,
       x: 0,
       opacity: 1,
@@ -32,21 +32,18 @@ export const MainAboutTextTimeline = (el: ChildNode, idx: number) => {
 
   gsap.to(target, {
     scrollTrigger: {
-      trigger: target, // 스크롤이 트리거되는 요소
-      start: "top 95%", // 트리거가 시작되는 위치 (뷰포트의 80% 지점에서 시작)
-      end: "top 80%", // 트리거가 끝나는 위치 (뷰포트의 50% 지점에서 끝)
-      scrub: 2, // 스크롤에 따라 애니메이션이 조정되도록 설정
+      trigger: target,
+      start: "top 95%",
+      end: "top 80%",
+      scrub: 2,
+      // markers: true,
     },
-    y: 0, // 텍스트가 위로 올라오면서 원래 위치에 위치하게 함
-    opacity: 1, // 텍스트가 서서히 나타나도록 설정
-    duration: 1, // 애니메이션 지속 시간
+    y: 0,
+    opacity: 1,
+    duration: 1,
     delay: idx,
   });
 };
-
-// textSpliter
-// var textWrapper = document.querySelector('#heroTextAnim');
-// textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
 
 export const MainWorksListEffect = (
   target: string,
@@ -59,11 +56,19 @@ export const MainWorksListEffect = (
   });
 };
 
-export const RoundBoxEffect = (roundHeigt: number) => {
-  gsap.to(".roundBox", {
-    height: roundHeigt > 150 ? 150 : roundHeigt < 0 ? 0 : roundHeigt,
-    borderBottomRightRadius: "50% 100%",
-    borderBottomLeftRadius: "50% 100%",
+export const RoundBoxEffect = (target: gsap.TweenTarget): gsap.core.Tween => {
+  return gsap.to(target, {
+    scrollTrigger: {
+      trigger: target as gsap.DOMTarget | undefined,
+      scrub: 2,
+      start: "top 90%",
+      end: "top 10%",
+    },
+    width: "100%",
+    height: 0,
+    duration: 3,
+    borderBottomRightRadius: "50%",
+    borderBottomLeftRadius: "50%",
   });
 };
 

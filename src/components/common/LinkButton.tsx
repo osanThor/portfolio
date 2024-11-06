@@ -1,8 +1,7 @@
 "use client";
-import Link from "next/link";
 import ArrowBottom from "../ui/icons/ArrowBottom";
 import { useState } from "react";
-import Magnetic from "./Magnetic";
+import MagneticLink from "./MagneticLink";
 
 type Props = {
   href?: string;
@@ -29,29 +28,27 @@ export default function LinkButton({
   }
 
   return (
-    <Magnetic>
-      <Link
-        scroll={false}
-        href={href}
-        className="relative overflow-hidden border group border-gray lg:text-2xl px-5 py-4 flex items-center gap-4 text-gray fill-gray before:w-0 before:absolute before:h-full before:transition-all hover:text-white hover:fill-white"
-        onMouseOver={handleOver}
-        onMouseOut={handleOut}
-      >
-        <span
-          className={`${
-            hover ? "ease-in transition-all rounded-none" : "rounded-full"
-          } right-full top-0 w-full h-full absolute overflow-hidden bg-gray pointer-events-none`}
-          style={{
-            right: `${rightPos}%`,
-          }}
-        />
-        <span className="relative pointer-events-none transition-all rounded-none">
-          {text}
-        </span>
-        <span className="relative pointer-events-none transition-all rounded-none">
-          <ArrowBottom />
-        </span>
-      </Link>
-    </Magnetic>
+    <MagneticLink
+      href={href}
+      scroll={false}
+      className="relative overflow-hidden border group border-gray lg:text-2xl px-5 py-4 flex items-center gap-4 text-gray fill-gray before:w-0 before:absolute before:h-full before:transition-all hover:text-white hover:fill-white"
+      onMouseOver={handleOver}
+      onMouseOut={handleOut}
+    >
+      <span
+        className={`${
+          hover ? "ease-in transition-all rounded-none" : "rounded-full"
+        } right-full top-0 w-full h-full absolute overflow-hidden bg-gray pointer-events-none`}
+        style={{
+          right: `${rightPos}%`,
+        }}
+      />
+      <span className="relative pointer-events-none transition-all rounded-none">
+        {text}
+      </span>
+      <span className="relative pointer-events-none transition-all rounded-none">
+        <ArrowBottom />
+      </span>
+    </MagneticLink>
   );
 }

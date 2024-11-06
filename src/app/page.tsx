@@ -1,3 +1,4 @@
+import RoundBoxContainer from "@/containers/common/RoundBoxContainer";
 import MainAboutContainer from "@/containers/home/MainAboutContainer";
 import MainBannerContainer from "@/containers/home/MainBannerContainer";
 import MainContactContainer from "@/containers/home/MainContactContainer";
@@ -9,6 +10,7 @@ export default function Home() {
       <MainBannerContainer />
       <MainAboutContainer />
       <MainWorksContainer />
+      <RoundBoxContainer />
       <MainContactContainer />
     </>
   );

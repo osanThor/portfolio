@@ -2,24 +2,13 @@ import LinkButton from "@/components/common/LinkButton";
 import MarkdownViewer from "@/components/works/MarkdownViewer";
 import SiteLinkButton from "@/components/works/SiteLinkButton";
 import { getWorkDetail } from "@/services/works.service";
-import { getMetadata } from "@/utils/lib/getMetadata";
 import Image from "next/image";
 
 type Props = {
-  params: {
-    slug: string;
-  };
+  slug: string;
 };
 
-export async function generateMetadata({ params: { slug } }: Props) {
-  const { title, description } = await getWorkDetail(slug);
-  return getMetadata({
-    title: title,
-    description,
-  });
-}
-
-export default async function WorkDetailPage({ params: { slug } }: Props) {
+export default async function WorkDetailContainer({ slug }: Props) {
   const { title, link, type, year, category, content } = await getWorkDetail(
     slug
   );

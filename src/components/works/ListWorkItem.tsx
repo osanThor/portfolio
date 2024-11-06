@@ -1,7 +1,7 @@
 import { Work } from "@/services/works.service";
 import Image from "next/image";
-import Link from "next/link";
 import { SetStateAction } from "react";
+import TransitionLink from "../common/TransitionLink";
 
 type Props = {
   isMain: boolean;
@@ -18,11 +18,11 @@ export default function ListWorkItem({
 }: Props) {
   return (
     <li className="w-full group flex flex-col items-center justify-between">
-      <Link
+      <TransitionLink
         className={`${
           isMain ? "lg:py-32" : "lg:py-7"
         } w-full lg:border-b border-lightGray flex flex-col items-center justify-between relative`}
-        href={`/works/detail/${work.path}`}
+        href={`/work/${work.path}`}
         onMouseEnter={() => {
           setIsHovered(true);
           onChangeIdx();
@@ -51,7 +51,7 @@ export default function ListWorkItem({
             </div>
           </div>
         </div>
-      </Link>
+      </TransitionLink>
     </li>
   );
 }

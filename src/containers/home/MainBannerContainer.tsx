@@ -1,21 +1,23 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect } from "react";
 import MainAnimationText from "@/components/home/MainAnimationText";
 import { mainBannerFromTo } from "@/utils/lib/gsap";
-import { mountedState } from "@/utils/lib/recoil/atom";
-import { useRecoilValue } from "recoil";
+import { useGSAP } from "@gsap/react";
+import { useRef } from "react";
 
 export default function MainBannerContainer() {
-  const mounted = useRecoilValue(mountedState);
+  const ref = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    mounted && mainBannerFromTo("#intro .copy");
-  }, [mounted]);
+  useGSAP(
+    () => {
+      mainBannerFromTo("#intro .copy");
+    },
+    { scope: ref }
+  );
 
   return (
-    <section className="w-full h-[120vh] sm:h-[110vh] bg-[#8DA2B2] relative bg-gradient-animation max-w-[100vw]">
+    <section className="w-screen h-[120vh] sm:h-[110vh] bg-[#8DA2B2] relative bg-gradient-animation max-w-[100vw]">
       <Image
         className="absolute object-cover sm:object-contain bottom-0 transition-all left-0 max-w-full h-[110vh] sm:h-screen sm:max-h-[100vh] pointer-events-none"
         src={"/assets/images/home/me.png"}
@@ -26,6 +28,7 @@ export default function MainBannerContainer() {
         priority={true}
       />
       <div
+        ref={ref}
         id="intro"
         className=" md:text-[2.3vw] leading-8 md:leading-[3.2vw] lg:text-[1.5vw] lg:leading-[2.8vw] text-white absolute bottom-8 sm:bottom-1/2 left-[5%] sm:left-auto sm:right-[5%] break-keep transition-all"
       >

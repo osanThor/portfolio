@@ -1,7 +1,7 @@
 import { Work } from "@/services/works.service";
 import Image from "next/image";
-import Link from "next/link";
 import { SetStateAction } from "react";
+import TransitionLink from "../common/TransitionLink";
 
 type Props = {
   work: Work;
@@ -11,9 +11,9 @@ type Props = {
 export default function GridWorkItem({ work, setIsHovered }: Props) {
   return (
     <li className="w-full flex flex-col items-center justify-between ">
-      <Link
+      <TransitionLink
         className="w-full flex group flex-col items-center justify-between relative"
-        href={`/works/detail/${work.path}`}
+        href={`/work/${work.path}`}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
@@ -37,7 +37,7 @@ export default function GridWorkItem({ work, setIsHovered }: Props) {
             <div className="text-lg md:text-xl">{work.year}</div>
           </div>
         </div>
-      </Link>
+      </TransitionLink>
     </li>
   );
 }

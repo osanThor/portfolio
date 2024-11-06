@@ -1,6 +1,5 @@
-import Magnetic from "@/components/common/Magnetic";
+import MagneticLink from "@/components/common/MagneticLink";
 import MENUS from "@/data/menu";
-import Link from "next/link";
 
 export default function FooterContainer() {
   return (
@@ -12,17 +11,15 @@ export default function FooterContainer() {
         <div className="order-1 lg:order-2 flex items-center gap-10 flex-wrap">
           <ul className="flex gap-10 before:content-['Menu'] relative before:absolute before:bottom-[120%] before:text-gray before:text-xs">
             {MENUS.map((menu) => (
-              <Magnetic key={`footer-${menu.name}`}>
-                <li>
-                  <Link
-                    scroll={false}
-                    className="hover:text-gray transition-all"
-                    href={menu.href}
-                  >
-                    {menu.name}
-                  </Link>
-                </li>
-              </Magnetic>
+              <li key={`footer-${menu.name}`}>
+                <MagneticLink
+                  scroll={false}
+                  className="hover:text-gray transition-all relative flex items-center justify-center"
+                  href={menu.href}
+                >
+                  {menu.name}
+                </MagneticLink>
+              </li>
             ))}
           </ul>
         </div>
