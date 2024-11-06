@@ -15,16 +15,14 @@ export default function MainBannerContainer() {
 
   useGSAP(
     (context) => {
+      context.data.forEach((el: any) => el.kill());
       mounted && mainBannerFromTo("#intro .copy");
-      return () => {
-        context.data.forEach((el: any) => el.kill());
-      };
     },
     { scope: ref, dependencies: [mounted] }
   );
 
   return (
-    <section className="w-full h-[120vh] sm:h-[110vh] bg-[#8DA2B2] relative bg-gradient-animation max-w-[100vw]">
+    <section className="w-screen h-[120vh] sm:h-[110vh] bg-[#8DA2B2] relative bg-gradient-animation max-w-[100vw]">
       <Image
         className="absolute object-cover sm:object-contain bottom-0 transition-all left-0 max-w-full h-[110vh] sm:h-screen sm:max-h-[100vh] pointer-events-none"
         src={"/assets/images/home/me.png"}

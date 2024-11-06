@@ -1,10 +1,7 @@
 "use client";
-import Magnetic from "@/components/common/Magnetic";
+import MagneticLink from "@/components/common/MagneticLink";
 import MenuButton from "@/components/common/MenuButton";
 import MENUS from "@/data/menu";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import Link from "next/link";
 import { useRef } from "react";
 
 type Props = {
@@ -25,8 +22,6 @@ export default function HeaderMenuWinContainer({
   setHoverId,
 }: Props) {
   const menuWinRef = useRef<HTMLDivElement>(null);
-
-  const { contextSafe } = useGSAP({ scope: menuWinRef });
 
   return (
     <div className="relative z-[9999]">
@@ -53,41 +48,37 @@ export default function HeaderMenuWinContainer({
             }}
             className="menu relative w-full text-4xl transition-all md:text-6xl py-10 px-10 md:px-20 flex flex-col items-start justify-center gap-10 text-white "
           >
-            <Magnetic>
-              <li>
-                <Link
-                  href={"/"}
+            <li>
+              <MagneticLink
+                href={"/"}
+                className={`${
+                  hoverId === 0 ? "pl-10 before:w-2 before:h-2" : ""
+                } relative pl-0 transition-all hover:pl-10 before:w-0 before:h-0 before:rounded-full before:transition-all before:absolute before:top-1/2 before:-translate-y-1/2 before:left-0 before:bg-white hover:before:w-2 hover:before:h-2 `}
+                scroll={false}
+                onClick={toggleOpen}
+                onMouseOver={() => {
+                  setHoverId(0);
+                }}
+              >
+                Home
+              </MagneticLink>
+            </li>
+            {MENUS.map((menu, idx) => (
+              <li key={`side-${menu.name}`}>
+                <MagneticLink
+                  href={menu.href}
                   className={`${
-                    hoverId === 0 ? "pl-10 before:w-2 before:h-2" : ""
+                    hoverId === idx + 1 ? "pl-10 before:w-2 before:h-2" : ""
                   } relative pl-0 transition-all hover:pl-10 before:w-0 before:h-0 before:rounded-full before:transition-all before:absolute before:top-1/2 before:-translate-y-1/2 before:left-0 before:bg-white hover:before:w-2 hover:before:h-2 `}
                   scroll={false}
                   onClick={toggleOpen}
                   onMouseOver={() => {
-                    setHoverId(0);
+                    setHoverId(idx + 1);
                   }}
                 >
-                  Home
-                </Link>
+                  {menu.name}
+                </MagneticLink>
               </li>
-            </Magnetic>
-            {MENUS.map((menu, idx) => (
-              <Magnetic key={`side-${menu.name}`}>
-                <li>
-                  <Link
-                    href={menu.href}
-                    className={`${
-                      hoverId === idx + 1 ? "pl-10 before:w-2 before:h-2" : ""
-                    } relative pl-0 transition-all hover:pl-10 before:w-0 before:h-0 before:rounded-full before:transition-all before:absolute before:top-1/2 before:-translate-y-1/2 before:left-0 before:bg-white hover:before:w-2 hover:before:h-2 `}
-                    scroll={false}
-                    onClick={toggleOpen}
-                    onMouseOver={() => {
-                      setHoverId(idx + 1);
-                    }}
-                  >
-                    {menu.name}
-                  </Link>
-                </li>
-              </Magnetic>
             ))}
           </ul>
         </div>

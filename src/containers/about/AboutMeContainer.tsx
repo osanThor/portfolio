@@ -2,10 +2,7 @@
 
 import CommonTitle from "@/components/common/CommonTitle";
 import { mountedState } from "@/utils/lib/recoil/atom";
-import moment from "moment";
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import { useRecoilValue } from "recoil";
 import AboutSkillsContainer from "./AboutSkillsContainer";
 import {
   BESkills,
@@ -16,44 +13,7 @@ import {
 } from "@/data/about/skills/allSkills";
 import Tootip from "@/components/common/Tootip";
 
-const START_DATE = "2021-11-01";
-
 export default function AboutMeContainer() {
-  const startDate = moment(START_DATE);
-  const currentDate = moment();
-  const yearsOfExperience = currentDate.diff(startDate, "years");
-  const monthsOfExperience = currentDate.diff(
-    startDate.add(yearsOfExperience, "years"),
-    "months"
-  );
-
-  const mounted = useRecoilValue(mountedState);
-  const [show, setShow] = useState<boolean>(false);
-  useEffect(() => {
-    if (!mounted) return;
-    setTimeout(() => {
-      setShow(true);
-    }, 400);
-  }, [mounted]);
-
-  const [currenYear, setCurrentYear] = useState<number>(0);
-  const [currentMonth, setCurrenttMonth] = useState<number>(0);
-
-  useEffect(() => {
-    if (!show) return;
-    if (yearsOfExperience <= currenYear) return;
-    setTimeout(() => {
-      setCurrentYear(currenYear + 1);
-    }, 100);
-  }, [currenYear, show]);
-  useEffect(() => {
-    if (!show) return;
-    if (monthsOfExperience <= currentMonth) return;
-    setTimeout(() => {
-      setCurrenttMonth(currentMonth + 1);
-    }, 100);
-  }, [currentMonth, show]);
-
   return (
     <>
       <div className="w-full flex flex-col gap-20 items-center bg-gradient-to-t from-lightBagieGray pb-20">
@@ -128,7 +88,7 @@ export default function AboutMeContainer() {
         <div className="w-full">
           <CommonTitle text={"Skills"} />
         </div>
-        {show && <AboutSkillsContainer />}
+        <AboutSkillsContainer />
         <ul className="w-full flex flex-col pt-20 md:flex-row md:flex-wrap gap-14 justify-between">
           <li className="flex-1">
             <ul className="flex flex-col gap-14 ">

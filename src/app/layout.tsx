@@ -3,11 +3,9 @@ import "./globals.css";
 import HeaderContainer from "@/containers/common/HeaderContainer";
 import FooterContainer from "@/containers/common/FooterContainer";
 import RecoilRootProvider from "@/contexts/Recoil.context";
-import MainLoadingContainer from "@/containers/loading/MainLoadingContainer";
 import { Toaster } from "@/components/ui/toaster";
 import { nanumSquareNEO } from "@/app/assets/fonts";
 import { getMetadata } from "@/utils/lib/getMetadata";
-import PageAnimationContainer from "@/containers/loading/PageAnimationContainer";
 import FollowCursorContainer from "@/containers/common/FollowCursorContainer";
 
 export const metadata: Metadata = getMetadata();
@@ -24,8 +22,6 @@ export default function RootLayout({
           className={nanumSquareNEO.className}
           suppressHydrationWarning={true}
         >
-          <PageAnimationContainer />
-          <MainLoadingContainer />
           <FollowCursorContainer />
           <HeaderContainer />
           <main

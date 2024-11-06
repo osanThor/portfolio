@@ -22,7 +22,7 @@ export default function MainLoadingContainer() {
 
   return (
     <>
-      <div
+      {/* <div
         id="loader"
         className={`${
           mounted ? "bottom-full duration-1000" : "bottom-0 duration-0"
@@ -49,7 +49,7 @@ export default function MainLoadingContainer() {
         }`}
       >
         <span className="sr-only">loading spacer</span>
-      </div>
+      </div> */}
     </>
   );
 }

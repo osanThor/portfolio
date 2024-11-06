@@ -1,22 +1,20 @@
 "use client";
 
 import Logo from "@/components/common/Logo";
-import Magnetic from "@/components/common/Magnetic";
-import MenuButton from "@/components/common/MenuButton";
 import MENUS from "@/data/menu";
 import { scrollOffsetYState } from "@/utils/lib/recoil/atom";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import HeaderMenuWinContainer from "./HeaderMenuWinContainer";
+import MagneticLink from "@/components/common/MagneticLink";
 
 export default function HeaderContainer() {
   const pathname = usePathname();
   const [scrollY, setScrollY] = useRecoilState(scrollOffsetYState);
   const themeDarkPathname = ["/", "/contact"];
   const [theme, setTheme] = useState<"dark" | "light">("dark");
-  const hrefs = MENUS.map((menu) => menu.href);
+  const hrefs = [...MENUS.map((menu) => menu.href), "/work"];
   const [pathId, setPathId] = useState<number>(0);
   const [hoverId, setHoverId] = useState<number>(0);
 
@@ -57,7 +55,10 @@ export default function HeaderContainer() {
     const menuIdx = MENUS.findIndex(
       (menu) => menu.href === pathname || pathname.startsWith(menu.href)
     );
-    if (menuIdx < 0 && menuIdx !== 0) {
+    if (pathname.startsWith("/work")) {
+      setHoverId(2);
+      setPathId(2);
+    } else if (menuIdx < 0 && menuIdx !== 0) {
       setHoverId(0);
       setPathId(0);
     } else {
@@ -80,8 +81,6 @@ export default function HeaderContainer() {
     if (pathId) setHoverId(pathId);
   }, [menuOpen]);
 
-  function handleSetHoverID(id: number) {}
-
   return (
     <>
       <header
@@ -89,21 +88,19 @@ export default function HeaderContainer() {
           isTop ? "" : "-translate-y-full"
         }`}
       >
-        <Magnetic>
-          <h1 id="logo">
-            <Link
-              href={"/"}
-              className={`${
-                theme === "dark"
-                  ? "fill-white text-white"
-                  : "fill-black text-black"
-              }`}
-              scroll={false}
-            >
-              <Logo />
-            </Link>
-          </h1>
-        </Magnetic>
+        <h1 id="logo">
+          <MagneticLink
+            href={"/"}
+            className={`relative ${
+              theme === "dark"
+                ? "fill-white text-white"
+                : "fill-black text-black"
+            }`}
+            scroll={false}
+          >
+            <Logo />
+          </MagneticLink>
+        </h1>
         <nav
           className="gnb relative group"
           onMouseOut={() => {
@@ -122,17 +119,15 @@ export default function HeaderContainer() {
                   setHoverId(idx + 1);
                 }}
               >
-                <Magnetic>
-                  <Link
-                    href={menu.href}
-                    className={`${
-                      theme === "dark" ? "after:bg-white " : "after:bg-black"
-                    } relative min-w-[64px] flex items-center justify-center `}
-                    scroll={false}
-                  >
-                    {menu.name}
-                  </Link>
-                </Magnetic>
+                <MagneticLink
+                  href={menu.href}
+                  className={`${
+                    theme === "dark" ? "after:bg-white " : "after:bg-black"
+                  } relative min-w-[64px] flex items-center justify-center `}
+                  scroll={false}
+                >
+                  {menu.name}
+                </MagneticLink>
               </li>
             ))}
           </ul>

@@ -11,6 +11,7 @@ export default function FollowCursorContainer() {
   const pathname = usePathname();
   const [isGrid, setIsGrid] = useRecoilState(isGridState);
   const setIsHover = useSetRecoilState(itemHoverState);
+
   useLayoutEffect(() => {
     if (pathname === "/") setIsGrid(false);
     else if (pathname === "/works") setIsGrid(true);

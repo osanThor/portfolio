@@ -36,6 +36,7 @@ export const MainAboutTextTimeline = (el: ChildNode, idx: number) => {
       start: "top 95%",
       end: "top 80%",
       scrub: 2,
+      // markers: true,
     },
     y: 0,
     opacity: 1,

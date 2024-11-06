@@ -1,7 +1,7 @@
 "use client";
 
 import { RoundBoxEffect } from "@/utils/lib/gsap";
-import { localMountedState, mountedState } from "@/utils/lib/recoil/atom";
+import { mountedState } from "@/utils/lib/recoil/atom";
 import { useGSAP } from "@gsap/react";
 import { useRecoilValue } from "recoil";
 import { useEffect, useRef, useState } from "react";
@@ -15,15 +15,12 @@ export default function RoundBoxContainer() {
     if (!mounted) return setLocalMounted(false);
     setTimeout(() => {
       setLocalMounted(true);
-    }, 1100);
+    }, 1700);
   }, [mounted]);
+
   useGSAP(
-    (context) => {
-      if (roundBoxRef.current && localMounted)
-        RoundBoxEffect(roundBoxRef.current);
-      return () => {
-        context.data.forEach((el: any) => el.kill());
-      };
+    () => {
+      if (roundBoxRef.current) RoundBoxEffect(roundBoxRef.current);
     },
     { dependencies: [localMounted] }
   );

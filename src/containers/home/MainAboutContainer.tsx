@@ -17,15 +17,13 @@ export default function MainAboutContainer() {
 
   useGSAP(
     (context) => {
+      // context.data.forEach((el: any) => el.kill());
       if (!aboutTextRef.current) return;
       const aboutText = aboutTextRef.current;
       const aboutTextCld = aboutText.childNodes;
       aboutTextCld.forEach((el, idx) => {
         MainAboutTextTimeline(el, idx);
       });
-      return () => {
-        context.data.forEach((el: any) => el.kill());
-      };
     },
     { scope: aboutTextRef, dependencies: [localMounted] }
   );
@@ -39,29 +37,29 @@ export default function MainAboutContainer() {
         <div className="flex-1 flex flex-col order-2 lg:order-1 items-center lg:items-start justify-between gap-10">
           <div className="flex-1 w-full flex flex-col items-start">
             <CommonTitle text="About me" />
-            {localMounted && (
-              <p
-                id="mainAbout"
-                ref={aboutTextRef}
-                className="lg:text-lg lg:leading-9 break-keep relative"
-              >
-                <span className="intro block">
-                  저는 프론트엔드 개발자 이준영입니다.
-                </span>
-                <span className="intro block">
-                  편안한 UI와 흥미로운 UX에 대한 관심과 열정을 가지고 있으며,
-                  끊임없이 고민하고 경험하며 발전하고 있습니다.
-                </span>
-                <span className="intro block">
-                  Javascript를 이용한 클라이언트 구축을 주로 하며, 필요에 따라
-                  기획과 디자인도 가능합니다.
-                </span>
-                <span className="intro block">
-                  도전을 두려워하지 않으며, 트렌드와 클린 코드에 관심을 기울여
-                  매일 성장하는 개발자가 되겠습니다.
-                </span>
-              </p>
-            )}
+            {/* {localMounted && ( */}
+            <p
+              id="mainAbout"
+              ref={aboutTextRef}
+              className="lg:text-lg lg:leading-9 break-keep relative"
+            >
+              <span className="intro block">
+                저는 프론트엔드 개발자 이준영입니다.
+              </span>
+              <span className="intro block">
+                편안한 UI와 흥미로운 UX에 대한 관심과 열정을 가지고 있으며,
+                끊임없이 고민하고 경험하며 발전하고 있습니다.
+              </span>
+              <span className="intro block">
+                Javascript를 이용한 클라이언트 구축을 주로 하며, 필요에 따라
+                기획과 디자인도 가능합니다.
+              </span>
+              <span className="intro block">
+                도전을 두려워하지 않으며, 트렌드와 클린 코드에 관심을 기울여
+                매일 성장하는 개발자가 되겠습니다.
+              </span>
+            </p>
+            {/* )} */}
           </div>
           <LinkButton href="/about" />
         </div>
