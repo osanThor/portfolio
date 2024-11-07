@@ -2,15 +2,16 @@
 
 import Image from "next/image";
 import MainAnimationText from "@/components/home/MainAnimationText";
-import { mainBannerFromTo } from "@/utils/lib/gsap";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
+import Animate from "@/utils/lib/gsap";
 
 export default function MainBannerContainer() {
   const ref = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
+      const { mainBannerFromTo } = new Animate();
       mainBannerFromTo("#intro .copy");
     },
     { scope: ref }

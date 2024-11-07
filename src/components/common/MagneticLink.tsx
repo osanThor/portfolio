@@ -1,8 +1,8 @@
 "use client";
-import Animate from "@/utils/animation";
 import { HTMLAttributes, useEffect, useRef } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Link, { LinkProps } from "next/link";
+import Animate from "@/utils/lib/gsap";
 
 type Props = {
   href: string;

@@ -1,6 +1,6 @@
 "use client";
 
-import { handleFollowBox, setFollowBox } from "@/utils/lib/gsap";
+import Animate from "@/utils/lib/gsap";
 import { itemHoverState } from "@/utils/lib/recoil/atom";
 import { useEffect } from "react";
 import { useRecoilValue } from "recoil";
@@ -11,6 +11,7 @@ export default function GridCursorContainer() {
   const hover = useRecoilValue(itemHoverState);
 
   useEffect(() => {
+    const { setFollowBox, handleFollowBox } = new Animate();
     setFollowBox(FollowBox);
 
     function handleMouseMove(e: MouseEvent) {

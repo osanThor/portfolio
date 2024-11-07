@@ -1,6 +1,6 @@
 "use client";
 
-import Animate from "@/utils/animation";
+import Animate from "@/utils/lib/gsap";
 import { useGSAP } from "@gsap/react";
 import { usePathname } from "next/navigation";
 import { useRef } from "react";

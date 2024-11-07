@@ -1,6 +1,6 @@
 "use client";
 
-import Animate from "@/utils/animation";
+import Animate from "@/utils/lib/gsap";
 import Link, { LinkProps } from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import React, { HTMLAttributes } from "react";

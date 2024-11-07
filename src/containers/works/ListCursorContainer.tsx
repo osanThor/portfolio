@@ -2,14 +2,13 @@
 
 import { useEffect } from "react";
 import Image from "next/image";
-import { handleFollowBox, setFollowBox } from "@/utils/lib/gsap";
 import { useRecoilValue } from "recoil";
 import {
   itemHoverIdState,
   itemHoverState,
-  scrollOffsetYState,
   worksImageListState,
 } from "@/utils/lib/recoil/atom";
+import Animate from "@/utils/lib/gsap";
 
 const FollowBox = ".listWorkCursor";
 
@@ -18,6 +17,7 @@ export default function ListCursorContainer() {
   const hover = useRecoilValue(itemHoverState);
   const hoverIdx = useRecoilValue(itemHoverIdState);
   useEffect(() => {
+    const { setFollowBox, handleFollowBox } = new Animate();
     setFollowBox(FollowBox);
     function handleMouseMove(e: MouseEvent) {
       handleFollowBox(FollowBox, hover, e);

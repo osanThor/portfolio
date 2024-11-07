@@ -5,7 +5,7 @@ import LinkButton from "@/components/common/LinkButton";
 import Image from "next/image";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
-import { MainAboutTextTimeline } from "@/utils/lib/gsap";
+import Animate from "@/utils/lib/gsap";
 
 export default function MainAboutContainer() {
   const containerRef = useRef<HTMLElement>(null);
@@ -14,6 +14,7 @@ export default function MainAboutContainer() {
   useGSAP(
     () => {
       if (!aboutTextRef.current) return;
+      const { MainAboutTextTimeline } = new Animate();
       const aboutText = aboutTextRef.current;
       const aboutTextCld = aboutText.childNodes;
       aboutTextCld.forEach((el, idx) => {

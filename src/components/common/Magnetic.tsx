@@ -1,7 +1,6 @@
 "use client";
 
-import Animate from "@/utils/animation";
-import gsap from "gsap";
+import Animate from "@/utils/lib/gsap";
 import React, { useEffect, useRef } from "react";
 
 type Props = {
