@@ -19,14 +19,14 @@ export default class Animate {
         y: "-100%",
         delay: 1,
         duration: 0.4,
-        borderBottomRightRadius: "100%",
-        borderBottomLeftRadius: "100%",
+        borderBottomRightRadius: "50%",
+        borderBottomLeftRadius: "50%",
         ease: "power3.out",
       });
 
       tl2
         .set(container, {
-          paddingTop: "100vh",
+          paddingTop: "80vh",
         })
         .to(container, {
           paddingTop: 0,
@@ -62,6 +62,7 @@ export default class Animate {
       });
     }
   }
+
   magnetic(ref: React.MutableRefObject<HTMLElement | null>) {
     const xTo = gsap.quickTo(ref.current, "x", {
       duration: 1,

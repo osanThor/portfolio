@@ -51,7 +51,6 @@ export default function HeaderMenuWinContainer({
                   hoverId === 0 ? "pl-10 before:w-2 before:h-2" : ""
                 } relative pl-0 transition-all hover:pl-10 before:w-0 before:h-0 before:rounded-full before:transition-all before:absolute before:top-1/2 before:-translate-y-1/2 before:left-0 before:bg-white hover:before:w-2 hover:before:h-2 flex items-center justify-center`}
                 scroll={false}
-                onClick={toggleOpen}
                 onMouseOver={() => {
                   setHoverId(0);
                 }}
@@ -67,7 +66,6 @@ export default function HeaderMenuWinContainer({
                     hoverId === idx + 1 ? "pl-10 before:w-2 before:h-2" : ""
                   } relative pl-0 transition-all hover:pl-10 before:w-0 before:h-0 before:rounded-full before:transition-all before:absolute before:top-1/2 before:-translate-y-1/2 before:left-0 before:bg-white hover:before:w-2 hover:before:h-2 flex items-center justify-center`}
                   scroll={false}
-                  onClick={toggleOpen}
                   onMouseOver={() => {
                     setHoverId(idx + 1);
                   }}

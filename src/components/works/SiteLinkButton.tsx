@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import ArrowTop from "../ui/icons/ArrowTop";
+import ArrowTop from "@/components/ui/icons/ArrowTop";
 import { useState } from "react";
-import Magnetic from "../common/Magnetic";
+import Magnetic from "@/components/common/Magnetic";
 
 type Props = {
   link: string;

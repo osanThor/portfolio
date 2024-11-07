@@ -1,7 +1,7 @@
 "use client";
-import ArrowBottom from "../ui/icons/ArrowBottom";
+import ArrowBottom from "@/components/ui/icons/ArrowBottom";
 import { useState } from "react";
-import MagneticLink from "./MagneticLink";
+import MagneticLink from "@/components/common/MagneticLink";
 
 type Props = {
   href?: string;
