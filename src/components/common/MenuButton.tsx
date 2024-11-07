@@ -1,5 +1,5 @@
 "use client";
-import Magnetic from "./Magnetic";
+import Magnetic from "@/components/common/Magnetic";
 import { useState } from "react";
 
 type Props = {

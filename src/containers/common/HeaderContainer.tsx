@@ -6,7 +6,7 @@ import { scrollOffsetYState } from "@/utils/lib/recoil/atom";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
-import HeaderMenuWinContainer from "./HeaderMenuWinContainer";
+import HeaderMenuWinContainer from "@/containers/common/HeaderMenuWinContainer";
 import MagneticLink from "@/components/common/MagneticLink";
 
 export default function HeaderContainer() {

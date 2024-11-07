@@ -1,8 +1,8 @@
 import CommonTitle from "@/components/common/CommonTitle";
 import LinkButton from "@/components/common/LinkButton";
-import WorksAnimationContainer from "./works/WorksAnimationContainer";
+import WorksAnimationContainer from "@/containers/home/works/WorksAnimationContainer";
 import { getFeaturedWorks } from "@/services/works.service";
-import MainWorksListContainer from "./works/MainWorksListContainer";
+import MainWorksListContainer from "@/containers/home/works/MainWorksListContainer";
 
 export default async function MainWorksContainer() {
   const works = await getFeaturedWorks();

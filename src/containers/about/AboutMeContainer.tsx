@@ -2,7 +2,7 @@
 
 import CommonTitle from "@/components/common/CommonTitle";
 import Image from "next/image";
-import AboutSkillsContainer from "./AboutSkillsContainer";
+import AboutSkillsContainer from "@/containers/about/AboutSkillsContainer";
 import {
   BESkills,
   DBSkills,

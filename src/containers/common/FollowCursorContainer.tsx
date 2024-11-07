@@ -1,7 +1,7 @@
 "use client";
 
 import ListCursorContainer from "@/containers/works/ListCursorContainer";
-import GridCursorContainer from "../works/GridCursorContainer";
+import GridCursorContainer from "@/containers/works/GridCursorContainer";
 import { usePathname } from "next/navigation";
 import { useLayoutEffect } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";

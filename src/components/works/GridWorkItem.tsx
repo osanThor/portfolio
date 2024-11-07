@@ -1,7 +1,7 @@
 import { Work } from "@/services/works.service";
 import Image from "next/image";
 import { SetStateAction } from "react";
-import TransitionLink from "../common/TransitionLink";
+import TransitionLink from "@/components/common/TransitionLink";
 
 type Props = {
   work: Work;
