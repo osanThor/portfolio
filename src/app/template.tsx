@@ -1,6 +1,6 @@
 "use client";
 
-import Animate from "@/utils/animation";
+import { animatePageIn } from "@/utils/lib/gsap";
 import { useGSAP } from "@gsap/react";
 import { usePathname } from "next/navigation";
 import { useRef } from "react";
@@ -12,8 +12,6 @@ export default function Template({ children }: Props) {
   const pageOutRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
   const lastWord = pathname.split("/").pop();
-
-  const { animatePageIn } = new Animate();
 
   useGSAP(
     () => {

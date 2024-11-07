@@ -1,6 +1,6 @@
 "use client";
 
-import { RoundBoxEffect } from "@/utils/lib/gsap";
+import { roundBoxEffect } from "@/utils/lib/gsap";
 import { useGSAP } from "@gsap/react";
 import { useEffect, useRef, useState } from "react";
 
@@ -16,7 +16,9 @@ export default function RoundBoxContainer() {
 
   useGSAP(
     () => {
-      if (roundBoxRef.current) RoundBoxEffect(roundBoxRef.current);
+      if (roundBoxRef.current) {
+        roundBoxEffect(roundBoxRef.current);
+      }
     },
     { dependencies: [localMounted] }
   );

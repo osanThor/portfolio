@@ -1,7 +1,6 @@
 "use client";
 
-import Animate from "@/utils/animation";
-import gsap from "gsap";
+import { magnetic } from "@/utils/lib/gsap";
 import React, { useEffect, useRef } from "react";
 
 type Props = {
@@ -11,7 +10,6 @@ type Props = {
 };
 
 export default function Magnetic({ children }: Props) {
-  const { magnetic } = new Animate();
   const ref = useRef<HTMLElement | null>(null);
 
   useEffect(() => {

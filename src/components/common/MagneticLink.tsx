@@ -1,8 +1,8 @@
 "use client";
-import Animate from "@/utils/animation";
 import { HTMLAttributes, useEffect, useRef } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Link, { LinkProps } from "next/link";
+import { animatePageOut, magnetic } from "@/utils/lib/gsap";
 
 type Props = {
   href: string;
@@ -12,7 +12,6 @@ type Props = {
   HTMLAttributes<any>;
 
 export default function MagneticLink({ href, children, ...linkArgs }: Props) {
-  const { animatePageOut, magnetic } = new Animate();
   const ref = useRef<HTMLAnchorElement | null>(null);
 
   useEffect(() => {

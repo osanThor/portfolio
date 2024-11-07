@@ -1,7 +1,7 @@
 "use client";
 
 import { Work } from "@/services/works.service";
-import { MainWorksListEffect } from "@/utils/lib/gsap";
+import { mainWorksListEffect } from "@/utils/lib/gsap";
 import { scrollOffsetYState } from "@/utils/lib/recoil/atom";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
@@ -20,8 +20,8 @@ export default function WorksAnimationContainer({ works }: Props) {
     const container = containerRef.current;
     const containerTop = container.offsetTop;
 
-    MainWorksListEffect(".box1", containerTop, scrollY, true);
-    MainWorksListEffect(".box2", containerTop, scrollY, false);
+    mainWorksListEffect(".box1", containerTop, scrollY, true);
+    mainWorksListEffect(".box2", containerTop, scrollY, false);
   }, [scrollY]);
 
   const UPPER_WORKS = works.slice(0, 4);

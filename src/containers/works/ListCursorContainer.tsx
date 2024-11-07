@@ -2,14 +2,13 @@
 
 import { useEffect } from "react";
 import Image from "next/image";
-import { handleFollowBox, setFollowBox } from "@/utils/lib/gsap";
 import { useRecoilValue } from "recoil";
 import {
   itemHoverIdState,
   itemHoverState,
-  scrollOffsetYState,
   worksImageListState,
 } from "@/utils/lib/recoil/atom";
+import { handleFollowBox, setFollowBox } from "@/utils/lib/gsap";
 
 const FollowBox = ".listWorkCursor";
 
