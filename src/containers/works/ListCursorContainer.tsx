@@ -8,7 +8,7 @@ import {
   itemHoverState,
   worksImageListState,
 } from "@/utils/lib/recoil/atom";
-import Animate from "@/utils/lib/gsap";
+import { handleFollowBox, setFollowBox } from "@/utils/lib/gsap";
 
 const FollowBox = ".listWorkCursor";
 
@@ -17,7 +17,6 @@ export default function ListCursorContainer() {
   const hover = useRecoilValue(itemHoverState);
   const hoverIdx = useRecoilValue(itemHoverIdState);
   useEffect(() => {
-    const { setFollowBox, handleFollowBox } = new Animate();
     setFollowBox(FollowBox);
     function handleMouseMove(e: MouseEvent) {
       handleFollowBox(FollowBox, hover, e);

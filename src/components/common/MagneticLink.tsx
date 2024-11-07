@@ -2,7 +2,7 @@
 import { HTMLAttributes, useEffect, useRef } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Link, { LinkProps } from "next/link";
-import Animate from "@/utils/lib/gsap";
+import { animatePageOut, magnetic } from "@/utils/lib/gsap";
 
 type Props = {
   href: string;
@@ -12,7 +12,6 @@ type Props = {
   HTMLAttributes<any>;
 
 export default function MagneticLink({ href, children, ...linkArgs }: Props) {
-  const { animatePageOut, magnetic } = new Animate();
   const ref = useRef<HTMLAnchorElement | null>(null);
 
   useEffect(() => {
