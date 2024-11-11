@@ -10,18 +10,29 @@ import {
 
 gsap.registerPlugin(ScrollTrigger, TextPlugin, Observer, useGSAP);
 
-export const animatePageIn = (lastWord?: string) => {
+export const animatePageIn = () => {
   const pageInLoader = document.getElementById("pageInLoader");
   const container = document.getElementById("container");
   const loading = document.getElementById("loading");
-  if (pageInLoader && container) {
+  if (pageInLoader && container && loading) {
     const tl = gsap.timeline();
     const tl2 = gsap.timeline();
-    tl.set(pageInLoader, {
-      y: 0,
-      borderBottomRightRadius: 0,
-      borderBottomLeftRadius: 0,
+    loading.innerHTML =
+      loading.textContent?.replace(/\S/g, "<span class='letter'>$&</span>") ||
+      "HOME";
+
+    tl.set(Array.from(loading.children), {
+      opacity: 0,
     })
+      .set(pageInLoader, {
+        y: 0,
+        borderBottomRightRadius: 0,
+        borderBottomLeftRadius: 0,
+      })
+      .to(Array.from(loading.children), {
+        opacity: 1,
+        stagger: 0.03,
+      })
       .to(pageInLoader, {
         y: "-100%",
         delay: 1,
@@ -40,22 +51,9 @@ export const animatePageIn = (lastWord?: string) => {
       })
       .to(container, {
         paddingTop: 0,
-        delay: 0.8,
+        delay: 1.3,
         duration: 0.73,
       });
-  }
-  if (loading) {
-    loading.innerHTML =
-      loading.textContent?.replace(/\S/g, "<span class='letter'>$&</span>") ||
-      "HOME";
-
-    const tl = gsap.timeline();
-    tl.set(Array.from(loading.children), {
-      opacity: 0,
-    }).to(Array.from(loading.children), {
-      opacity: 1,
-      stagger: 0.1,
-    });
   }
 };
 

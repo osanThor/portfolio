@@ -15,7 +15,7 @@ export default function MainAboutContainer() {
   useEffect(() => {
     setTimeout(() => {
       setLocalMounted(true);
-    }, 1700);
+    }, 2200);
   }, []);
   useGSAP(
     () => {
