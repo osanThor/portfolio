@@ -1,11 +1,10 @@
 "use client";
 
 import { Work } from "@/services/works.service";
-import { mainWorksListEffect } from "@/utils/lib/gsap";
-import { scrollOffsetYState } from "@/utils/lib/recoil/atom";
+import { mainWorksSlideEffect } from "@/utils/lib/gsap";
+import { useGSAP } from "@gsap/react";
 import Image from "next/image";
-import { useEffect, useRef } from "react";
-import { useRecoilValue } from "recoil";
+import { useRef } from "react";
 
 type Props = {
   works: Work[];
@@ -13,16 +12,14 @@ type Props = {
 
 export default function WorksAnimationContainer({ works }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const scrollY = useRecoilValue(scrollOffsetYState);
 
-  useEffect(() => {
-    if (!containerRef.current) return;
-    const container = containerRef.current;
-    const containerTop = container.offsetTop;
-
-    mainWorksListEffect(".box1", containerTop, scrollY, true);
-    mainWorksListEffect(".box2", containerTop, scrollY, false);
-  }, [scrollY]);
+  useGSAP(
+    () => {
+      mainWorksSlideEffect(".box1", true);
+      mainWorksSlideEffect(".box2", false);
+    },
+    { scope: containerRef }
+  );
 
   const UPPER_WORKS = works.slice(0, 4);
   const UNDER_WORKS = works.slice(4, 8);
@@ -31,47 +28,41 @@ export default function WorksAnimationContainer({ works }: Props) {
     <>
       <div
         ref={containerRef}
-        className="relative min-w-full pt-10 lg:pt-[100px] "
+        className="relative min-w-full max-w-[100vw] py-10 lg:py-[100px] "
       >
-        <div className="hidden lg:flex flex-col">
-          <ul className="box1 flex -left-[500px] relative ">
+        <div className="flex flex-col">
+          <ul className="box1 flex left-[100px] relative z-20">
             {UPPER_WORKS.map((work) => (
-              <li
-                key={`upper-${work.path}`}
-                className="px-[30px] py-5 w-[576px] min-w-[26.875%] h-[400px]"
-              >
-                <div className="w-full h-full bg-gradient-to-t from-lightBagieGray flex items-center justify-center px-10">
-                  <Image
-                    className="object-cover max-w-full block"
-                    src={`/assets/images/works/${work.path}.png`}
-                    alt={`${work.path}`}
-                    width={1600}
-                    height={720}
-                  />
-                </div>
-              </li>
+              <WorkItem key={`upper-${work.path}`} work={work} />
             ))}
           </ul>
-          <ul className="box2 flex left-[500px] relative  pb-20 lg:pb-[100px] z-20">
+          <ul className="box2 flex -left-[100px] relative z-20">
             {UNDER_WORKS.map((work) => (
-              <li
-                key={`under-${work.path}`}
-                className="px-[30px] py-5 w-[576px] min-w-[26.875%] h-[400px]"
-              >
-                <div className="w-full h-full bg-gradient-to-t from-lightBagieGray flex items-center justify-center px-10">
-                  <Image
-                    className="object-cover max-w-full block"
-                    src={`/assets/images/works/${work.path}.png`}
-                    alt={`${work.path}`}
-                    width={1600}
-                    height={720}
-                  />
-                </div>
-              </li>
+              <WorkItem key={`under-${work.path}`} work={work} />
             ))}
           </ul>
         </div>
       </div>
     </>
+  );
+}
+
+type ItemProps = {
+  work: Work;
+};
+
+function WorkItem({ work }: ItemProps) {
+  return (
+    <li className="px-2 lg:px-4 py-2 lg:py-4 w-full min-w-[39vw] md:min-w-[36vw] lg:min-w-[32vw]">
+      <div className="w-full h-full bg-gradient-to-t from-lightBagieGray flex items-center justify-center p-2 md:p-5 lg:p-10">
+        <Image
+          className="object-cover max-w-full block"
+          src={`/assets/images/works/${work.path}.png`}
+          alt={`${work.path}`}
+          width={1600}
+          height={720}
+        />
+      </div>
+    </li>
   );
 }

@@ -16,9 +16,6 @@ body {
   overflow-x: hidden;
 }
 
-.scrollbar-track {
-  display: none !important;
-}
 input,
 textarea {
   -webkit-appearance: none;

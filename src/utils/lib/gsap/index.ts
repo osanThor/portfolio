@@ -151,14 +151,29 @@ export const mainAboutTextTimeline = (el: ChildNode, idx: number) => {
   });
 };
 
-export const mainWorksListEffect = (
-  target: string,
-  containerTop: number,
-  scrollY: number,
-  toLeft: boolean
-) => {
+export const mainWorksSlideEffect = (target: string, toLeft: boolean) => {
   gsap.to(target, {
-    x: toLeft ? -(containerTop - 500 - scrollY) : containerTop - 500 - scrollY,
+    scrollTrigger: {
+      trigger: target as gsap.DOMTarget | undefined,
+      scrub: 2,
+      start: "top 100%",
+      end: "bottom 0",
+    },
+    left: toLeft ? -100 : 0,
+    duration: 5,
+  });
+};
+export const mainContactEffect = (target: HTMLElement) => {
+  gsap.to(target, {
+    scrollTrigger: {
+      trigger: target as gsap.DOMTarget | undefined,
+      scrub: 2,
+      start: "top 100%",
+      end: "bottom 0",
+      markers: true,
+    },
+    y: 0,
+    duration: 5,
   });
 };
 
