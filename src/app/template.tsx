@@ -27,10 +27,13 @@ export default function Template({ children }: Props) {
         id="pageInLoader"
         className={`min-h-screen bg-neutral-900 transition-all text-white fixed top-0 left-0 right-0  flex items-center justify-center z-[9999999] overflow-hidden cursor-wait ease-in-out`}
       >
-        <div className="text-2xl md:text-4xl lg:text-7xl font-extralight">
-          {lastWord?.toUpperCase() || "LOADING"}
+        <div
+          id="loading"
+          className="loading-text text-2xl md:text-4xl lg:text-7xl font-extralight"
+        >
+          {lastWord?.toUpperCase() || "HOME"}
         </div>
-        <span className="sr-only">loading spacer</span>
+        <span className="sr-only">loading</span>
       </div>
       <div
         ref={pageOutRef}

@@ -10,9 +10,10 @@ import {
 
 gsap.registerPlugin(ScrollTrigger, TextPlugin, Observer, useGSAP);
 
-export const animatePageIn = () => {
+export const animatePageIn = (lastWord?: string) => {
   const pageInLoader = document.getElementById("pageInLoader");
   const container = document.getElementById("container");
+  const loading = document.getElementById("loading");
   if (pageInLoader && container) {
     const tl = gsap.timeline();
     const tl2 = gsap.timeline();
@@ -42,6 +43,19 @@ export const animatePageIn = () => {
         delay: 0.8,
         duration: 0.73,
       });
+  }
+  if (loading) {
+    loading.innerHTML =
+      loading.textContent?.replace(/\S/g, "<span class='letter'>$&</span>") ||
+      "HOME";
+
+    const tl = gsap.timeline();
+    tl.set(Array.from(loading.children), {
+      opacity: 0,
+    }).to(Array.from(loading.children), {
+      opacity: 1,
+      stagger: 0.1,
+    });
   }
 };
 
