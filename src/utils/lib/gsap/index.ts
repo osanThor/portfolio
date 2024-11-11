@@ -170,7 +170,7 @@ export const mainContactEffect = (target: HTMLElement) => {
       scrub: 2,
       start: "top 100%",
       end: "bottom 0",
-      markers: true,
+      // markers: true,
     },
     y: 0,
     duration: 5,

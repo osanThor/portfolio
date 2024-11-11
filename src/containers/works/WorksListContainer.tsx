@@ -11,6 +11,7 @@ import {
   itemHoverIdState,
   worksImageListState,
   isGridState,
+  gsapTriggerState,
 } from "@/utils/lib/recoil/atom";
 import WorkTypeButton from "@/components/works/WorkTypeButton";
 
@@ -25,6 +26,8 @@ export default function WorksListContainer({ works }: Props) {
   const [type, setType] = useState<ButtonType>("ALL");
   const [isGrid, setIsGrid] = useRecoilState(isGridState);
 
+  const setGsapTrigger = useSetRecoilState(gsapTriggerState);
+
   const setIsHovered = useSetRecoilState(itemHoverState);
   const setHoverIdx = useSetRecoilState(itemHoverIdState);
   const setWorksImages = useSetRecoilState(worksImageListState);
@@ -37,11 +40,16 @@ export default function WorksListContainer({ works }: Props) {
             type === "BS" ? work.type === "Business" : work.type === "Personal"
           )
     );
+    setGsapTrigger((prev) => !prev);
   }, [type, works]);
+
+  useEffect(() => {
+    setGsapTrigger((prev) => !prev);
+  }, [isGrid]);
 
   useLayoutEffect(() => {
     setWorksImages(works.map((work) => work.path));
-  }, [works, setWorksImages]);
+  }, [works]);
 
   const handleTypeChange = (selectedType: ButtonType) => setType(selectedType);
 
