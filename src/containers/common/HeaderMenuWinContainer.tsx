@@ -42,19 +42,24 @@ export default function HeaderMenuWinContainer({
               if (pathId) return setHoverId(pathId);
               setHoverId(0);
             }}
-            className="menu w-full text-4xl transition-all md:text-6xl py-10 px-10 md:px-20 flex flex-col items-start justify-center gap-10 text-white "
+            className="menu w-full text-4xl md:text-6xl py-10 px-10 md:px-20 flex flex-col items-start justify-center gap-10 text-white "
           >
             <li>
               <MagneticLink
                 href={"/"}
                 className={`${
-                  hoverId === 0 ? "pl-10 before:w-2 before:h-2" : ""
-                } relative pl-0 transition-all hover:pl-10 before:w-0 before:h-0 before:rounded-full before:transition-all before:absolute before:top-1/2 before:-translate-y-1/2 before:left-0 before:bg-white hover:before:w-2 hover:before:h-2 flex items-center justify-center`}
+                  hoverId === 0 ? "before:w-2 before:h-2" : ""
+                } relative group before:w-0 before:h-0 before:rounded-full before:transition-all before:absolute before:top-1/2 before:-translate-y-1/2 before:left-0 before:bg-white hover:before:w-2 hover:before:h-2 flex items-center justify-center`}
                 scroll={false}
                 onMouseOver={() => {
                   setHoverId(0);
                 }}
               >
+                <span
+                  className={`inline-block ${
+                    hoverId === 0 ? "w-10" : ""
+                  } w-0 group-hover:w-10 transition-all`}
+                ></span>
                 Home
               </MagneticLink>
             </li>
@@ -63,13 +68,18 @@ export default function HeaderMenuWinContainer({
                 <MagneticLink
                   href={menu.href}
                   className={`${
-                    hoverId === idx + 1 ? "pl-10 before:w-2 before:h-2" : ""
-                  } relative pl-0 transition-all hover:pl-10 before:w-0 before:h-0 before:rounded-full before:transition-all before:absolute before:top-1/2 before:-translate-y-1/2 before:left-0 before:bg-white hover:before:w-2 hover:before:h-2 flex items-center justify-center`}
+                    hoverId === idx + 1 ? "before:w-2 before:h-2" : ""
+                  } relative group before:w-0 before:h-0 before:rounded-full before:transition-all before:absolute before:top-1/2 before:-translate-y-1/2 before:left-0 before:bg-white hover:before:w-2 hover:before:h-2 flex items-center justify-center`}
                   scroll={false}
                   onMouseOver={() => {
                     setHoverId(idx + 1);
                   }}
                 >
+                  <span
+                    className={`inline-block ${
+                      hoverId === idx + 1 ? "w-10" : ""
+                    } w-0 group-hover:w-10 transition-all`}
+                  ></span>
                   {menu.name}
                 </MagneticLink>
               </li>

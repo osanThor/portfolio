@@ -7,7 +7,7 @@ import MainWorksListContainer from "@/containers/home/works/MainWorksListContain
 export default async function MainWorksContainer() {
   const works = await getFeaturedWorks();
   return (
-    <section className="w-full pt-10 bg-white flex flex-col items-center">
+    <section className="w-full pt-10 bg-white flex flex-col items-center z-10">
       <div className="w-[calc(100%-32px)] max-w-[1600px]">
         <CommonTitle text="My works" />
         <MainWorksListContainer works={works} />

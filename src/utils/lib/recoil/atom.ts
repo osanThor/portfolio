@@ -20,3 +20,8 @@ export const isGridState = atom<boolean | null>({
   key: "isGridState",
   default: false,
 });
+
+export const gsapTriggerState = atom<boolean>({
+  key: "gsapTriggerState",
+  default: false,
+});

@@ -10,9 +10,10 @@ import {
 
 gsap.registerPlugin(ScrollTrigger, TextPlugin, Observer, useGSAP);
 
-export const animatePageIn = () => {
+export const animatePageIn = (lastWord?: string) => {
   const pageInLoader = document.getElementById("pageInLoader");
   const container = document.getElementById("container");
+  const loading = document.getElementById("loading");
   if (pageInLoader && container) {
     const tl = gsap.timeline();
     const tl2 = gsap.timeline();
@@ -42,6 +43,19 @@ export const animatePageIn = () => {
         delay: 0.8,
         duration: 0.73,
       });
+  }
+  if (loading) {
+    loading.innerHTML =
+      loading.textContent?.replace(/\S/g, "<span class='letter'>$&</span>") ||
+      "HOME";
+
+    const tl = gsap.timeline();
+    tl.set(Array.from(loading.children), {
+      opacity: 0,
+    }).to(Array.from(loading.children), {
+      opacity: 1,
+      stagger: 0.1,
+    });
   }
 };
 
@@ -151,14 +165,29 @@ export const mainAboutTextTimeline = (el: ChildNode, idx: number) => {
   });
 };
 
-export const mainWorksListEffect = (
-  target: string,
-  containerTop: number,
-  scrollY: number,
-  toLeft: boolean
-) => {
+export const mainWorksSlideEffect = (target: string, toLeft: boolean) => {
   gsap.to(target, {
-    x: toLeft ? -(containerTop - 500 - scrollY) : containerTop - 500 - scrollY,
+    scrollTrigger: {
+      trigger: target as gsap.DOMTarget | undefined,
+      scrub: 2,
+      start: "top 100%",
+      end: "bottom 0",
+    },
+    left: toLeft ? -100 : 0,
+    duration: 5,
+  });
+};
+export const mainContactEffect = (target: HTMLElement) => {
+  gsap.to(target, {
+    scrollTrigger: {
+      trigger: target as gsap.DOMTarget | undefined,
+      scrub: 2,
+      start: "top 100%",
+      end: "center 0",
+      // markers: true,
+    },
+    y: 0,
+    duration: 5,
   });
 };
 
