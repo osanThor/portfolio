@@ -53,7 +53,7 @@ type ItemProps = {
 
 function WorkItem({ work }: ItemProps) {
   return (
-    <li className="px-2 lg:px-4 py-2 lg:py-4 w-full min-w-[39vw] md:min-w-[36vw] lg:min-w-[32vw]">
+    <li className="px-2 lg:px-4 py-2 lg:py-4 w-full min-w-[50vw] md:min-w-[36vw] lg:min-w-[32vw]">
       <div className="w-full h-full bg-gradient-to-t from-lightBagieGray flex items-center justify-center p-2 md:p-5 lg:p-10">
         <Image
           className="object-cover max-w-full block"

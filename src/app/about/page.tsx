@@ -20,7 +20,7 @@ export default function AboutPage() {
           </h2>
         </div>
       </div>
-      <section className="w-full flex flex-col items-center gap-20 pb-10 pt-5 md:py-20 md:pt-10 z-10">
+      <section className="w-full flex flex-col items-center gap-20 pb-10 pt-5 md:pb-20 md:pt-10 z-10 bg-white">
         <AboutMeContainer />
       </section>
       <RoundBoxContainer />

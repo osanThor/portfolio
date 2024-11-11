@@ -169,7 +169,7 @@ export const mainContactEffect = (target: HTMLElement) => {
       trigger: target as gsap.DOMTarget | undefined,
       scrub: 2,
       start: "top 100%",
-      end: "bottom 0",
+      end: "center 0",
       // markers: true,
     },
     y: 0,

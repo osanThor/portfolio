@@ -33,12 +33,12 @@ export default function MainContactContainer() {
   return (
     <section
       ref={containerRef}
-      className="relative w-full min-h-[calc(100vh-40px)] bg-darkIndigo flex flex-col items-center justify-center z-[5] "
+      className="w-full min-h-[calc(100vh-40px)] bg-darkIndigo flex flex-col items-center justify-center z-[5] "
     >
       {localMounted && (
         <div
           ref={gsapRef}
-          className="relative -translate-y-full w-[calc(100%-32px)] lg:w-[calc(100%-80px)] max-w-[1400px] flex gap-10 justify-between items-center flex-col md:flex-row z-[1]"
+          className=" -translate-y-full w-[calc(100%-32px)] lg:w-[calc(100%-80px)] max-w-[1400px] flex gap-10 justify-between items-center flex-col md:flex-row z-auto"
         >
           <div className="flex w-full flex-1 flex-col items-start gap-20 border-b md:border-b-0 pb-5 md:border-r border-gray">
             <div className="flex flex-col gap-10">
