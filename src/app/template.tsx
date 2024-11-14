@@ -1,21 +1,26 @@
 "use client";
 
 import { animatePageIn } from "@/utils/lib/gsap";
+import { mountedState } from "@/utils/lib/recoil/atom";
 import { useGSAP } from "@gsap/react";
 import { usePathname } from "next/navigation";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { useRecoilState } from "recoil";
 
 type Props = { children: React.ReactNode };
 
 export default function Template({ children }: Props) {
+  const [mounted, setMounted] = useRecoilState(mountedState);
   const pageInRef = useRef<HTMLDivElement>(null);
   const pageOutRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
   const lastWord = pathname.split("/").pop();
 
+  const handleInMounted = () => setMounted(true);
+
   useGSAP(
     () => {
-      animatePageIn();
+      animatePageIn(mounted, handleInMounted);
     },
     { scope: pageInRef, dependencies: [] }
   );
@@ -29,10 +34,11 @@ export default function Template({ children }: Props) {
       >
         <div
           id="loading"
-          className="loading-text text-2xl md:text-4xl lg:text-7xl font-extralight"
+          className="loading-text text-2xl md:text-4xl lg:text-7xl font-extralight opacity-0"
         >
-          {lastWord?.toUpperCase() || "HOME"}
+          {mounted ? lastWord?.toUpperCase() || "HOME" : "Given's Portfolio"}
         </div>
+
         <span className="sr-only">loading</span>
       </div>
       <div

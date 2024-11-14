@@ -20,11 +20,7 @@ export default function MainAboutContainer() {
   useGSAP(
     () => {
       if (!aboutTextRef.current) return;
-      const aboutText = aboutTextRef.current;
-      const aboutTextCld = aboutText.childNodes;
-      aboutTextCld.forEach((el, idx) => {
-        mainAboutTextTimeline(el, idx);
-      });
+      mainAboutTextTimeline(aboutTextRef.current);
     },
     { scope: aboutTextRef, dependencies: [localMounted] }
   );
