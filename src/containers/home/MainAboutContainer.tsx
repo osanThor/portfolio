@@ -15,16 +15,12 @@ export default function MainAboutContainer() {
   useEffect(() => {
     setTimeout(() => {
       setLocalMounted(true);
-    }, 1700);
+    }, 2200);
   }, []);
   useGSAP(
     () => {
       if (!aboutTextRef.current) return;
-      const aboutText = aboutTextRef.current;
-      const aboutTextCld = aboutText.childNodes;
-      aboutTextCld.forEach((el, idx) => {
-        mainAboutTextTimeline(el, idx);
-      });
+      mainAboutTextTimeline(aboutTextRef.current);
     },
     { scope: aboutTextRef, dependencies: [localMounted] }
   );

@@ -10,21 +10,35 @@ import {
 
 gsap.registerPlugin(ScrollTrigger, TextPlugin, Observer, useGSAP);
 
-export const animatePageIn = (lastWord?: string) => {
+export const animatePageIn = (mounted: boolean, onMount: () => void) => {
   const pageInLoader = document.getElementById("pageInLoader");
   const container = document.getElementById("container");
   const loading = document.getElementById("loading");
-  if (pageInLoader && container) {
+  if (pageInLoader && container && loading) {
     const tl = gsap.timeline();
     const tl2 = gsap.timeline();
-    tl.set(pageInLoader, {
-      y: 0,
-      borderBottomRightRadius: 0,
-      borderBottomLeftRadius: 0,
+    loading.innerHTML =
+      loading.textContent?.replace(/\S/g, "<span class='letter'>$&</span>") ||
+      "HOME";
+
+    tl.set(Array.from(loading.children), {
+      opacity: 0,
     })
+      .set(pageInLoader, {
+        y: 0,
+        borderBottomRightRadius: 0,
+        borderBottomLeftRadius: 0,
+      })
+      .to(loading, {
+        opacity: 1,
+      })
+      .to(Array.from(loading.children), {
+        opacity: 1,
+        stagger: 0.03,
+      })
       .to(pageInLoader, {
         y: "-100%",
-        delay: 1,
+        delay: 0.7,
         duration: 0.4,
         borderBottomRightRadius: "50%",
         borderBottomLeftRadius: "50%",
@@ -32,6 +46,7 @@ export const animatePageIn = (lastWord?: string) => {
       })
       .call(function () {
         window.scrollTo({ top: 0 });
+        !mounted && onMount();
       });
 
     tl2
@@ -40,22 +55,10 @@ export const animatePageIn = (lastWord?: string) => {
       })
       .to(container, {
         paddingTop: 0,
-        delay: 0.8,
-        duration: 0.73,
+        delay: !mounted ? 2 : 1.77,
+        duration: 0.7,
+        ease: "power3.out",
       });
-  }
-  if (loading) {
-    loading.innerHTML =
-      loading.textContent?.replace(/\S/g, "<span class='letter'>$&</span>") ||
-      "HOME";
-
-    const tl = gsap.timeline();
-    tl.set(Array.from(loading.children), {
-      opacity: 0,
-    }).to(Array.from(loading.children), {
-      opacity: 1,
-      stagger: 0.1,
-    });
   }
 };
 
@@ -146,11 +149,10 @@ export const mainBannerFromTo = (element: HTMLElement | string) => {
   );
 };
 
-export const mainAboutTextTimeline = (el: ChildNode, idx: number) => {
-  const target = el as gsap.DOMTarget | undefined;
-  if (!target) return;
+export const mainAboutTextTimeline = (target: HTMLElement) => {
+  const tl = gsap.timeline();
 
-  gsap.to(target, {
+  tl.set(Array.from(target.children), {}).to(Array.from(target.children), {
     scrollTrigger: {
       trigger: target,
       start: "top 95%",
@@ -161,7 +163,7 @@ export const mainAboutTextTimeline = (el: ChildNode, idx: number) => {
     y: 0,
     opacity: 1,
     duration: 1,
-    delay: idx,
+    stagger: 1,
   });
 };
 
@@ -228,18 +230,18 @@ export const handleFollowBox = (
     stagger: 0.15,
     ease: "none",
   });
-  const TL = gsap.timeline({
+  const tl = gsap.timeline({
     defaults: { duration: 0.5, ease: "none" },
   });
 
   if (hover) {
-    TL.to(selector, {
+    tl.to(selector, {
       scale: 1,
       overwrite: "auto",
       stagger: { amount: 0.15, from: "start", ease: "none" },
     });
   } else {
-    TL.to(selector, {
+    tl.to(selector, {
       duration: 0.1,
       scale: 0,
       overwrite: "auto",
