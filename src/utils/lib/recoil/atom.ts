@@ -5,9 +5,9 @@ export const mountedState = atom<boolean>({
   default: false,
 });
 
-export const scrollOffsetYState = atom<any>({
+export const scrollOffsetYState = atom<number>({
   key: "scrollOffsetYState",
-  default: null,
+  default: 0,
 });
 export const itemHoverState = atom<boolean>({
   key: "itemHoverState",
