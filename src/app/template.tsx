@@ -4,7 +4,7 @@ import { animatePageIn } from "@/utils/lib/gsap";
 import { mountedState } from "@/utils/lib/recoil/atom";
 import { useGSAP } from "@gsap/react";
 import { usePathname } from "next/navigation";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { useRecoilState } from "recoil";
 
 type Props = { children: React.ReactNode };
