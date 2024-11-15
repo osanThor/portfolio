@@ -2,9 +2,11 @@
 
 import { Work } from "@/services/works.service";
 import { mainWorksSlideEffect } from "@/utils/lib/gsap";
+import { mountedState } from "@/utils/lib/recoil/atom";
 import { useGSAP } from "@gsap/react";
 import Image from "next/image";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useRecoilValue } from "recoil";
 
 type Props = {
   works: Work[];
@@ -12,13 +14,22 @@ type Props = {
 
 export default function WorksAnimationContainer({ works }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
-
+  const mounted = useRecoilValue(mountedState);
+  const [localMounted, setLocalMounted] = useState<boolean>(false);
+  useEffect(() => {
+    setTimeout(
+      () => {
+        setLocalMounted(true);
+      },
+      mounted ? 2200 : 2500
+    );
+  }, []);
   useGSAP(
     () => {
       mainWorksSlideEffect(".box1", true);
       mainWorksSlideEffect(".box2", false);
     },
-    { scope: containerRef }
+    { scope: containerRef, dependencies: [localMounted] }
   );
 
   const UPPER_WORKS = works.slice(0, 4);
@@ -30,18 +41,20 @@ export default function WorksAnimationContainer({ works }: Props) {
         ref={containerRef}
         className="relative min-w-full max-w-[100vw] py-10 lg:py-[100px] "
       >
-        <div className="flex flex-col">
-          <ul className="box1 flex left-[100px] relative z-20">
-            {UPPER_WORKS.map((work) => (
-              <WorkItem key={`upper-${work.path}`} work={work} />
-            ))}
-          </ul>
-          <ul className="box2 flex -left-[100px] relative z-20">
-            {UNDER_WORKS.map((work) => (
-              <WorkItem key={`under-${work.path}`} work={work} />
-            ))}
-          </ul>
-        </div>
+        {localMounted && (
+          <div className="flex flex-col">
+            <ul className="box1 flex left-[100px] relative z-20">
+              {UPPER_WORKS.map((work) => (
+                <WorkItem key={`upper-${work.path}`} work={work} />
+              ))}
+            </ul>
+            <ul className="box2 flex -left-[100px] relative z-20">
+              {UNDER_WORKS.map((work) => (
+                <WorkItem key={`under-${work.path}`} work={work} />
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     </>
   );
