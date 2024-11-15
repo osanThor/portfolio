@@ -21,7 +21,7 @@ export default function MainContactContainer() {
   useEffect(() => {
     setTimeout(() => {
       setLocalMounted(true);
-    }, 2200);
+    }, 2500);
   }, []);
 
   useGSAP(

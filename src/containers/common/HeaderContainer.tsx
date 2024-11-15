@@ -94,6 +94,7 @@ export default function HeaderContainer() {
             theme === "dark" ? "fill-white text-white" : "fill-black text-black"
           }`}
           scroll={false}
+          aria-label="go to Main Page"
         >
           <h1 id="logo">
             <Logo />

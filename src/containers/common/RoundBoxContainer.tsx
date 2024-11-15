@@ -13,7 +13,7 @@ export default function RoundBoxContainer() {
   useEffect(() => {
     setTimeout(() => {
       setLocalMounted(true);
-    }, 2200);
+    }, 2500);
   }, []);
 
   useGSAP(

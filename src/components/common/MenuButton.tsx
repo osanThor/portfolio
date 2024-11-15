@@ -35,6 +35,7 @@ export default function MenuButton({ onClick, isTop, menuOpen }: Props) {
         }`}
         onMouseOver={handleOver}
         onMouseOut={handleOut}
+        aria-label="MenuBtn"
       >
         <span
           className={`${
