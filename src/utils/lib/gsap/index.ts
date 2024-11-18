@@ -42,7 +42,7 @@ export const animatePageIn = (mounted: boolean, onMount: () => void) => {
         duration: 0.4,
         borderBottomRightRadius: "50%",
         borderBottomLeftRadius: "50%",
-        ease: "power3.out",
+        ease: "Power4.easeInOut",
       })
       .call(function () {
         window.scrollTo({ top: 0 });
@@ -57,7 +57,7 @@ export const animatePageIn = (mounted: boolean, onMount: () => void) => {
         paddingTop: 0,
         delay: !mounted ? 2 : 1.77,
         duration: 0.7,
-        ease: "power3.out",
+        ease: "Power4.easeInOut",
       });
   }
 };
@@ -79,7 +79,7 @@ export const animatePageOut = (
       top: 0,
       borderTopRightRadius: 0,
       borderTopLeftRadius: 0,
-      ease: "power3.out",
+      ease: "Power4.easeInOut",
       onComplete: () => {
         setTimeout(() => {
           router.push(href, options);
@@ -129,6 +129,13 @@ export const magnetic = (ref: React.MutableRefObject<HTMLElement | null>) => {
   };
 };
 
+export const headerSideMenuEffect = () => {
+  const menu = document.getElementById("sideMenu");
+  if (menu) {
+    const tl = gsap.timeline();
+  }
+};
+
 export const mainBannerFromTo = (element: HTMLElement | string) => {
   gsap.fromTo(
     element,
@@ -167,7 +174,7 @@ export const mainAboutTextTimeline = (target: HTMLElement) => {
   });
 };
 
-export const mainWorksSlideEffect = (target: string, toLeft: boolean) => {
+export const mainWorksSlideEffect = (target: HTMLElement, toLeft: boolean) => {
   gsap.to(target, {
     scrollTrigger: {
       trigger: target as gsap.DOMTarget | undefined,

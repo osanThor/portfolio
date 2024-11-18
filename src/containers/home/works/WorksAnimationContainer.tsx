@@ -14,6 +14,8 @@ type Props = {
 
 export default function WorksAnimationContainer({ works }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const movingBox1Ref = useRef<HTMLUListElement>(null);
+  const movingBox2Ref = useRef<HTMLUListElement>(null);
   const mounted = useRecoilValue(mountedState);
   const [localMounted, setLocalMounted] = useState<boolean>(false);
   useEffect(() => {
@@ -26,8 +28,10 @@ export default function WorksAnimationContainer({ works }: Props) {
   }, []);
   useGSAP(
     () => {
-      mainWorksSlideEffect(".box1", true);
-      mainWorksSlideEffect(".box2", false);
+      movingBox1Ref.current &&
+        mainWorksSlideEffect(movingBox1Ref.current, true);
+      movingBox2Ref.current &&
+        mainWorksSlideEffect(movingBox2Ref.current, false);
     },
     { scope: containerRef, dependencies: [localMounted] }
   );
@@ -43,12 +47,18 @@ export default function WorksAnimationContainer({ works }: Props) {
       >
         {localMounted && (
           <div className="flex flex-col">
-            <ul className="box1 flex left-[100px] relative z-20">
+            <ul
+              ref={movingBox1Ref}
+              className="box1 flex left-[100px] relative z-20"
+            >
               {UPPER_WORKS.map((work) => (
                 <WorkItem key={`upper-${work.path}`} work={work} />
               ))}
             </ul>
-            <ul className="box2 flex -left-[100px] relative z-20">
+            <ul
+              ref={movingBox2Ref}
+              className="box2 flex -left-[100px] relative z-20"
+            >
               {UNDER_WORKS.map((work) => (
                 <WorkItem key={`under-${work.path}`} work={work} />
               ))}

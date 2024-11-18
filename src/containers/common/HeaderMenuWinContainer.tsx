@@ -2,6 +2,8 @@
 import MagneticLink from "@/components/common/MagneticLink";
 import MenuButton from "@/components/common/MenuButton";
 import MENUS from "@/data/menu";
+import { useGSAP } from "@gsap/react";
+import { useRef } from "react";
 
 type Props = {
   isTop: boolean;
@@ -20,6 +22,8 @@ export default function HeaderMenuWinContainer({
   toggleOpen,
   setHoverId,
 }: Props) {
+  const containerRef = useRef<HTMLUListElement>(null);
+  useGSAP(() => {}, { scope: containerRef });
   return (
     <div className="relative z-[9999]">
       <>
@@ -38,6 +42,8 @@ export default function HeaderMenuWinContainer({
             MENUS
           </div>
           <ul
+            id="sideMenu"
+            ref={containerRef}
             onMouseOut={() => {
               if (pathId) return setHoverId(pathId);
               setHoverId(0);
