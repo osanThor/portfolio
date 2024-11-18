@@ -33,7 +33,7 @@ export const animatePageIn = (mounted: boolean, onMount: () => void) => {
       .to(loading, { opacity: 1 })
       .to(Array.from(loading.children), {
         opacity: 1,
-        stagger: mounted ? 0.03 : 0.15,
+        stagger: mounted ? 0.03 : 0.07,
       })
       .to(pageInLoader, {
         y: "-100%",
@@ -54,7 +54,7 @@ export const animatePageIn = (mounted: boolean, onMount: () => void) => {
       .set(container, { paddingTop: "80vh", duration: 0 })
       .to(container, {
         paddingTop: 0,
-        delay: mounted ? 1.1 : 3.3,
+        delay: mounted ? 1.1 : 2,
         duration: 0.7,
         ease: "Power4.easeInOut",
       });
@@ -73,7 +73,7 @@ export const animatePageOut = (
       borderTopRightRadius: 0,
       borderTopLeftRadius: 0,
       ease: "Power4.easeInOut",
-      duration: 0.7,
+      duration: 0.6,
       onComplete: () => router.push(href, options),
     });
   }
@@ -126,7 +126,10 @@ export const headerSideMenuEffect = () => {
   }
 };
 
-export const mainBannerFromTo = (element: HTMLElement | string) => {
+export const mainBannerFromTo = (
+  element: HTMLElement | string,
+  mounted: boolean
+) => {
   gsap.fromTo(
     element,
     {
@@ -134,7 +137,7 @@ export const mainBannerFromTo = (element: HTMLElement | string) => {
       opacity: 0,
     },
     {
-      delay: 1,
+      delay: mounted ? 1 : 2.7,
       duration: 2,
       x: 0,
       opacity: 1,

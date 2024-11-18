@@ -20,7 +20,7 @@ export default function MainAboutContainer() {
       () => {
         setLocalMounted(true);
       },
-      mounted ? 2200 : 3000
+      mounted ? 2200 : 2500
     );
   }, []);
   useGSAP(

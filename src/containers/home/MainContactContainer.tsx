@@ -24,7 +24,7 @@ export default function MainContactContainer() {
       () => {
         setLocalMounted(true);
       },
-      mounted ? 2200 : 3000
+      mounted ? 2200 : 2500
     );
   }, []);
 

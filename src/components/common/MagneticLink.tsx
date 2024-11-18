@@ -22,7 +22,6 @@ export default function MagneticLink({ href, children, ...linkArgs }: Props) {
   const pathname = usePathname();
   function handleClick(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
     e.preventDefault();
-    console.log(1);
     if (pathname !== href) animatePageOut(href, router);
   }
   return (
