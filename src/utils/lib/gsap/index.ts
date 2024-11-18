@@ -10,52 +10,51 @@ import {
 
 gsap.registerPlugin(ScrollTrigger, TextPlugin, Observer, useGSAP);
 
+const setTextWithSpan = (element: HTMLElement, text: string) => {
+  element.innerHTML = text.replace(/\S/g, "<span class='letter'>$&</span>");
+};
+
 export const animatePageIn = (mounted: boolean, onMount: () => void) => {
   const pageInLoader = document.getElementById("pageInLoader");
   const container = document.getElementById("container");
   const loading = document.getElementById("loading");
-  if (pageInLoader && container && loading) {
-    const tl = gsap.timeline();
-    const tl2 = gsap.timeline();
-    loading.innerHTML =
-      loading.textContent?.replace(/\S/g, "<span class='letter'>$&</span>") ||
-      "HOME";
 
-    tl.set(Array.from(loading.children), {
-      opacity: 0,
-    })
+  if (pageInLoader && loading) {
+    setTextWithSpan(loading, loading.textContent || "HOME");
+    gsap
+      .timeline()
+      .set(Array.from(loading.children), { opacity: 0, duration: 0 })
       .set(pageInLoader, {
         y: 0,
         borderBottomRightRadius: 0,
         borderBottomLeftRadius: 0,
+        duration: 0,
       })
-      .to(loading, {
-        opacity: 1,
-      })
+      .to(loading, { opacity: 1 })
       .to(Array.from(loading.children), {
         opacity: 1,
-        stagger: 0.03,
+        stagger: mounted ? 0.03 : 0.15,
       })
       .to(pageInLoader, {
         y: "-100%",
-        delay: 0.7,
-        duration: 0.4,
-        borderBottomRightRadius: "50%",
-        borderBottomLeftRadius: "50%",
+        duration: 0.7,
+        borderBottomRightRadius: "100% 100%",
+        borderBottomLeftRadius: "100% 100%",
         ease: "Power4.easeInOut",
       })
-      .call(function () {
+      .call(() => {
         window.scrollTo({ top: 0 });
-        !mounted && onMount();
+        if (!mounted) onMount();
       });
+  }
 
-    tl2
-      .set(container, {
-        paddingTop: "80vh",
-      })
+  if (container) {
+    gsap
+      .timeline()
+      .set(container, { paddingTop: "80vh", duration: 0 })
       .to(container, {
         paddingTop: 0,
-        delay: !mounted ? 2 : 1.77,
+        delay: mounted ? 1.1 : 3.3,
         duration: 0.7,
         ease: "Power4.easeInOut",
       });
@@ -68,23 +67,14 @@ export const animatePageOut = (
   options?: NavigateOptions | undefined
 ) => {
   const pageOutLoader = document.getElementById("pageOutLoader");
-  const container = document.getElementById("container");
-  if (pageOutLoader && container) {
-    const tl = gsap.timeline();
-    tl.set(pageOutLoader, {
-      top: "100%",
-      borderTopRightRadius: "100% 100%",
-      borderTopLeftRadius: "100% 100%",
-    }).to(pageOutLoader, {
+  if (pageOutLoader) {
+    gsap.timeline().to(pageOutLoader, {
       top: 0,
       borderTopRightRadius: 0,
       borderTopLeftRadius: 0,
       ease: "Power4.easeInOut",
-      onComplete: () => {
-        setTimeout(() => {
-          router.push(href, options);
-        }, 500);
-      },
+      duration: 0.7,
+      onComplete: () => router.push(href, options),
     });
   }
 };
