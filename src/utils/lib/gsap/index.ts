@@ -119,10 +119,35 @@ export const magnetic = (ref: React.MutableRefObject<HTMLElement | null>) => {
   };
 };
 
-export const headerSideMenuEffect = () => {
+export const headerSideMenuEffect = (isOpen: boolean) => {
   const menu = document.getElementById("sideMenu");
   if (menu) {
-    const tl = gsap.timeline();
+    gsap
+      .timeline()
+      .set(menu, {
+        width: isOpen ? "0" : "100%",
+        ease: "Power4.easeInOut",
+        borderTopLeftRadius: isOpen ? "100% 100%" : 0,
+        borderBottomLeftRadius: isOpen ? "100% 100%" : 0,
+      })
+      .to(menu, {
+        width: isOpen ? "100%" : "0",
+        ease: "Power4.easeInOut",
+        borderTopLeftRadius: isOpen ? 0 : "100% 100%",
+        borderBottomLeftRadius: isOpen ? 0 : "100% 100%",
+      });
+  }
+  const sideMenu = document.getElementById("sideMenuList");
+  if (sideMenu) {
+    gsap
+      .timeline()
+      .set(Array.from(sideMenu.children), {
+        x: isOpen ? 600 : 0,
+      })
+      .to(Array.from(sideMenu.children), {
+        x: isOpen ? 0 : 600,
+        stagger: 0.07,
+      });
   }
 };
 
@@ -138,7 +163,7 @@ export const mainBannerFromTo = (
     },
     {
       delay: mounted ? 1 : 2.7,
-      duration: 2,
+      duration: 1,
       x: 0,
       opacity: 1,
       stagger: {
