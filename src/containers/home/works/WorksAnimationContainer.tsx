@@ -3,6 +3,7 @@
 import { Work } from "@/services/works.service";
 import { mainWorksSlideEffect } from "@/utils/lib/gsap";
 import { mountedState } from "@/utils/lib/recoil/atom";
+import { mountedState } from "@/utils/lib/recoil/atom";
 import { useGSAP } from "@gsap/react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
@@ -33,6 +34,7 @@ export default function WorksAnimationContainer({ works }: Props) {
       movingBox2Ref.current &&
         mainWorksSlideEffect(movingBox2Ref.current, false);
     },
+    { scope: containerRef, dependencies: [localMounted] }
     { scope: containerRef, dependencies: [localMounted] }
   );
 
