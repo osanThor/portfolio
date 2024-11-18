@@ -2,6 +2,8 @@
 import MagneticLink from "@/components/common/MagneticLink";
 import MenuButton from "@/components/common/MenuButton";
 import MENUS from "@/data/menu";
+import { headerSideMenuEffect } from "@/utils/lib/gsap";
+import { useGSAP } from "@gsap/react";
 
 type Props = {
   isTop: boolean;
@@ -20,6 +22,9 @@ export default function HeaderMenuWinContainer({
   toggleOpen,
   setHoverId,
 }: Props) {
+  useGSAP(() => {
+    headerSideMenuEffect(menuOpen);
+  }, [menuOpen]);
   return (
     <div className="relative z-[9999]">
       <>
@@ -30,14 +35,14 @@ export default function HeaderMenuWinContainer({
           />
         )}
         <div
-          className={`sideMenu ${
-            menuOpen ? "open" : "close"
-          } fixed top-0 bottom-0 right-0 overflow-hidden bg-black/90 flex flex-col items-start justify-center w-full`}
+          id="sideMenu"
+          className={`fixed top-0 bottom-0 right-0 overflow-hidden bg-black/90 flex flex-col items-start justify-center w-0 max-w-[600px]`}
         >
           <div className="px-10 md:px-20 text-xs lg:text-sm text-gray pb-4 border-b border-gray w-full">
             MENUS
           </div>
           <ul
+            id="sideMenuList"
             onMouseOut={() => {
               if (pathId) return setHoverId(pathId);
               setHoverId(0);
