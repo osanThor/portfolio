@@ -1,5 +1,15 @@
 [
   {
+    "title": "Given's log Ver.2",
+    "year": "2025",
+    "path": "blog-2025",
+    "type": "Personal",
+    "category": ["Design", "Development"],
+    "link": "https://blog.given-log.com/",
+    "featured": true,
+    "description": "프론트엔드 개발자 준영(Given)의 Next15 기술 블로그"
+  },
+  {
     "title": "1 Cho Mail",
     "year": "2024",
     "path": "1chomail-2024",
