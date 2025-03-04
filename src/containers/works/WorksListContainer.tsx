@@ -57,23 +57,6 @@ export default function WorksListContainer({ works }: Props) {
     <>
       <div className="w-full max-w-[1400px] px-4 min-[1600px]:px-0 py-5 md:py-10 md:mb-5">
         <div className="w-full flex items-center gap-5 justify-between lg:py-10">
-          <div className="w-full flex items-center gap-2 md:gap-5">
-            <WorkTypeButton
-              onClick={() => handleTypeChange("ALL")}
-              currentType={"ALL"}
-              type={type}
-            />
-            <WorkTypeButton
-              onClick={() => handleTypeChange("BS")}
-              currentType={"BS"}
-              type={type}
-            />
-            <WorkTypeButton
-              onClick={() => handleTypeChange("PS")}
-              currentType={"PS"}
-              type={type}
-            />
-          </div>
           <div className="hidden lg:flex items-center gap-5">
             <button
               onClick={() => setIsGrid(true)}

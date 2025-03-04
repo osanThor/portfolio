@@ -1,5 +1,15 @@
 [
   {
+    "title": "Comma",
+    "year": "2025",
+    "path": "comma-2025",
+    "type": "Personal",
+    "category": ["Design", "Development"],
+    "link": "https://comma.given-log.com/",
+    "featured": true,
+    "description": "추억을 깨우는 즐거운 쉼표! 콤마 오락실"
+  },
+  {
     "title": "Given's log Ver.2",
     "year": "2025",
     "path": "blog-2025",
