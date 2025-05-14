@@ -1,6 +1,7 @@
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollSmoother } from "gsap/ScrollSmoother";
 import { TextPlugin } from "gsap/TextPlugin";
 import { Observer } from "gsap/Observer";
 import {
@@ -8,7 +9,13 @@ import {
   NavigateOptions,
 } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
-gsap.registerPlugin(ScrollTrigger, TextPlugin, Observer, useGSAP);
+gsap.registerPlugin(
+  ScrollTrigger,
+  ScrollSmoother,
+  TextPlugin,
+  Observer,
+  useGSAP
+);
 
 const setTextWithSpan = (element: HTMLElement, text: string) => {
   element.innerHTML = text.replace(/\S/g, "<span class='letter'>$&</span>");

@@ -8,13 +8,18 @@ import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import HeaderMenuWinContainer from "@/containers/common/HeaderMenuWinContainer";
 import MagneticLink from "@/components/common/MagneticLink";
+import { twMerge } from "tailwind-merge";
 
 export default function HeaderContainer() {
   const pathname = usePathname();
+
   const [scrollY, setScrollY] = useRecoilState(scrollOffsetYState);
-  const themeDarkPathname = ["/", "/contact"];
+
+  const THEME_DARK_PATHNAME = ["/", "/contact"];
   const [theme, setTheme] = useState<"dark" | "light">("dark");
+
   const hrefs = [...MENUS.map((menu) => menu.href), "/work"];
+
   const [pathId, setPathId] = useState<number>(0);
   const [hoverId, setHoverId] = useState<number>(0);
 
@@ -42,7 +47,7 @@ export default function HeaderContainer() {
   }, []);
 
   useEffect(() => {
-    if (!themeDarkPathname.includes(pathname)) {
+    if (!THEME_DARK_PATHNAME.includes(pathname)) {
       if (hrefs.some((href) => pathname.startsWith(href))) {
         setTheme("light");
       } else {
@@ -55,6 +60,7 @@ export default function HeaderContainer() {
     const menuIdx = MENUS.findIndex(
       (menu) => menu.href === pathname || pathname.startsWith(menu.href)
     );
+
     if (pathname.startsWith("/work")) {
       setHoverId(2);
       setPathId(2);
@@ -84,15 +90,17 @@ export default function HeaderContainer() {
   return (
     <>
       <header
-        className={`absolute top-0 left-0 right-0 flex items-center justify-between px-4 py-5 md:p-10 z-[999] transition-all ${
-          isTop ? "" : "-translate-y-full"
-        }`}
+        className={twMerge(
+          `absolute top-0 left-0 right-0 flex items-center justify-between px-4 py-5 md:p-10 z-[999] transition-all`,
+          !isTop && "-translate-y-full"
+        )}
       >
         <MagneticLink
           href={"/"}
-          className={`relative ${
+          className={twMerge(
+            `relative`,
             theme === "dark" ? "fill-white text-white" : "fill-black text-black"
-          }`}
+          )}
           scroll={false}
           aria-label="go to Main Page"
         >
@@ -107,9 +115,10 @@ export default function HeaderContainer() {
           }}
         >
           <ul
-            className={`hidden md:flex items-center gap-10 ${
-              theme === "dark" ? "text-white" : "text-black"
-            }`}
+            className={twMerge(
+              theme === "dark" ? "text-white" : "text-black",
+              `hidden md:flex items-center gap-10`
+            )}
           >
             {MENUS.map((menu, idx) => (
               <li
@@ -120,9 +129,10 @@ export default function HeaderContainer() {
               >
                 <MagneticLink
                   href={menu.href}
-                  className={`${
-                    theme === "dark" ? "after:bg-white " : "after:bg-black"
-                  } relative min-w-[64px] flex items-center justify-center `}
+                  className={twMerge(
+                    theme === "dark" ? "after:bg-white " : "after:bg-black",
+                    "relative min-w-[64px] flex items-center justify-center"
+                  )}
                   scroll={false}
                 >
                   {menu.name}
@@ -131,19 +141,20 @@ export default function HeaderContainer() {
             ))}
           </ul>
           <span
-            className={`${
-              theme === "dark" ? "bg-white " : "bg-black"
-            } ${position} ${
-              pathId ? "w-2 h-2" : "w-0 h-0"
-            } group-hover:w-2 group-hover:h-2 absolute -bottom-[1rem] rounded-full transition-all ease-in-out hidden md:flex`}
+            className={twMerge(
+              theme === "dark" ? "bg-white " : "bg-black",
+              pathId ? "w-2 h-2" : "w-0 h-0",
+              `${position} group-hover:w-2 group-hover:h-2 absolute -bottom-[1rem] rounded-full transition-all ease-in-out hidden md:flex`
+            )}
           />
           <button
             onClick={() => setMenuOpen(true)}
-            className={`flex pl-4 relative before:w-1 before:h-1 before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:rounded-full  md:hidden ${
+            className={twMerge(
+              "flex pl-4 relative before:w-1 before:h-1 before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:rounded-full  md:hidden",
               theme === "dark"
                 ? "fill-white text-white before:bg-white"
                 : "fill-black text-black before:bg-black"
-            }`}
+            )}
           >
             메뉴
           </button>

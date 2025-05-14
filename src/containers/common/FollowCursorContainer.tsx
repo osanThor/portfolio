@@ -18,6 +18,7 @@ export default function FollowCursorContainer() {
     else setIsGrid(null);
     setIsHover(false);
   }, [pathname]);
+
   return (
     <>
       {isGrid === null ? (

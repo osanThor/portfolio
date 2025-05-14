@@ -20,11 +20,12 @@ export default function GridWorkItem({ work, setIsHovered }: Props) {
         <div className="w-full flex flex-col">
           <div className="flex overflow-hidden justify-center items-center px-4 sm:px-10 lg:px-20 py-32 bg-gradient-to-t from-lightBagieGray">
             <Image
-              className="object-cover max-w-[calc(100%-2rem)] group-hover:scale-110 transition-all ease-out"
+              className="object-cover max-w-[calc(100%-2rem)] group-hover:scale-110 transition-all aspect-[5/3] ease-out"
               src={`/assets/images/works/${work.path}.png`}
               alt={`${work.path}`}
               width={1600}
               height={720}
+              loading="lazy"
             />
           </div>
           <div className="text-2xl md:text-3xl font-[700] w-full border-b border-lightGray py-4">

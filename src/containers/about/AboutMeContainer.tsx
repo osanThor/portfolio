@@ -39,6 +39,7 @@ export default function AboutMeContainer() {
               width={1000}
               height={1400}
               className="object-cover"
+              priority
             />
           </div>
         </div>
