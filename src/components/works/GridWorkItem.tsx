@@ -25,6 +25,7 @@ export default function GridWorkItem({ work, setIsHovered }: Props) {
               alt={`${work.path}`}
               width={1600}
               height={720}
+              loading="lazy"
             />
           </div>
           <div className="text-2xl md:text-3xl font-[700] w-full border-b border-lightGray py-4">

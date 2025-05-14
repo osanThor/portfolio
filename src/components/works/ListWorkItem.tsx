@@ -37,6 +37,7 @@ export default function ListWorkItem({
               alt={`${work.path}`}
               width={1600}
               height={720}
+              loading="lazy"
             />
           </div>
           <div className="w-full flex flex-col lg:flex-row transition-all group-hover:text-gray text-black px-0 lg:group-hover:px-10">
