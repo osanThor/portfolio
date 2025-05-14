@@ -5,8 +5,6 @@ import RecoilRootProvider from "@/contexts/Recoil.context";
 import { nanumSquareNEO } from "@/app/assets/fonts";
 import { getMetadata } from "@/utils/lib/getMetadata";
 import FollowCursorContainer from "@/containers/common/FollowCursorContainer";
-import { Toaster } from "@/components/ui/toaster";
-import FooterContainer from "@/containers/common/FooterContainer";
 
 export const metadata: Metadata = getMetadata();
 
@@ -24,7 +22,6 @@ export default function RootLayout({
         <RecoilRootProvider>
           <FollowCursorContainer />
           <HeaderContainer />
-
           {children}
         </RecoilRootProvider>
       </body>
