@@ -17,23 +17,27 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <RecoilRootProvider>
-        <body
-          className={nanumSquareNEO.className}
-          suppressHydrationWarning={true}
-        >
+      <body
+        className={nanumSquareNEO.className}
+        suppressHydrationWarning={true}
+      >
+        <RecoilRootProvider>
           <FollowCursorContainer />
           <HeaderContainer />
-          <main
-            id="container"
-            className="flex min-h-screen w-full flex-col items-center relative"
-          >
-            {children}
-          </main>
-          <FooterContainer />
-          <Toaster />
-        </body>
-      </RecoilRootProvider>
+          <div id="smooth-wrapper">
+            <div id="smooth-content">
+              <main
+                id="container"
+                className="flex min-h-screen w-full flex-col items-center relative"
+              >
+                {children}
+              </main>
+              <FooterContainer />
+              <Toaster />
+            </div>
+          </div>
+        </RecoilRootProvider>
+      </body>
     </html>
   );
 }

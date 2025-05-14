@@ -24,7 +24,7 @@ export default function Template({ children }: Props) {
     <>
       <div
         id="pageInLoader"
-        className={`min-h-screen bg-neutral-900 transition-all text-white fixed top-0 left-0 right-0  flex items-center justify-center z-[9999999] overflow-hidden cursor-wait ease-in-out`}
+        className={`min-h-screen bg-neutral-900 transition-all text-white fixed top-0 left-0 right-0  flex items-center justify-center z-[9999999] overflow-hidden ease-in-out cursor-progress`}
       >
         <div
           id="loading"
