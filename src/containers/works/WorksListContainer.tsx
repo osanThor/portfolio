@@ -5,15 +5,8 @@ import GridWorkItem from "@/components/works/GridWorkItem";
 import ListWorkItem from "@/components/works/ListWorkItem";
 import { Work } from "@/services/works.service";
 import { useEffect, useLayoutEffect, useState } from "react";
-import { useRecoilState, useSetRecoilState } from "recoil";
-import {
-  itemHoverState,
-  itemHoverIdState,
-  worksImageListState,
-  isGridState,
-  gsapTriggerState,
-} from "@/utils/lib/recoil/atom";
-import WorkTypeButton from "@/components/works/WorkTypeButton";
+import { useGsapStore } from "@/stores/gsap";
+import { useWorksStore } from "@/stores/works";
 
 type Props = {
   works: Work[];
@@ -24,13 +17,14 @@ type ButtonType = "ALL" | "BS" | "PS";
 export default function WorksListContainer({ works }: Props) {
   const [workList, setWorkList] = useState<Work[]>(works);
   const [type, setType] = useState<ButtonType>("ALL");
-  const [isGrid, setIsGrid] = useRecoilState(isGridState);
 
-  const setGsapTrigger = useSetRecoilState(gsapTriggerState);
+  const setGsapTrigger = useGsapStore((state) => state.setGsapTrigger);
 
-  const setIsHovered = useSetRecoilState(itemHoverState);
-  const setHoverIdx = useSetRecoilState(itemHoverIdState);
-  const setWorksImages = useSetRecoilState(worksImageListState);
+  const isGrid = useWorksStore((state) => state.isGrid);
+  const setIsGrid = useWorksStore((state) => state.setIsGrid);
+  const setIsHover = useWorksStore((state) => state.setIsHover);
+  const setHoveredItemId = useWorksStore((state) => state.setHoveredItemId);
+  const setWorksImageList = useWorksStore((state) => state.setWorksImageList);
 
   useEffect(() => {
     setWorkList(
@@ -40,15 +34,15 @@ export default function WorksListContainer({ works }: Props) {
             type === "BS" ? work.type === "Business" : work.type === "Personal"
           )
     );
-    setGsapTrigger((prev) => !prev);
+    setGsapTrigger();
   }, [type, works]);
 
   useEffect(() => {
-    setGsapTrigger((prev) => !prev);
+    setGsapTrigger();
   }, [isGrid]);
 
   useLayoutEffect(() => {
-    setWorksImages(works.map((work) => work.path));
+    setWorksImageList(works.map((work) => work.path));
   }, [works]);
 
   const handleTypeChange = (selectedType: ButtonType) => setType(selectedType);
@@ -101,15 +95,15 @@ export default function WorksListContainer({ works }: Props) {
               <GridWorkItem
                 key={`grid-${work.path}`}
                 work={work}
-                setIsHovered={setIsHovered}
+                setIsHover={setIsHover}
               />
             ) : (
               <ListWorkItem
                 key={`list-${work.path}`}
                 isMain={false}
                 work={work}
-                setIsHovered={setIsHovered}
-                onChangeIdx={() => setHoverIdx(idx)}
+                setIsHover={setIsHover}
+                onChangeHoveredItemId={() => setHoveredItemId(idx)}
               />
             )
           )}

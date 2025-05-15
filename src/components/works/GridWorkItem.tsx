@@ -1,21 +1,20 @@
 import { Work } from "@/services/works.service";
 import Image from "next/image";
-import { SetStateAction } from "react";
 import TransitionLink from "@/components/common/TransitionLink";
 
 type Props = {
   work: Work;
-  setIsHovered: React.Dispatch<SetStateAction<boolean>>;
+  setIsHover: (bol: boolean) => void;
 };
 
-export default function GridWorkItem({ work, setIsHovered }: Props) {
+export default function GridWorkItem({ work, setIsHover }: Props) {
   return (
     <li className="w-full flex flex-col items-center justify-between ">
       <TransitionLink
         className="w-full flex group flex-col items-center justify-between relative"
         href={`/work/${work.path}`}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
+        onMouseEnter={() => setIsHover(true)}
+        onMouseLeave={() => setIsHover(false)}
       >
         <div className="w-full flex flex-col">
           <div className="flex overflow-hidden justify-center items-center px-4 sm:px-10 lg:px-20 py-32 bg-gradient-to-t from-lightBagieGray">

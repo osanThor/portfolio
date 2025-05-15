@@ -6,13 +6,15 @@ import Image from "next/image";
 import { useGSAP } from "@gsap/react";
 import { useEffect, useRef, useState } from "react";
 import { mainAboutTextTimeline } from "@/utils/lib/gsap";
-import { mountedState } from "@/utils/lib/recoil/atom";
 import { useRecoilValue } from "recoil";
+import { useMountStore } from "@/stores/mount";
 
 export default function MainAboutContainer() {
-  const mounted = useRecoilValue(mountedState);
   const containerRef = useRef<HTMLElement>(null);
   const aboutTextRef = useRef<HTMLParagraphElement>(null);
+
+  const mounted = useMountStore((state) => state.mounted);
+
   const [localMounted, setLocalMounted] = useState<boolean>(false);
 
   useEffect(() => {
