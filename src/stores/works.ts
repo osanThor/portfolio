@@ -6,10 +6,12 @@ interface InWorksStore {
   isHover: boolean;
   hoveredItemId: number;
   worksImageList: string[];
-  setIsGrid: (bol: boolean | null) => void;
-  setIsHover: (bol: boolean) => void;
-  setHoveredItemId: (num: number) => void;
-  setWorksImageList: (works: string[]) => void;
+  actions: {
+    setIsGrid: (bol: boolean | null) => void;
+    setIsHover: (bol: boolean) => void;
+    setHoveredItemId: (num: number) => void;
+    setWorksImageList: (works: string[]) => void;
+  };
 }
 
 export const useWorksStore = create<InWorksStore>((set) => ({
@@ -17,8 +19,10 @@ export const useWorksStore = create<InWorksStore>((set) => ({
   isHover: false,
   hoveredItemId: 0,
   worksImageList: [],
-  setIsGrid: (bol) => set(() => ({ isGrid: bol })),
-  setIsHover: (bol) => set(() => ({ isHover: bol })),
-  setHoveredItemId: (num) => set(() => ({ hoveredItemId: num })),
-  setWorksImageList: (works) => set(() => ({ worksImageList: works })),
+  actions: {
+    setIsGrid: (bol) => set(() => ({ isGrid: bol })),
+    setIsHover: (bol) => set(() => ({ isHover: bol })),
+    setHoveredItemId: (num) => set(() => ({ hoveredItemId: num })),
+    setWorksImageList: (works) => set(() => ({ worksImageList: works })),
+  },
 }));

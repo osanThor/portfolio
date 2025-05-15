@@ -3,12 +3,13 @@ import { getWorkDetail } from "@/services/works.service";
 import { getMetadata } from "@/utils/lib/getMetadata";
 
 type Props = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
-export async function generateMetadata({ params: { slug } }: Props) {
+export async function generateMetadata({ params }: Props) {
+  const { slug } = await params;
   const { title, description } = await getWorkDetail(slug);
   return getMetadata({
     title: title,
@@ -16,7 +17,9 @@ export async function generateMetadata({ params: { slug } }: Props) {
   });
 }
 
-export default function WorkDetailPage({ params: { slug } }: Props) {
+export default async function WorkDetailPage({ params }: Props) {
+  const { slug } = await params;
+
   return (
     <>
       <WorkDetailContainer slug={slug} />

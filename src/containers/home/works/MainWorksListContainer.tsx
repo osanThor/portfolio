@@ -10,9 +10,9 @@ type Props = {
 };
 
 export default function MainWorksListContainer({ works }: Props) {
-  const setIsHovered = useWorksStore((state) => state.setIsHover);
-  const setHoveredItemId = useWorksStore((state) => state.setHoveredItemId);
-  const setWorksImageList = useWorksStore((state) => state.setWorksImageList);
+  const { setIsHover, setHoveredItemId, setWorksImageList } = useWorksStore(
+    (state) => state.actions
+  );
 
   function handleChangeHoverIdx(idx: number) {
     setHoveredItemId(idx);
@@ -30,7 +30,7 @@ export default function MainWorksListContainer({ works }: Props) {
             key={work.path}
             isMain={true}
             work={work}
-            setIsHover={setIsHovered}
+            setIsHover={setIsHover}
             onChangeHoveredItemId={() => handleChangeHoverIdx(idx)}
           />
         ))}

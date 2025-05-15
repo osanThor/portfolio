@@ -9,8 +9,7 @@ import { useWorksStore } from "@/stores/works";
 export default function FollowCursorContainer() {
   const pathname = usePathname();
   const isGrid = useWorksStore((state) => state.isGrid);
-  const setIsGrid = useWorksStore((state) => state.setIsGrid);
-  const setIsHover = useWorksStore((state) => state.setIsHover);
+  const { setIsGrid, setIsHover } = useWorksStore((state) => state.actions);
 
   useLayoutEffect(() => {
     if (pathname === "/") setIsGrid(false);

@@ -12,30 +12,18 @@ type Props = {
   works: Work[];
 };
 
-type ButtonType = "ALL" | "BS" | "PS";
-
 export default function WorksListContainer({ works }: Props) {
   const [workList, setWorkList] = useState<Work[]>(works);
-  const [type, setType] = useState<ButtonType>("ALL");
 
   const setGsapTrigger = useGsapStore((state) => state.setGsapTrigger);
 
   const isGrid = useWorksStore((state) => state.isGrid);
-  const setIsGrid = useWorksStore((state) => state.setIsGrid);
-  const setIsHover = useWorksStore((state) => state.setIsHover);
-  const setHoveredItemId = useWorksStore((state) => state.setHoveredItemId);
-  const setWorksImageList = useWorksStore((state) => state.setWorksImageList);
+  const { setIsGrid, setIsHover, setHoveredItemId, setWorksImageList } =
+    useWorksStore((state) => state.actions);
 
   useEffect(() => {
-    setWorkList(
-      type === "ALL"
-        ? works
-        : works.filter((work) =>
-            type === "BS" ? work.type === "Business" : work.type === "Personal"
-          )
-    );
     setGsapTrigger();
-  }, [type, works]);
+  }, [works]);
 
   useEffect(() => {
     setGsapTrigger();
@@ -44,8 +32,6 @@ export default function WorksListContainer({ works }: Props) {
   useLayoutEffect(() => {
     setWorksImageList(works.map((work) => work.path));
   }, [works]);
-
-  const handleTypeChange = (selectedType: ButtonType) => setType(selectedType);
 
   return (
     <>
