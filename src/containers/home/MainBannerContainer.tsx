@@ -5,7 +5,6 @@ import MainAnimationText from "@/components/home/MainAnimationText";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 import { mainBannerFromTo } from "@/utils/lib/gsap";
-import { useRecoilValue } from "recoil";
 import { useMountStore } from "@/stores/mount";
 
 export default function MainBannerContainer() {

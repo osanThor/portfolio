@@ -6,7 +6,6 @@ import Image from "next/image";
 import { useGSAP } from "@gsap/react";
 import { useEffect, useRef, useState } from "react";
 import { mainAboutTextTimeline } from "@/utils/lib/gsap";
-import { useRecoilValue } from "recoil";
 import { useMountStore } from "@/stores/mount";
 
 export default function MainAboutContainer() {
