@@ -4,7 +4,7 @@ import ListIcon from "@/components/ui/icons/ListIcon";
 import GridWorkItem from "@/components/works/GridWorkItem";
 import ListWorkItem from "@/components/works/ListWorkItem";
 import { Work } from "@/services/works.service";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import { useGsapStore } from "@/stores/gsap";
 import { useWorksStore } from "@/stores/works";
 
@@ -13,8 +13,6 @@ type Props = {
 };
 
 export default function WorksListContainer({ works }: Props) {
-  const [workList, setWorkList] = useState<Work[]>(works);
-
   const setGsapTrigger = useGsapStore((state) => state.setGsapTrigger);
 
   const isGrid = useWorksStore((state) => state.isGrid);
@@ -76,7 +74,7 @@ export default function WorksListContainer({ works }: Props) {
               : "gap-5 md:gap-10 lg:gap-0 lg:grid-cols-1"
           }`}
         >
-          {workList.map((work, idx) =>
+          {works.map((work, idx) =>
             isGrid ? (
               <GridWorkItem
                 key={`grid-${work.path}`}
