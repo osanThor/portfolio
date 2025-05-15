@@ -2,18 +2,18 @@
 
 import Logo from "@/components/common/Logo";
 import MENUS from "@/data/menu";
-import { scrollOffsetYState } from "@/utils/lib/recoil/atom";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useRecoilState } from "recoil";
 import HeaderMenuWinContainer from "@/containers/common/HeaderMenuWinContainer";
 import MagneticLink from "@/components/common/MagneticLink";
 import { twMerge } from "tailwind-merge";
+import { useScrollStore } from "@/stores/scroll";
 
 export default function HeaderContainer() {
   const pathname = usePathname();
 
-  const [scrollY, setScrollY] = useRecoilState(scrollOffsetYState);
+  const scrollOffsetY = useScrollStore((state) => state.scrollOffsetY);
+  const setScrollOffsetY = useScrollStore((state) => state.setScrollOffsetY);
 
   const THEME_DARK_PATHNAME = ["/", "/contact"];
   const [theme, setTheme] = useState<"dark" | "light">("dark");
@@ -36,7 +36,7 @@ export default function HeaderContainer() {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
 
   const handleScroll = () => {
-    setScrollY(window.scrollY);
+    setScrollOffsetY(window.scrollY);
   };
 
   useEffect(() => {
@@ -76,12 +76,12 @@ export default function HeaderContainer() {
   }, [pathname]);
 
   useEffect(() => {
-    if (scrollY < 100) {
+    if (scrollOffsetY < 100) {
       setIsTop(true);
     } else {
       setIsTop(false);
     }
-  }, [scrollY]);
+  }, [scrollOffsetY]);
 
   useEffect(() => {
     if (pathId) setHoverId(pathId);

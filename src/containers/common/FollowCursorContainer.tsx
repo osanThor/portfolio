@@ -4,13 +4,12 @@ import ListCursorContainer from "@/containers/works/ListCursorContainer";
 import GridCursorContainer from "@/containers/works/GridCursorContainer";
 import { usePathname } from "next/navigation";
 import { useLayoutEffect } from "react";
-import { useRecoilState, useSetRecoilState } from "recoil";
-import { isGridState, itemHoverState } from "@/utils/lib/recoil/atom";
+import { useWorksStore } from "@/stores/works";
 
 export default function FollowCursorContainer() {
   const pathname = usePathname();
-  const [isGrid, setIsGrid] = useRecoilState(isGridState);
-  const setIsHover = useSetRecoilState(itemHoverState);
+  const isGrid = useWorksStore((state) => state.isGrid);
+  const { setIsGrid, setIsHover } = useWorksStore((state) => state.actions);
 
   useLayoutEffect(() => {
     if (pathname === "/") setIsGrid(false);

@@ -4,54 +4,32 @@ import ListIcon from "@/components/ui/icons/ListIcon";
 import GridWorkItem from "@/components/works/GridWorkItem";
 import ListWorkItem from "@/components/works/ListWorkItem";
 import { Work } from "@/services/works.service";
-import { useEffect, useLayoutEffect, useState } from "react";
-import { useRecoilState, useSetRecoilState } from "recoil";
-import {
-  itemHoverState,
-  itemHoverIdState,
-  worksImageListState,
-  isGridState,
-  gsapTriggerState,
-} from "@/utils/lib/recoil/atom";
-import WorkTypeButton from "@/components/works/WorkTypeButton";
+import { useEffect, useLayoutEffect } from "react";
+import { useGsapStore } from "@/stores/gsap";
+import { useWorksStore } from "@/stores/works";
 
 type Props = {
   works: Work[];
 };
 
-type ButtonType = "ALL" | "BS" | "PS";
-
 export default function WorksListContainer({ works }: Props) {
-  const [workList, setWorkList] = useState<Work[]>(works);
-  const [type, setType] = useState<ButtonType>("ALL");
-  const [isGrid, setIsGrid] = useRecoilState(isGridState);
+  const setGsapTrigger = useGsapStore((state) => state.setGsapTrigger);
 
-  const setGsapTrigger = useSetRecoilState(gsapTriggerState);
-
-  const setIsHovered = useSetRecoilState(itemHoverState);
-  const setHoverIdx = useSetRecoilState(itemHoverIdState);
-  const setWorksImages = useSetRecoilState(worksImageListState);
+  const isGrid = useWorksStore((state) => state.isGrid);
+  const { setIsGrid, setIsHover, setHoveredItemId, setWorksImageList } =
+    useWorksStore((state) => state.actions);
 
   useEffect(() => {
-    setWorkList(
-      type === "ALL"
-        ? works
-        : works.filter((work) =>
-            type === "BS" ? work.type === "Business" : work.type === "Personal"
-          )
-    );
-    setGsapTrigger((prev) => !prev);
-  }, [type, works]);
+    setGsapTrigger();
+  }, [works]);
 
   useEffect(() => {
-    setGsapTrigger((prev) => !prev);
+    setGsapTrigger();
   }, [isGrid]);
 
   useLayoutEffect(() => {
-    setWorksImages(works.map((work) => work.path));
+    setWorksImageList(works.map((work) => work.path));
   }, [works]);
-
-  const handleTypeChange = (selectedType: ButtonType) => setType(selectedType);
 
   return (
     <>
@@ -96,20 +74,20 @@ export default function WorksListContainer({ works }: Props) {
               : "gap-5 md:gap-10 lg:gap-0 lg:grid-cols-1"
           }`}
         >
-          {workList.map((work, idx) =>
+          {works.map((work, idx) =>
             isGrid ? (
               <GridWorkItem
                 key={`grid-${work.path}`}
                 work={work}
-                setIsHovered={setIsHovered}
+                setIsHover={setIsHover}
               />
             ) : (
               <ListWorkItem
                 key={`list-${work.path}`}
                 isMain={false}
                 work={work}
-                setIsHovered={setIsHovered}
-                onChangeIdx={() => setHoverIdx(idx)}
+                setIsHover={setIsHover}
+                onChangeHoveredItemId={() => setHoveredItemId(idx)}
               />
             )
           )}

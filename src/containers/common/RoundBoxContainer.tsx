@@ -1,15 +1,17 @@
 "use client";
 
+import { useGsapStore } from "@/stores/gsap";
+import { useMountStore } from "@/stores/mount";
 import { roundBoxEffect } from "@/utils/lib/gsap";
-import { gsapTriggerState, mountedState } from "@/utils/lib/recoil/atom";
 import { useGSAP } from "@gsap/react";
 import { useEffect, useRef, useState } from "react";
-import { useRecoilValue } from "recoil";
 
 export default function RoundBoxContainer() {
-  const mounted = useRecoilValue(mountedState);
   const roundBoxRef = useRef<HTMLDivElement>(null);
-  const gsapTrigger = useRecoilValue(gsapTriggerState);
+
+  const mounted = useMountStore((state) => state.mounted);
+
+  const gsapTrigger = useGsapStore((state) => state.gsapTrigger);
   const [localMounted, setLocalMounted] = useState<boolean>(false);
   useEffect(() => {
     setTimeout(

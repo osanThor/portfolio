@@ -4,19 +4,21 @@ import LinkButton from "@/components/common/LinkButton";
 import BlogIcon from "@/components/ui/icons/BlogIcon";
 import GithubIcon from "@/components/ui/icons/GithubIcon";
 import InstagramIcon from "@/components/ui/icons/InstagramIcon";
+import { useGsapStore } from "@/stores/gsap";
+import { useMountStore } from "@/stores/mount";
 import { mainContactEffect } from "@/utils/lib/gsap";
-import { gsapTriggerState, mountedState } from "@/utils/lib/recoil/atom";
 import { useGSAP } from "@gsap/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { useRecoilValue } from "recoil";
 
 export default function MainContactContainer() {
-  const mounted = useRecoilValue(mountedState);
   const containerRef = useRef<HTMLElement>(null);
   const gsapRef = useRef<HTMLDivElement>(null);
-  const gsapTrigger = useRecoilValue(gsapTriggerState);
+
+  const mounted = useMountStore((state) => state.mounted);
+
+  const gsapTrigger = useGsapStore((state) => state.gsapTrigger);
   const [localMounted, setLocalMounted] = useState<boolean>(false);
 
   useEffect(() => {

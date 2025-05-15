@@ -5,11 +5,11 @@ import MainAnimationText from "@/components/home/MainAnimationText";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 import { mainBannerFromTo } from "@/utils/lib/gsap";
-import { mountedState } from "@/utils/lib/recoil/atom";
-import { useRecoilValue } from "recoil";
+import { useMountStore } from "@/stores/mount";
 
 export default function MainBannerContainer() {
-  const mounted = useRecoilValue(mountedState);
+  const mounted = useMountStore((state) => state.mounted);
+
   const ref = useRef<HTMLDivElement>(null);
 
   useGSAP(

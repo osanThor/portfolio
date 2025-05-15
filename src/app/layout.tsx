@@ -1,12 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import HeaderContainer from "@/containers/common/HeaderContainer";
-import RecoilRootProvider from "@/contexts/Recoil.context";
 import { nanumSquareNEO } from "@/app/assets/fonts";
 import { getMetadata } from "@/utils/lib/getMetadata";
 import FollowCursorContainer from "@/containers/common/FollowCursorContainer";
-import { Toaster } from "@/components/ui/toaster";
-import FooterContainer from "@/containers/common/FooterContainer";
+import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 
 export const metadata: Metadata = getMetadata();
 
@@ -17,16 +15,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <GoogleTagManager gtmId={process.env.GOOGLE_GT || ""} />
+      <GoogleAnalytics gaId={process.env.GOOGLE_GA || ""} />
       <body
         className={nanumSquareNEO.className}
         suppressHydrationWarning={true}
       >
-        <RecoilRootProvider>
-          <FollowCursorContainer />
-          <HeaderContainer />
-
-          {children}
-        </RecoilRootProvider>
+        <FollowCursorContainer />
+        <HeaderContainer />
+        {children}
       </body>
     </html>
   );

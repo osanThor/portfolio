@@ -1,20 +1,19 @@
 import { Work } from "@/services/works.service";
 import Image from "next/image";
-import { SetStateAction } from "react";
 import TransitionLink from "@/components/common/TransitionLink";
 
 type Props = {
   isMain: boolean;
   work: Work;
-  setIsHovered: React.Dispatch<SetStateAction<boolean>>;
-  onChangeIdx: () => void;
+  setIsHover: (bol: boolean) => void;
+  onChangeHoveredItemId: () => void;
 };
 
 export default function ListWorkItem({
   isMain,
   work,
-  setIsHovered,
-  onChangeIdx,
+  setIsHover,
+  onChangeHoveredItemId,
 }: Props) {
   return (
     <li className="w-full group flex flex-col items-center justify-between">
@@ -24,10 +23,10 @@ export default function ListWorkItem({
         } w-full lg:border-b border-lightGray flex flex-col items-center justify-between relative`}
         href={`/work/${work.path}`}
         onMouseEnter={() => {
-          setIsHovered(true);
-          onChangeIdx();
+          setIsHover(true);
+          onChangeHoveredItemId();
         }}
-        onMouseLeave={() => setIsHovered(false)}
+        onMouseLeave={() => setIsHover(false)}
       >
         <div className="w-full flex flex-col">
           <div className="flex overflow-hidden justify-center items-center px-4 sm:px-10 lg:px-20 py-32 bg-gradient-to-t from-lightBagieGray lg:hidden">

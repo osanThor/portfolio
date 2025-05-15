@@ -1,12 +1,11 @@
 "use client";
 
 import { Work } from "@/services/works.service";
+import { useMountStore } from "@/stores/mount";
 import { mainWorksSlideEffect } from "@/utils/lib/gsap";
-import { mountedState } from "@/utils/lib/recoil/atom";
 import { useGSAP } from "@gsap/react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { useRecoilValue } from "recoil";
 
 type Props = {
   works: Work[];
@@ -16,7 +15,9 @@ export default function WorksAnimationContainer({ works }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const movingBox1Ref = useRef<HTMLUListElement>(null);
   const movingBox2Ref = useRef<HTMLUListElement>(null);
-  const mounted = useRecoilValue(mountedState);
+
+  const mounted = useMountStore((state) => state.mounted);
+
   const [localMounted, setLocalMounted] = useState<boolean>(false);
   useEffect(() => {
     setTimeout(

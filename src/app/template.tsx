@@ -3,16 +3,16 @@
 import { Toaster } from "@/components/ui/toaster";
 import FooterContainer from "@/containers/common/FooterContainer";
 import { animatePageIn } from "@/utils/lib/gsap";
-import { mountedState } from "@/utils/lib/recoil/atom";
 import { useGSAP } from "@gsap/react";
 import { usePathname } from "next/navigation";
-import { useRecoilState } from "recoil";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
+import { useMountStore } from "@/stores/mount";
 
 type Props = { children: React.ReactNode };
 
 export default function Template({ children }: Props) {
-  const [mounted, setMounted] = useRecoilState(mountedState);
+  const mounted = useMountStore((state) => state.mounted);
+  const setMounted = useMountStore((state) => state.setMounted);
   const pathname = usePathname();
   const lastWord = pathname.split("/").pop();
 
