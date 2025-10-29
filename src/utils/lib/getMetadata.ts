@@ -11,7 +11,7 @@ interface generateMetadataProps {
 export const getMetadata = (metadataProps?: generateMetadataProps) => {
   const { title, description, asPath, ogImage } = metadataProps || {};
 
-  const TITLE = title ? `${title} | GIVEN's PORTFOLIO` : META.title;
+  const TITLE = title ? `${title} | 개발자 준영의 포트폴리오` : META.title;
   const DESCRIPTION = description || META.description;
   const PAGE_URL = asPath ? asPath : "";
   const OG_IMAGE = ogImage || META.ogImage;

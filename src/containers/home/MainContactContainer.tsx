@@ -3,7 +3,6 @@
 import LinkButton from "@/components/common/LinkButton";
 import BlogIcon from "@/components/ui/icons/BlogIcon";
 import GithubIcon from "@/components/ui/icons/GithubIcon";
-import InstagramIcon from "@/components/ui/icons/InstagramIcon";
 import { useGsapStore } from "@/stores/gsap";
 import { useMountStore } from "@/stores/mount";
 import { mainContactEffect } from "@/utils/lib/gsap";
@@ -110,16 +109,6 @@ export default function MainContactContainer() {
                 >
                   <BlogIcon />
                   Blog
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="text-white hover:text-gray transition-all flex items-center gap-2"
-                  href={"https://www.instagram.com/given_015/"}
-                  target="_blank"
-                >
-                  <InstagramIcon />
-                  Instagram
                 </Link>
               </li>
             </ul>

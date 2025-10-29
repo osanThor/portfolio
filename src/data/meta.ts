@@ -1,5 +1,5 @@
 export const META = {
-  title: "GIVEN's PORTFOLIO: 개발자 준영의 포트폴리오",
+  title: "개발자 준영의 포트폴리오",
   siteName: "GIVEN's PORTFOLIO",
   description:
     "개발자 준영의 포트폴리오 | Front End Developer Given's PORTFOLIO",
