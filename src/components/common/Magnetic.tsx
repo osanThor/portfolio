@@ -13,7 +13,7 @@ export default function Magnetic({ children }: Props) {
   const ref = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    magnetic(ref);
+    return magnetic(ref);
   }, []);
 
   return React.cloneElement(children, { ref });

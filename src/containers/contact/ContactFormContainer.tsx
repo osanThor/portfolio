@@ -1,5 +1,5 @@
 "use client";
-"use client";
+
 import Magnetic from "@/components/common/Magnetic";
 import SendIcon from "@/components/ui/icons/SendIcon";
 import { toast } from "@/components/ui/use-toast";
@@ -10,68 +10,69 @@ import { Loader2 } from "lucide-react";
 import { FormEvent, useState } from "react";
 import ReactTextareaAutosize from "react-textarea-autosize";
 
-export default function ContactFormContainer() {
-  const [loading, setLoading] = useState<boolean>(false);
-  const [body, setBody] = useState<EmailData>({
-    subject: "",
-    from: "",
-    corp: "",
-    message: "",
-  });
+const EMAIL_PATTERN =
+  /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 
-  function handlechangeFields(
+const EMPTY_FORM: EmailData = {
+  subject: "",
+  from: "",
+  corp: "",
+  message: "",
+};
+
+export default function ContactFormContainer() {
+  const [loading, setLoading] = useState(false);
+  const [body, setBody] = useState<EmailData>(EMPTY_FORM);
+
+  function handleChangeFields(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) {
     const { value, name } = e.target;
-    if (name === "message") {
-      if (value) {
-        const lineCount = (value.match(/[^\n]*\n[^\n]*/gi)?.length ?? 1) + 1;
-        if (lineCount > 10) {
-          alert("최대 10줄까지만 입력가능합니다.");
-          return;
-        }
+
+    if (name === "message" && value) {
+      const lineCount = (value.match(/[^\n]*\n[^\n]*/gi)?.length ?? 1) + 1;
+      if (lineCount > 10) {
+        alert("최대 10줄까지만 입력가능합니다.");
+        return;
       }
     }
-    setBody((prev) => {
-      return { ...prev, [name]: value };
-    });
+
+    setBody((prev) => ({ ...prev, [name]: value }));
   }
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    const { from } = body;
-    const emailRule =
-      /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i; //이메일 정규식
-    if (!emailRule.test(from))
-      return toast({
+
+    if (!EMAIL_PATTERN.test(body.from)) {
+      toast({
         title: "이메일 형식이 아닙니다.",
         description: "다시 확인해주세요.",
         variant: "destructive",
       });
-    handlePostEmail(body);
+      return;
+    }
+
+    void handlePostEmail(body);
   }
 
-  async function handlePostEmail(body: EmailData) {
+  async function handlePostEmail(formData: EmailData) {
     try {
       setLoading(true);
-      const result = await postContact(body);
+      const result = await postContact(formData);
+
       if (result.result === "SUCCESS") {
         toast({
           title: "전송이 완료되었습니다.",
           description: "연락주셔서 감사합니다.",
         });
-        setBody({
-          subject: "",
-          from: "",
-          corp: "",
-          message: "",
-        });
+        setBody(EMPTY_FORM);
       }
     } catch (err) {
-      console.error(err);
+      const message =
+        err instanceof Error ? err.message : "서버 오류가 발생했습니다.";
       toast({
-        title: "SERVER ERROR.",
-        description: err as string,
+        title: "전송에 실패했습니다.",
+        description: message,
         variant: "destructive",
       });
     } finally {
@@ -82,7 +83,8 @@ export default function ContactFormContainer() {
   return (
     <form onSubmit={handleSubmit} className="w-full flex flex-col gap-10 py-10">
       {CONTACT_FORM.map((form, idx) => {
-        const target = body[form.name as "subject" | "from" | "corp"];
+        const target = body[form.name as keyof typeof body];
+
         return (
           <label
             key={`contact-form-${form.name}`}
@@ -99,7 +101,7 @@ export default function ContactFormContainer() {
               {form.description}
             </legend>
             <input
-              onChange={handlechangeFields}
+              onChange={handleChangeFields}
               name={form.name}
               type={form.type}
               value={target || ""}
@@ -113,19 +115,19 @@ export default function ContactFormContainer() {
         );
       })}
       <label className="w-full flex flex-col">
-        <legend className={`relative text-white text-xl `}>
+        <legend className="relative text-white text-xl">
           <span className="absolute top-1/2 -translate-y-1/2 left-0 -translate-x-7 text-xs text-gray">
             0{CONTACT_FORM.length + 1}
           </span>
           메세지를 입력해주세요.
         </legend>
         <ReactTextareaAutosize
-          required={true}
+          required
           placeholder="ex)안녕하세요. 활빈당입니다.*"
-          onChange={handlechangeFields}
+          onChange={handleChangeFields}
           maxRows={7}
           className="w-full min-h-[80px] py-5 h-20 border-b resize-none text-white text-3xl truncate placeholder:text-gray placeholder:truncate placeholder:text-xl border-gray focus:outline-none focus:border-blue bg-darkIndigo"
-          value={body.message ? body.message : ""}
+          value={body.message}
           name="message"
           disabled={loading}
         />
@@ -137,8 +139,8 @@ export default function ContactFormContainer() {
             disabled={loading}
             className="relative border group border-gray lg:text-2xl px-5 py-4 flex items-center gap-4 text-gray before:top-0 before:left-0 fill-gray before:w-0 before:absolute before:h-full before:transition-all hover:before:w-full before:bg-gray hover:text-white hover:fill-white"
           >
-            <span className="relative ">보내기</span>
-            <span className="relative ">
+            <span className="relative">보내기</span>
+            <span className="relative">
               {loading ? (
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
               ) : (

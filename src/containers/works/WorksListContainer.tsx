@@ -1,12 +1,14 @@
 "use client";
+
 import GridIcon from "@/components/ui/icons/GridIcon";
 import ListIcon from "@/components/ui/icons/ListIcon";
 import GridWorkItem from "@/components/works/GridWorkItem";
 import ListWorkItem from "@/components/works/ListWorkItem";
+import { useSyncWorksImageList } from "@/hooks/useSyncWorksImageList";
 import { Work } from "@/services/works.service";
-import { useEffect, useLayoutEffect } from "react";
 import { useGsapStore } from "@/stores/gsap";
 import { useWorksStore } from "@/stores/works";
+import { useEffect } from "react";
 
 type Props = {
   works: Work[];
@@ -14,22 +16,16 @@ type Props = {
 
 export default function WorksListContainer({ works }: Props) {
   const setGsapTrigger = useGsapStore((state) => state.setGsapTrigger);
-
   const isGrid = useWorksStore((state) => state.isGrid);
-  const { setIsGrid, setIsHover, setHoveredItemId, setWorksImageList } =
-    useWorksStore((state) => state.actions);
+  const setIsGrid = useWorksStore((state) => state.setIsGrid);
+  const setIsHover = useWorksStore((state) => state.setIsHover);
+  const setHoveredItemId = useWorksStore((state) => state.setHoveredItemId);
+
+  useSyncWorksImageList(works);
 
   useEffect(() => {
     setGsapTrigger();
-  }, [works]);
-
-  useEffect(() => {
-    setGsapTrigger();
-  }, [isGrid]);
-
-  useLayoutEffect(() => {
-    setWorksImageList(works.map((work) => work.path));
-  }, [works]);
+  }, [works, isGrid, setGsapTrigger]);
 
   return (
     <>

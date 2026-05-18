@@ -1,52 +1,47 @@
 "use client";
 
 import Logo from "@/components/common/Logo";
+import MagneticLink from "@/components/common/MagneticLink";
+import HeaderMenuWinContainer from "@/containers/common/HeaderMenuWinContainer";
 import MENUS from "@/data/menu";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import HeaderMenuWinContainer from "@/containers/common/HeaderMenuWinContainer";
-import MagneticLink from "@/components/common/MagneticLink";
 import { twMerge } from "tailwind-merge";
-import { useScrollStore } from "@/stores/scroll";
+
+const THEME_DARK_PATHNAME = ["/", "/contact"];
 
 export default function HeaderContainer() {
   const pathname = usePathname();
 
-  const scrollOffsetY = useScrollStore((state) => state.scrollOffsetY);
-  const setScrollOffsetY = useScrollStore((state) => state.setScrollOffsetY);
-
-  const THEME_DARK_PATHNAME = ["/", "/contact"];
   const [theme, setTheme] = useState<"dark" | "light">("dark");
-
-  const hrefs = [...MENUS.map((menu) => menu.href), "/work"];
-
-  const [pathId, setPathId] = useState<number>(0);
-  const [hoverId, setHoverId] = useState<number>(0);
+  const [pathId, setPathId] = useState(0);
+  const [hoverId, setHoverId] = useState(0);
+  const [scrollOffsetY, setScrollOffsetY] = useState(0);
+  const [isTop, setIsTop] = useState(true);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const position =
     hoverId === 1
       ? "left-[11%]"
       : hoverId === 2
-      ? "left-[49%]"
-      : hoverId === 3
-      ? "left-[87%]"
-      : "";
-
-  const [isTop, setIsTop] = useState<boolean>(true);
-  const [menuOpen, setMenuOpen] = useState<boolean>(false);
-
-  const handleScroll = () => {
-    setScrollOffsetY(window.scrollY);
-  };
+        ? "left-[49%]"
+        : hoverId === 3
+          ? "left-[87%]"
+          : "";
 
   useEffect(() => {
+    const handleScroll = () => setScrollOffsetY(window.scrollY);
     window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
+    setIsTop(scrollOffsetY < 100);
+  }, [scrollOffsetY]);
+
+  useEffect(() => {
+    const hrefs = [...MENUS.map((menu) => menu.href), "/work"];
+
     if (!THEME_DARK_PATHNAME.includes(pathname)) {
       if (hrefs.some((href) => pathname.startsWith(href))) {
         setTheme("light");
@@ -76,29 +71,21 @@ export default function HeaderContainer() {
   }, [pathname]);
 
   useEffect(() => {
-    if (scrollOffsetY < 100) {
-      setIsTop(true);
-    } else {
-      setIsTop(false);
-    }
-  }, [scrollOffsetY]);
-
-  useEffect(() => {
     if (pathId) setHoverId(pathId);
-  }, [menuOpen]);
+  }, [menuOpen, pathId]);
 
   return (
     <>
       <header
         className={twMerge(
-          `absolute top-0 left-0 right-0 flex items-center justify-between px-4 py-5 md:p-10 z-[999] transition-all`,
+          "absolute top-0 left-0 right-0 flex items-center justify-between px-4 py-5 md:p-10 z-[999] transition-all",
           !isTop && "-translate-y-full"
         )}
       >
         <MagneticLink
-          href={"/"}
+          href="/"
           className={twMerge(
-            `relative`,
+            "relative",
             theme === "dark" ? "fill-white text-white" : "fill-black text-black"
           )}
           scroll={false}
@@ -117,15 +104,13 @@ export default function HeaderContainer() {
           <ul
             className={twMerge(
               theme === "dark" ? "text-white" : "text-black",
-              `hidden md:flex items-center gap-10`
+              "hidden md:flex items-center gap-10"
             )}
           >
             {MENUS.map((menu, idx) => (
               <li
                 key={`headers-${menu.name}`}
-                onMouseOver={() => {
-                  setHoverId(idx + 1);
-                }}
+                onMouseOver={() => setHoverId(idx + 1)}
               >
                 <MagneticLink
                   href={menu.href}
@@ -150,7 +135,7 @@ export default function HeaderContainer() {
           <button
             onClick={() => setMenuOpen(true)}
             className={twMerge(
-              "flex pl-4 relative before:w-1 before:h-1 before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:rounded-full  md:hidden",
+              "flex pl-4 relative before:w-1 before:h-1 before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:rounded-full md:hidden",
               theme === "dark"
                 ? "fill-white text-white before:bg-white"
                 : "fill-black text-black before:bg-black"

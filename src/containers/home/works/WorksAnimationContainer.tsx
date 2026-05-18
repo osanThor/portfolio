@@ -1,11 +1,12 @@
 "use client";
 
 import { Work } from "@/services/works.service";
-import { useMountStore } from "@/stores/mount";
+import { useDelayedReveal } from "@/hooks/useDelayedReveal";
 import { mainWorksSlideEffect } from "@/utils/lib/gsap";
+import { getWorkThumbnailSrc } from "@/utils/work";
 import { useGSAP } from "@gsap/react";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 
 type Props = {
   works: Work[];
@@ -16,25 +17,14 @@ export default function WorksAnimationContainer({ works }: Props) {
   const movingBox1Ref = useRef<HTMLUListElement>(null);
   const movingBox2Ref = useRef<HTMLUListElement>(null);
 
-  const mounted = useMountStore((state) => state.mounted);
+  const isRevealed = useDelayedReveal();
 
-  const [localMounted, setLocalMounted] = useState<boolean>(false);
-  useEffect(() => {
-    setTimeout(
-      () => {
-        setLocalMounted(true);
-      },
-      mounted ? 2200 : 2500
-    );
-  }, []);
   useGSAP(
     () => {
-      movingBox1Ref.current &&
-        mainWorksSlideEffect(movingBox1Ref.current, true);
-      movingBox2Ref.current &&
-        mainWorksSlideEffect(movingBox2Ref.current, false);
+      if (movingBox1Ref.current) mainWorksSlideEffect(movingBox1Ref.current, true);
+      if (movingBox2Ref.current) mainWorksSlideEffect(movingBox2Ref.current, false);
     },
-    { scope: containerRef, dependencies: [localMounted] }
+    { scope: containerRef, dependencies: [isRevealed] }
   );
 
   const UPPER_WORKS = works.slice(0, 4);
@@ -46,7 +36,7 @@ export default function WorksAnimationContainer({ works }: Props) {
         ref={containerRef}
         className="relative min-w-full max-w-[100vw] py-10 lg:py-[100px] "
       >
-        {localMounted && (
+        {isRevealed && (
           <div className="flex flex-col">
             <ul
               ref={movingBox1Ref}
@@ -81,7 +71,7 @@ function WorkItem({ work }: ItemProps) {
       <div className="w-full h-full bg-gradient-to-t from-lightBagieGray flex items-center justify-center p-2 md:p-5 lg:p-10">
         <Image
           className="object-cover max-w-full block"
-          src={`/assets/images/works/${work.path}.png`}
+          src={getWorkThumbnailSrc(work.path)}
           alt={`${work.path}`}
           width={1600}
           height={720}

@@ -1,11 +1,12 @@
-import { Work } from "@/services/works.service";
-import Image from "next/image";
 import TransitionLink from "@/components/common/TransitionLink";
+import { Work } from "@/services/works.service";
+import { formatWorkCategories, getWorkThumbnailSrc } from "@/utils/work";
+import Image from "next/image";
 
 type Props = {
   isMain: boolean;
   work: Work;
-  setIsHover: (bol: boolean) => void;
+  setIsHover: (value: boolean) => void;
   onChangeHoveredItemId: () => void;
 };
 
@@ -31,9 +32,9 @@ export default function ListWorkItem({
         <div className="w-full flex flex-col">
           <div className="flex overflow-hidden justify-center items-center px-4 sm:px-10 lg:px-20 py-32 bg-gradient-to-t from-lightBagieGray lg:hidden">
             <Image
-              className="object-cover max-w-full block "
-              src={`/assets/images/works/${work.path}.png`}
-              alt={`${work.path}`}
+              className="object-cover max-w-full block"
+              src={getWorkThumbnailSrc(work.path)}
+              alt={work.path}
               width={1600}
               height={720}
               loading="lazy"
@@ -45,7 +46,7 @@ export default function ListWorkItem({
             </div>
             <div className="w-full md:w-auto flex justify-between items-center gap-4 md:gap-10 py-4">
               <div className="text-lg md:text-xl lg:text-2xl whitespace-nowrap">
-                {work.category.join(" & ")}
+                {formatWorkCategories(work.category)}
               </div>
               <div className="text-lg md:text-xl block">{work.year}</div>
             </div>

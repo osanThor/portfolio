@@ -1,6 +1,7 @@
 "use client";
+
 import { SkillSlides } from "@/data/about/skills/skillImages";
-import { SkilType } from "@/interfaces/InSkills";
+import { SkillType } from "@/interfaces/InSkills";
 import { useEffect, useRef } from "react";
 import ParticleImage, {
   ParticleOptions,
@@ -10,14 +11,14 @@ import ParticleImage, {
 } from "react-particle-image";
 
 type Props = {
-  skill: SkilType;
+  skill: SkillType;
 };
 
 const motionForce = (x: number, y: number): ParticleForce => {
   return forces.disturbance(x, y, 10);
 };
 
-export default function AboutSkillItemContaienr({ skill }: Props) {
+export default function AboutSkillItemContainer({ skill }: Props) {
   const targetRef = useRef<HTMLDivElement>(null);
 
   const particleOptions: ParticleOptions = {
@@ -41,8 +42,8 @@ export default function AboutSkillItemContaienr({ skill }: Props) {
 
   useEffect(() => {
     if (!skillTitleRef.current) return;
-    skillTitleRef.current.innerHTML = skill?.skillTitle;
-  }, [skillTitleRef, skill]);
+    skillTitleRef.current.innerHTML = skill.skillTitle;
+  }, [skill]);
 
   const skillColors = {
     FE: "text-blue",

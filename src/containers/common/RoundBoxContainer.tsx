@@ -1,36 +1,25 @@
 "use client";
 
 import { useGsapStore } from "@/stores/gsap";
-import { useMountStore } from "@/stores/mount";
+import { useDelayedReveal } from "@/hooks/useDelayedReveal";
 import { roundBoxEffect } from "@/utils/lib/gsap";
 import { useGSAP } from "@gsap/react";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 
 export default function RoundBoxContainer() {
   const roundBoxRef = useRef<HTMLDivElement>(null);
-
-  const mounted = useMountStore((state) => state.mounted);
-
   const gsapTrigger = useGsapStore((state) => state.gsapTrigger);
-  const [localMounted, setLocalMounted] = useState<boolean>(false);
-  useEffect(() => {
-    setTimeout(
-      () => {
-        setLocalMounted(true);
-      },
-      mounted ? 2200 : 2500
-    );
-  }, []);
+  const isRevealed = useDelayedReveal();
 
   useGSAP(
     () => {
       if (roundBoxRef.current) roundBoxEffect(roundBoxRef.current);
     },
-    { dependencies: [localMounted, gsapTrigger] }
+    { dependencies: [isRevealed, gsapTrigger] }
   );
 
   return (
-    localMounted && (
+    isRevealed && (
       <>
         <div className="w-full relative -translate-y-1 z-10">
           <div

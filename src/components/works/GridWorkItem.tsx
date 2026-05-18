@@ -1,15 +1,16 @@
-import { Work } from "@/services/works.service";
-import Image from "next/image";
 import TransitionLink from "@/components/common/TransitionLink";
+import { Work } from "@/services/works.service";
+import { formatWorkCategories, getWorkThumbnailSrc } from "@/utils/work";
+import Image from "next/image";
 
 type Props = {
   work: Work;
-  setIsHover: (bol: boolean) => void;
+  setIsHover: (value: boolean) => void;
 };
 
 export default function GridWorkItem({ work, setIsHover }: Props) {
   return (
-    <li className="w-full flex flex-col items-center justify-between ">
+    <li className="w-full flex flex-col items-center justify-between">
       <TransitionLink
         className="w-full flex group flex-col items-center justify-between relative"
         href={`/work/${work.path}`}
@@ -20,8 +21,8 @@ export default function GridWorkItem({ work, setIsHover }: Props) {
           <div className="flex overflow-hidden justify-center items-center px-4 sm:px-10 lg:px-20 py-32 bg-gradient-to-t from-lightBagieGray">
             <Image
               className="object-cover max-w-[calc(100%-2rem)] group-hover:scale-110 transition-all aspect-[5/3] ease-out"
-              src={`/assets/images/works/${work.path}.png`}
-              alt={`${work.path}`}
+              src={getWorkThumbnailSrc(work.path)}
+              alt={work.path}
               width={1600}
               height={720}
               loading="lazy"
@@ -32,7 +33,7 @@ export default function GridWorkItem({ work, setIsHover }: Props) {
           </div>
           <div className="w-full flex justify-between gap-4 md:gap-10 py-4">
             <div className="text-lg md:text-xl whitespace-nowrap">
-              {work.category.join(" & ")}
+              {formatWorkCategories(work.category)}
             </div>
             <div className="text-lg md:text-xl">{work.year}</div>
           </div>

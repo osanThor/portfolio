@@ -1,4 +1,4 @@
-export interface SkilType {
+export interface SkillType {
   id: number;
   logoNum: number;
   logoColor: string;

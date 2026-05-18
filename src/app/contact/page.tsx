@@ -1,14 +1,13 @@
-import BlogIcon from "@/components/ui/icons/BlogIcon";
-import GithubIcon from "@/components/ui/icons/GithubIcon";
+import ContactSidebar from "@/components/contact/ContactSidebar";
 import ContactFormContainer from "@/containers/contact/ContactFormContainer";
 import { getMetadata } from "@/utils/lib/getMetadata";
-import Image from "next/image";
-import Link from "next/link";
+
 export async function generateMetadata() {
   return getMetadata({
     title: "Contact",
   });
 }
+
 export default function ContactPage() {
   return (
     <div className="bg-darkIndigo w-full h-full min-h-screen flex flex-col items-center">
@@ -22,58 +21,8 @@ export default function ContactPage() {
           <div className="pl-8 flex-[8]">
             <ContactFormContainer />
           </div>
-          <div className=" flex-[2] py-10 min-w-[240px] flex flex-col gap-20">
-            <div className="w-20 h-20 md:w-24 lg:w-[120px] md:h-24 lg:h-[120px] relative rounded-full bg-white transition-all">
-              <Image
-                src={"/assets/images/profile.png"}
-                alt="my emozi"
-                className="object-cover"
-                fill
-                sizes={"100"}
-              />
-            </div>
-            <ul className="relative w-full flex flex-col gap-4 before:content-['Contact_Detail'] before:absolute before:bottom-[120%] before:text-gray before:text-xs">
-              <li>
-                <Link
-                  href={"mailto:jadw15@naver.com"}
-                  scroll={false}
-                  className="text-white hover:text-gray transition-all"
-                >
-                  jadw15@naver.com
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={"tel:+821076303515"}
-                  scroll={false}
-                  className="text-white hover:text-gray transition-all"
-                >
-                  +82 10 7630 3515
-                </Link>
-              </li>
-            </ul>
-            <ul className="relative w-full flex flex-col gap-4 before:content-['Social'] before:absolute before:bottom-[120%] before:text-gray before:text-xs">
-              <li>
-                <Link
-                  className="text-white hover:text-gray transition-all flex items-center gap-2"
-                  href={"https://github.com/osanThor"}
-                  target="_blank"
-                >
-                  <GithubIcon />
-                  Github
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="text-white hover:text-gray transition-all flex items-center gap-2"
-                  href={"https://blog.given-log.com"}
-                  target="_blank"
-                >
-                  <BlogIcon />
-                  Blog
-                </Link>
-              </li>
-            </ul>
+          <div className="flex-[2]">
+            <ContactSidebar showProfile />
           </div>
         </div>
       </div>

@@ -13,9 +13,13 @@ export type Work = {
   description: string;
 };
 
+export type WorkDetail = Work & {
+  content: string;
+};
+
 export async function getFeaturedWorks(): Promise<Work[]> {
-  return getAllWorks() //
-    .then((works) => works.filter((work) => work.featured));
+  const works = await getAllWorks();
+  return works.filter((work) => work.featured);
 }
 
 export const getAllWorks = cache(async () => {
@@ -26,16 +30,12 @@ export const getAllWorks = cache(async () => {
     "works",
     "works.json"
   );
-  return readFile(filePath, "utf-8")
-    .then<Work[]>(JSON.parse)
-    .then((posts) => posts.sort((a, b) => (a.year > b.year ? -1 : 1)));
+  const content = await readFile(filePath, "utf-8");
+  const posts = JSON.parse(content) as Work[];
+  return posts.sort((a, b) => Number(b.year) - Number(a.year));
 });
 
-export type WorkDetail = Work & {
-  content: string;
-};
-
-export async function getWorkDetail(fileName: string): Promise<WorkDetail> {
+export const getWorkDetail = cache(async (fileName: string): Promise<WorkDetail> => {
   const filePath = path.join(
     process.cwd(),
     "src",
@@ -45,10 +45,12 @@ export async function getWorkDetail(fileName: string): Promise<WorkDetail> {
     `${fileName}.md`
   );
   const works = await getAllWorks();
-  const work = works.find((work) => work.path === fileName);
+  const work = works.find((item) => item.path === fileName);
 
-  if (!work) throw new Error(`${fileName}에 해당하는 포스트를 찾을 수 없음`);
+  if (!work) {
+    throw new Error(`${fileName}에 해당하는 포스트를 찾을 수 없음`);
+  }
 
   const content = await readFile(filePath, "utf-8");
   return { ...work, content };
-}
+});

@@ -2,6 +2,7 @@ import LinkButton from "@/components/common/LinkButton";
 import MarkdownViewer from "@/components/works/MarkdownViewer";
 import SiteLinkButton from "@/components/works/SiteLinkButton";
 import { getWorkDetail } from "@/services/works.service";
+import { formatWorkCategories, getWorkThumbnailSrc } from "@/utils/work";
 import Image from "next/image";
 
 type Props = {
@@ -22,7 +23,7 @@ export default async function WorkDetailContainer({ slug }: Props) {
           <div className="w-full flex flex-col md:flex-row gap-5 md:gap-10">
             <div className="before:content-['제공'] relative before:absolute before:bottom-[120%] before:text-lightGray before:text-xs flex-1 text-gray mt-4 pt-2 md:mt-10 md:pt-5 border-t border-lightGray">
               <span className="sr-only">Category:</span>
-              <span aria-label="Category">{category.join(" & ")}</span>
+              <span aria-label="Category">{formatWorkCategories(category)}</span>
             </div>
             <div className="before:content-['타입'] relative before:absolute before:bottom-[120%] before:text-lightGray before:text-xs flex-1 text-gray mt-4 pt-2 md:mt-10 md:pt-5 border-t border-lightGray">
               <span className="sr-only">Type:</span>
@@ -37,7 +38,7 @@ export default async function WorkDetailContainer({ slug }: Props) {
         <figure>
           <Image
             className="object-cover max-w-full "
-            src={`/assets/images/works/${slug}.png`}
+            src={getWorkThumbnailSrc(slug)}
             alt={`bn-${slug}`}
             width={1600}
             height={720}

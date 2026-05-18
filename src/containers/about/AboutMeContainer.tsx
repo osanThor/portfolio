@@ -10,7 +10,7 @@ import {
   FESkills,
   Repositories,
 } from "@/data/about/skills/allSkills";
-import Tootip from "@/components/common/Tootip";
+import Tooltip from "@/components/common/Tooltip";
 
 export default function AboutMeContainer() {
   return (
@@ -157,7 +157,7 @@ function SkillItem({ skill }: ItemProps) {
           />
         </div>
       </div>
-      <Tootip text={skill.name} />
+      <Tooltip text={skill.name} />
     </li>
   );
 }

@@ -4,32 +4,21 @@ import CommonTitle from "@/components/common/CommonTitle";
 import LinkButton from "@/components/common/LinkButton";
 import Image from "next/image";
 import { useGSAP } from "@gsap/react";
-import { useEffect, useRef, useState } from "react";
+import { useDelayedReveal } from "@/hooks/useDelayedReveal";
+import { useRef } from "react";
 import { mainAboutTextTimeline } from "@/utils/lib/gsap";
-import { useMountStore } from "@/stores/mount";
 
 export default function MainAboutContainer() {
   const containerRef = useRef<HTMLElement>(null);
   const aboutTextRef = useRef<HTMLParagraphElement>(null);
+  const isRevealed = useDelayedReveal();
 
-  const mounted = useMountStore((state) => state.mounted);
-
-  const [localMounted, setLocalMounted] = useState<boolean>(false);
-
-  useEffect(() => {
-    setTimeout(
-      () => {
-        setLocalMounted(true);
-      },
-      mounted ? 2200 : 2500
-    );
-  }, []);
   useGSAP(
     () => {
       if (!aboutTextRef.current) return;
       mainAboutTextTimeline(aboutTextRef.current);
     },
-    { scope: aboutTextRef, dependencies: [localMounted] }
+    { scope: aboutTextRef, dependencies: [isRevealed] }
   );
 
   return (
@@ -41,7 +30,7 @@ export default function MainAboutContainer() {
         <div className="flex-1 flex flex-col order-2 lg:order-1 items-center lg:items-start justify-between gap-10">
           <div className="flex-1 w-full flex flex-col items-start">
             <CommonTitle text="About me" />
-            {localMounted && (
+            {isRevealed && (
               <p
                 id="mainAbout"
                 ref={aboutTextRef}
